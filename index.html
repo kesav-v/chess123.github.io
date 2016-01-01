@@ -26,13 +26,31 @@
                 background-color: blue;
                 text-emphasis-color: white;
             }
-            body.image1 {
-                display: block;
+            #image1 {
+                display: inherit;
                 margin-left: auto;
                 margin-right: auto;
             }
             li {
                 color: white;
+            }
+            #directions {
+                color: coral;
+                text-align: center;
+                font-size: 20px;
+            }
+            #link1 {
+                color: white;
+            }
+            #button1 {
+                color: blue;
+                display: inherit;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            #buttontext1 {
+                color: white;
+                font-size: 40px;
             }
         </style>
     </head>
@@ -40,7 +58,7 @@
         <h1>
             Welcome to my website!!!
         </h1>
-        <img class="image1" src="http://en.chessbase.com/Portals/4/files/news/2015/events/northamericanjuniors/viswanadha01.jpg">
+        <img id="image1" src="http://en.chessbase.com/Portals/4/files/news/2015/events/northamericanjuniors/viswanadha01.jpg">
         <p>
             Hey everyone! I'm Kesav Viswanadha, a 16-year-old student at Monta Vista High School in Cupertino, CA. I am an International Master (IM) of chess - I travel all over the world to play in tournaments, and I really enjoy it! I also sing Carnatic music and have performed several times in the Bay Area. In my free time, I enjoy programming, playing video games, and basketball. Here are some achievements I'm most proud of:
         </p>
@@ -61,19 +79,10 @@
                 Bronze and Silver medals on the National French Contest in 2014 and 2015 respectively
             </li>
         </ul>
-        <li>Click <a href="http://github.com/chess123">here</a> for my GitHub page.</li>
+        <div id="directions">Click <a id="link1" href="http://github.com/chess123">here</a> for my GitHub page.</div>
         <p>
             Click on any of the buttons below to find out more about me:
         </p>
-        <form action="http://fide.com/">
-            <input type="submit" value="CHESS">
-        </form>
-        <form action="http://fide.com/">
-            <input type="submit" value="SCHOOL">
-        </form>
-        <form action="http://fide.com/">
-            <input type="submit" value="DEVELOPER">
-        </form>
-        
+        <div id="buttongroup1"><button id="button1" type="button"><a id="buttontext1">CHESS</a></button></div>
     </body>
 </html>
