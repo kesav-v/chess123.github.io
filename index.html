@@ -4,8 +4,7 @@
         <title>Kesav's Website</title>
         <style>
             body {
-                background-color: black;
-            
+                background-image: linear-gradient(to bottom right, black, #666666);
             }
             p {
                 color: white;
@@ -43,12 +42,39 @@
                 color: white;
             }
             #button1 {
-                color: blue;
+                background-image: radial-gradient(red, orange);
+                position: inherit;
                 display: inherit;
                 margin-left: auto;
                 margin-right: auto;
+                top: 821px;
+                bottom: 921px;
             }
             #buttontext1 {
+                color: white;
+                font-size: 40px;
+            }
+            #button2 {
+                background-image: radial-gradient(blue, violet);
+                background-size: 400px;
+                position: absolute;
+                top: 821px;
+                bottom: 921px;
+            }
+            #buttontext2 {
+                color: white;
+                font-size: 40px;
+            }
+            #button3 {
+                background-image: radial-gradient(lawngreen, yellow);
+                background-size: 400px;
+                position: absolute;
+                top: 821px;
+                bottom: 921px;
+                left: 1000px;
+                right: 1400px;
+            }
+            #buttontext3 {
                 color: white;
                 font-size: 40px;
             }
@@ -83,6 +109,25 @@
         <p>
             Click on any of the buttons below to find out more about me:
         </p>
-        <div id="buttongroup1"><button id="button1" type="button"><a id="buttontext1">CHESS</a></button></div>
+        <div id="buttongroup1">
+            <script>
+                function visitPage(){
+                    window.location='http://fide.com';
+                }
+            </script>
+            <button onclick="visitPage();" id="button1" type="button"><a id="buttontext1">CHESS</a></button>
+            <script>
+                function visitPage2(){
+                    window.location='http://mvhs.fuhsd.org';
+                }
+            </script>
+            <button onclick="visitPage2();" id="button2" type="button"><a id="buttontext2">SCHOOL</a></button>
+            <script>
+                function visitPage3(){
+                    window.location='http://github.com/chess123/chess123.github.io';
+                }
+            </script>
+            <button onclick="visitPage3();" id="button3" type="button"><a id="buttontext3">DEVELOPER</a></button>
+        </div>
     </body>
 </html>
