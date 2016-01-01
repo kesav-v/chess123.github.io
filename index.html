@@ -2,14 +2,47 @@
 <html>
     <head>
         <title>Kesav's Website</title>
+        <style>
+            body {
+                background-color: black;
+            
+            }
+            p {
+                color: white;
+                text-align: center;
+                font-size: 20px;
+            }
+            h1 {
+                color: lawngreen;
+                text-align: center;
+            }
+            
+            ul {
+                color: white;
+            }
+            button {
+                height: 100px;
+                width: 400px;
+                background-color: blue;
+                text-emphasis-color: white;
+            }
+            body.image1 {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            li {
+                color: white;
+            }
+        </style>
     </head>
     <body>
         <h1>
             Welcome to my website!!!
         </h1>
-        <img src = "http://en.chessbase.com/Portals/4/files/news/2015/events/northamericanjuniors/viswanadha01.jpg" height="440px" width="400px">
+        <img class="image1" src="http://en.chessbase.com/Portals/4/files/news/2015/events/northamericanjuniors/viswanadha01.jpg">
         <p>
-            I'm Kesav Viswanadha, a 16-year-old student at Monta Vista High School. I am an International Master (IM) of chess - I travel all over the world to play in tournaments, and I really enjoy it! I also sing Carnatic music and have performed several times in the Bay Area. In my free time, I enjoy programming, playing video games, basketball. Here are some achievements I'm most proud of:
+            Hey everyone! I'm Kesav Viswanadha, a 16-year-old student at Monta Vista High School in Cupertino, CA. I am an International Master (IM) of chess - I travel all over the world to play in tournaments, and I really enjoy it! I also sing Carnatic music and have performed several times in the Bay Area. In my free time, I enjoy programming, playing video games, and basketball. Here are some achievements I'm most proud of:
         </p>
         <ul>
             <li>
@@ -28,10 +61,19 @@
                 Bronze and Silver medals on the National French Contest in 2014 and 2015 respectively
             </li>
         </ul>
-        Click <a href="http://github.com/chess123">here</a> for my GitHub page.
+        <li>Click <a href="http://github.com/chess123">here</a> for my GitHub page.</li>
         <p>
             Click on any of the buttons below to find out more about me:
         </p>
-        <button type="button">CHESS</button>
+        <form action="http://fide.com/">
+            <input type="submit" value="CHESS">
+        </form>
+        <form action="http://fide.com/">
+            <input type="submit" value="SCHOOL">
+        </form>
+        <form action="http://fide.com/">
+            <input type="submit" value="DEVELOPER">
+        </form>
+        
     </body>
 </html>
