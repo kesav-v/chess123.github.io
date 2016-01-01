@@ -40,43 +40,26 @@
             }
             #link1 {
                 color: white;
+            } 
+            #buttongroup1 button {
+                display: inline-block;
+                margin: 20px;
             }
             #button1 {
                 background-image: radial-gradient(red, orange);
-                position: inherit;
-                display: inherit;
-                margin-left: auto;
-                margin-right: auto;
-                top: 821px;
-                bottom: 921px;
-            }
-            #buttontext1 {
-                color: white;
-                font-size: 40px;
             }
             #button2 {
                 background-image: radial-gradient(blue, violet);
-                background-size: 400px;
-                position: absolute;
-                top: 821px;
-                bottom: 921px;
-            }
-            #buttontext2 {
-                color: white;
-                font-size: 40px;
             }
             #button3 {
                 background-image: radial-gradient(lawngreen, yellow);
-                background-size: 400px;
-                position: absolute;
-                top: 821px;
-                bottom: 921px;
-                left: 1000px;
-                right: 1400px;
             }
-            #buttontext3 {
+            .buttontext {
                 color: white;
                 font-size: 40px;
+            }
+            #buttongroup1 {
+                text-align: center;
             }
         </style>
     </head>
@@ -115,19 +98,19 @@
                     window.location='http://fide.com';
                 }
             </script>
-            <button onclick="visitPage();" id="button1" type="button"><a id="buttontext1">CHESS</a></button>
+            <button onclick="visitPage();" id="button1" type="button"><a class="buttontext">CHESS</a></button>
             <script>
                 function visitPage2(){
                     window.location='http://mvhs.fuhsd.org';
                 }
             </script>
-            <button onclick="visitPage2();" id="button2" type="button"><a id="buttontext2">SCHOOL</a></button>
+            <button onclick="visitPage2();" id="button2" type="button"><a class="buttontext">SCHOOL</a></button>
             <script>
                 function visitPage3(){
                     window.location='http://github.com/chess123/chess123.github.io';
                 }
             </script>
-            <button onclick="visitPage3();" id="button3" type="button"><a id="buttontext3">DEVELOPER</a></button>
+            <button onclick="visitPage3();" id="button3" type="button"><a class="buttontext">DEVELOPER</a></button>
         </div>
     </body>
 </html>
