@@ -4,28 +4,26 @@
         <title>Kesav's Website</title>
         <style>
             body {
-                background-color: black;
+                background-image: radial-gradient(white, blue);
             }
             p {
-                color: white;
+                color: black;
                 text-align: center;
                 font-size: 20px;
             }
             h1 {
-                color: blue;
+                color: black;
                 text-align: center;
                 font-size: 60px;
             }
             
             ul {
-                color: white;
+                color: black;
                 font-size: 20px;
             }
             button {
                 height: 100px;
                 width: 400px;
-                background-color: blue;
-                text-emphasis-color: white;
             }
             #image1 {
                 display: inherit;
@@ -33,15 +31,10 @@
                 margin-right: auto;
             }
             li {
-                color: white;
-            }
-            #directions {
-                color: darkorange;
-                text-align: center;
-                font-size: 20px;
+                color: black;
             }
             #link1 {
-                color: white;
+                color: black;
             } 
             #buttongroup1 button {
                 display: inline-block;
@@ -60,34 +53,47 @@
                 color: white;
                 font-size: 40px;
             }
+            @keyframes changebuttoncolor1 {
+                0% {background-color: red;}
+                50% {background-color: darkorange;}
+                100% {background-color: red;}
+            }
+            @keyframes changebuttoncolor2 {
+                0% {background-color: blue;}
+                50% {background-color: darkorange;}
+                100% {background-color: blue;}
+            }
+            @keyframes changebuttoncolor3 {
+                0% {background-color: green;}
+                50% {background-color: darkorange;}
+                100% {background-color: green;}
+            }
             #buttongroup1 {
                 text-align: center;
             }
-            #buttongroup1 button:hover {
-                background-color: black;
+
+            #button1:hover {
+                animation-name: changebuttoncolor1;
+                animation-duration: 2s;
+                animation-iteration-count: infinite;
+            }
+            #button2:hover {
+                animation-name: changebuttoncolor2;
+                animation-duration: 2s;
+                animation-iteration-count: infinite;
+            }
+            #button3:hover {
+                animation-name: changebuttoncolor3;
+                animation-duration: 2s;
+                animation-iteration-count: infinite;
             }
         </style>
     </head>
-    <script>
-        var my_color = '#0000ff';
-        function changeWebsiteColor(color) {
-            this.document.body.style.background = color;
-        }
-        function changeColor() {
-            if (my_color === '#0000ff') my_color = '#ff0000';
-            if (my_color === '#ff0000') my_color = '#00ff00';
-            if (my_color === '#00ff00') my_color = '#0000ff';
-            changeWebsiteColor(my_color);
-        }
-        function timeChanges() {
-            setInterval(changeColor(), 1000);
-        }
-    </script>
-    <body onload="timeChanges();">
+    <body>
         <h1>
             WELCOME TO MY WEBSITE!!!!
         </h1>
-        <img id="image1" src="http://en.chessbase.com/Portals/4/files/news/2015/events/northamericanjuniors/viswanadha01.jpg">
+        <img id="image1" src="http://chess123.github.io/images/Kesav.JPG">
         <p>
             Hey everyone! I'm Kesav Viswanadha, a 16-year-old student at Monta Vista High School in Cupertino, CA. I am an International Master (IM) of chess - I travel all over the world to play in tournaments, and I really enjoy it! I also sing Carnatic music and have performed several times in the Bay Area. In my free time, I enjoy programming, playing video games, and basketball. Here are some achievements I'm most proud of:
         </p>
@@ -108,7 +114,6 @@
                 Bronze and Silver medals on the National French Contest in 2014 and 2015 respectively
             </li>
         </ul>
-        <div id="directions">Click <a id="link1" href="http://github.com/chess123">here</a> for my GitHub page.</div>
         <p>
             Click any of the buttons below to find out more about me:
         </p>
