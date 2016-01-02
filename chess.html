@@ -27,12 +27,16 @@
                 font-family: "Comic Sans MS", cursive, sans-serif;
             }
             #image1 {
-                font-family: "Comic Sans MS", cursive, sans-serif;
                 display: inherit;
+                font-family: "Comic Sans MS", cursive, sans-serif;
                 margin-left: auto;
                 margin-right: auto;
                 border: 10px solid rgba(0, 0, 0, 0.5);
                 border-radius: 4px;
+                width: 50%;
+                border: thin silver solid;
+                padding: 0.5em;
+                padding: 0.5em;
             }
             @keyframes fadeintext {
                 from {opacity: 0;}
@@ -81,6 +85,21 @@
             .upcoming {
                 color: green;
             }
+            #chesspics p {
+                color: white;
+                background-color: rgba(0, 0, 0, 0.6);
+                width: 50%;
+                position: relative;
+                top: -40px;
+                left: 25%;
+                text-align: center;
+                font-style: italic;
+                font-size: 14px;
+                text-indent: 0;
+            }
+            #image1.scaled {
+              width: 100%;
+            }
 		</style>
 	</head>
 	<body>
@@ -91,7 +110,10 @@
             <h2>
                 on Kesav's website
             </h2>
-            <img id="image1" src="http://www.utb.edu/sa/chess/PublishingImages/2015SpringGM/Viswanadha_Stukopin_640x427.jpg">
+            <div id="chesspics">
+                <img id="image1" src="http://www.utb.edu/sa/chess/PublishingImages/2015SpringGM/Viswanadha_Stukopin_640x427.jpg">
+                <p>Kesav playing a game against GM Stukopin at University of Texas at Brownsville (2015)</p>
+            </div>
             <p>
                 Welcome to the chess portion of my website! I am International Master (IM) of chess and I continue to play in tournaments all over the country and even the world! This is where I will keep you updated on my latest chess adventures and other thoughts on the chess world. My <a href="http://www.uschess.org/msa/MbrDtlMain.php?13159334" class="chesslink">USCF rating</a> is 2420, and my <a class="chesslink" href="https://ratings.fide.com/card.phtml?event=2059533">FIDE rating</a> is 2359.
             </p>
