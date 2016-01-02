@@ -1,20 +1,78 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <title>Kesav's Blog</title>
         <style>
             body {
-                background-image: radial-gradient(red, orange, yellow, orange, red);
+                background-image: radial-gradient(yellow, orange, red);
+                background-repeat: no-repeat;
+                background-size: 100%;
             }
             h1 {
+                text-align: center;
                 font-size: 120px;
             }
-            
+            h2 {
+                text-align: center;
+                font-size: 38px;
+            }
+            p {
+                padding-top: 20px;
+                padding-bottom: 20px;
+                font-size: 20px;
+                text-align: center;
+            }
+            .alltext {
+                margin-left: 40px;
+                margin-right: 40px;
+                font-family: "Comic Sans MS", cursive, sans-serif;
+            }
+            #entirepage {
+                background-color: rgba(255, 255, 255, 0.5);
+                margin-left: 80px;
+                margin-right: 80px;
+                margin-top: 20px;
+                margin-bottom: 80px;
+                padding-bottom: 40%;
+            }
+            li {
+                font-size: 20px;
+            }
+            .date {
+                font-size: 30px;
+                font-weight: 800;
+                color: blue;
+            }
+            @keyframes makeblue {
+                to {color:blue;}
+            }
+            .bloglink {
+                color: red;
+            }
+            .bloglink:hover {
+                animation-name: makeblue;
+                animation-duration: 0.5s;
+                animation-fill-mode: forwards;
+            }
         </style>
     </head>
     <body>
-        <h1>
-            Welcome to my blog!
-        </h1>
+        <div id="entirepage">
+            <h1 class="alltext">
+                Welcome to my blog!
+            </h1>
+            <h2 class="alltext">
+                This is where I'll post stuff about myself - think of it as a pseudo-Facebook timeline :)
+            </h2>
+            <ul>
+                <li class="alltext">
+                    <div class="date">January 2, 2016</div> - Hey everyone! I just finished creating this page and wrote my first blog post. Check back here soon for more blog posts and updates on stuff going on in life!
+                </li>
+            </ul>
+        </div>
     </body>
 </html>
