@@ -12,9 +12,11 @@
                 font-size: 20px;
             }
             h1 {
+                background-color: rgba(255, 255, 255, 0.3);
+                background-size: 800px 100px;
                 color: black;
                 text-align: center;
-                font-size: 60px;
+                font-size: 80px;
             }
             
             ul {
@@ -22,15 +24,18 @@
                 font-size: 20px;
             }
             button {
-                height: 100px;
+                height: 400px;
                 width: 400px;
             }
+
             #image1 {
                 display: inherit;
                 margin-left: auto;
                 margin-right: auto;
                 width: 600px;
                 height: 400px;
+                border: 10px solid rgba(255, 255, 255, 0.5);
+                border-radius: 4px;
             }
             li {
                 color: black;
@@ -43,51 +48,33 @@
                 margin: 20px;
             }
             #button1 {
-                background-color: red;
+                background-image: url("http://previews.123rf.com/images/studiom1/studiom11312/studiom1131200084/24372512-A-3d-perspective-view-of-a-chess-board--Stock-Vector.jpg");
+                background-size: cover;
+                background-repeat: no-repeat;
             }
             #button2 {
-                background-color: blue;
+                background-image: url("https://upload.wikimedia.org/wikipedia/en/thumb/1/13/Monta_Vista_High_School_Logo.jpg/150px-Monta_Vista_High_School_Logo.jpg");
+                background-size: cover;
+                background-repeat: no-repeat;
             }
             #button3 {
-                background-color: green;
+                background-image: url("http://thumbs.dreamstime.com/z/microchip-19638744.jpg");
+                background-size: 400px 442px;
+                background-repeat: no-repeat;
             }
             .buttontext {
-                color: white;
+                background-color: rgba(255, 255, 255, 0.8);
+                font-weight: 200;
+                color: black;
                 font-size: 40px;
+                font-family: "Times New Roman", Times, serif;
             }
-            @keyframes changebuttoncolor1 {
-                0% {background-color: red;}
-                50% {background-color: darkorange;}
-                100% {background-color: red;}
-            }
-            @keyframes changebuttoncolor2 {
-                0% {background-color: blue;}
-                50% {background-color: darkorange;}
-                100% {background-color: blue;}
-            }
-            @keyframes changebuttoncolor3 {
-                0% {background-color: green;}
-                50% {background-color: darkorange;}
-                100% {background-color: green;}
-            }
+
             #buttongroup1 {
                 text-align: center;
             }
-
-            #button1:hover {
-                animation-name: changebuttoncolor1;
-                animation-duration: 2s;
-                animation-iteration-count: infinite;
-            }
-            #button2:hover {
-                animation-name: changebuttoncolor2;
-                animation-duration: 2s;
-                animation-iteration-count: infinite;
-            }
-            #button3:hover {
-                animation-name: changebuttoncolor3;
-                animation-duration: 2s;
-                animation-iteration-count: infinite;
+            .achievementlinks {
+                color: red;
             }
         </style>
     </head>
@@ -101,19 +88,19 @@
         </p>
         <ul>
             <li>
-                North American Junior (U20) Chess Championship Gold Medalist 2015 - earned me my first Grandmaster norm!
+                <a class="achievementlinks" href="http://en.chessbase.com/post/2015-north-american-junior-championships">North American Junior (U20) Chess Championship</a> Gold Medalist 2015 - earned me my first Grandmaster norm!
             </li>
             <li>
-                North American Youth (U16) Chess Championship Gold Medalist 2014 - earned me the FM title and my first IM norm!
+                <a class="achievementlinks" href="http://www.uschess.org/content/view/12708/767/">North American Youth (U16) Chess Championship</a> Gold Medalist 2014 - earned me the FM title and my first IM norm!
             </li>
             <li>
                 Straight As in all academic classes in high school so far
             </li>
             <li>
-                5-time member of the prestigious All-America Chess Team (2012 - 2016)
+                5-time member of the prestigious <a class="achievementlinks" href="https://new.uschess.org/news/2016-all-america-chess-team-announced/">All-America Chess Team</a> (2012 - 2016)
             </li>
             <li>
-                Bronze and Silver medals on the National French Contest in 2014 and 2015 respectively
+                Bronze and Silver medals on the <a class="achievementlinks" href="https://www.frenchteachers.org/concours/">National French Contest</a> in 2014 and 2015 respectively
             </li>
         </ul>
         <p>
