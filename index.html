@@ -68,7 +68,22 @@
             }
         </style>
     </head>
-    <body>
+    <script>
+        var my_color = '#0000ff';
+        function changeWebsiteColor(color) {
+            this.document.body.style.background = color;
+        }
+        function changeColor() {
+            if (my_color === '#0000ff') my_color = '#ff0000';
+            if (my_color === '#ff0000') my_color = '#00ff00';
+            if (my_color === '#00ff00') my_color = '#0000ff';
+            changeWebsiteColor(my_color);
+        }
+        function timeChanges() {
+            setInterval(changeColor(), 1000);
+        }
+    </script>
+    <body onload="timeChanges();">
         <h1>
             WELCOME TO MY WEBSITE!!!!
         </h1>
