@@ -31,7 +31,14 @@
                 margin-right: 40px;
                 font-family: "Comic Sans MS", cursive, sans-serif;
             }
+            @keyframes fadeintext {
+                from {opacity: 0;}
+                to {opacity: 1;}
+            }
             #entirepage {
+                animation-name: fadeintext;
+                animation-duration: 5s;
+                animation-fill-mode: forwards;
                 background-color: rgba(255, 255, 255, 0.5);
                 margin-left: 80px;
                 margin-right: 80px;
