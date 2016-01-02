@@ -52,7 +52,9 @@
                 display: inline-block;
                 margin: 20px;
             }
-
+            @keyframes changeLinkColor {
+                to {color: blue;}
+            }
             #button1 {
                 background-image: url("http://previews.123rf.com/images/studiom1/studiom11312/studiom1131200084/24372512-A-3d-perspective-view-of-a-chess-board--Stock-Vector.jpg");
                 background-size: cover;
@@ -69,8 +71,26 @@
                 background-size: 400px 442px;
                 background-repeat: no-repeat;
             }
+            @keyframes changeopacity {
+                to {opacity: 0.5;}
+            }
+            #button1:hover {
+                animation-name: changeopacity;
+                animation-duration: 0.5s;
+                animation-fill-mode: forwards;
+            }
+            #button2:hover {
+                animation-name: changeopacity;
+                animation-duration: 0.5s;
+                animation-fill-mode: forwards;
+            }
+            #button3:hover {
+                animation-name: changeopacity;
+                animation-duration: 0.5s;
+                animation-fill-mode: forwards;
+            }
             .buttontext {
-                box-shadow: 0px 0px 8px 4px #555555;
+                box-shadow: 0px 0px 6px 3px #555555;
                 background-color: rgba(255, 255, 255, 0.8);
                 font-weight: 200;
                 color: black;
@@ -84,6 +104,11 @@
             }
             .achievementlinks {
                 color: red;
+            }
+            .achievementlinks:hover {
+                animation-name: changeLinkColor;
+                animation-duration: 0.5s;
+                animation-fill-mode: forwards;
             }
             #entirepage {
                 background-color: rgba(255, 255, 255, 0.5);
