@@ -62,6 +62,19 @@
                 animation-duration: 0.5s;
                 animation-fill-mode: forwards;
             }
+            #buttongroup1 {
+                text-align: center;
+            }
+            #button1 {
+                width: 400px;
+                height: 100px;
+                background-image: linear-gradient(white, green, white);
+            }
+            #buttontext1 {
+                color: white;
+                text-align: center;
+                font-size: 30px;
+            }
         </style>
     </head>
     <body>
@@ -72,6 +85,12 @@
             <h2 class="alltext">
                 This is where I'll post stuff about myself - think of it as a pseudo-Facebook timeline :)
             </h2>
+            <script>
+                function visitPage(name) {
+                    window.location = name;
+                }
+            </script>
+            <div id="buttongroup1"><button onclick="visitPage('http://chess123.github.io');" id="button1"><a class="alltext" id="buttontext1">< BACK TO HOME</a></button></div>
             <ul>
                 <li class="alltext">
                     <div class="date">January 2, 2016</div> - Hey everyone! I just finished creating this page and wrote my first blog post. Check back here soon for more blog posts and updates on stuff going on in life!
