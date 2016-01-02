@@ -8,6 +8,10 @@
                 margin-right: 80px;
                 background-image: radial-gradient(white, blue);
             }
+            @keyframes fadeintext {
+                from {opacity: 0;}
+                to {opacity: 1;}
+            }
             p {
                 font-family: "Comic Sans MS", cursive, sans-serif;
                 color: black;
@@ -111,6 +115,9 @@
                 animation-fill-mode: forwards;
             }
             #entirepage {
+                animation-name: fadeintext;
+                animation-duration: 5s;
+                animation-fill-mode: forwards;
                 background-color: rgba(255, 255, 255, 0.5);
                 margin-bottom: 50px;
                 margin-top: 50px;
