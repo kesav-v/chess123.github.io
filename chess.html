@@ -100,6 +100,20 @@
             #image1.scaled {
               width: 100%;
             }
+            #buttongroup1 {
+                text-align: center;
+            }
+            #backbutton {
+                width: 400px;
+                height: 100px;
+                margin-bottom: 20px;
+                background-image: linear-gradient(white, blue, white);
+            }
+            #buttontext {
+                font-size: 40px;
+                color: white;
+                font-family: "Comic Sans MS", cursive, sans-serif;
+            }
 		</style>
 	</head>
 	<body>
@@ -110,6 +124,14 @@
             <h2>
                 on Kesav's website
             </h2>
+            <script>
+                function visitPage(name) {
+                    window.location = name;
+                }
+            </script>
+            <div id="buttongroup1">
+                <button id="backbutton" onclick="visitPage('http://chess123.github.io')"><a id="buttontext">< BACK TO HOME</a></button>
+            </div>
             <div id="chesspics">
                 <img id="image1" src="http://www.utb.edu/sa/chess/PublishingImages/2015SpringGM/Viswanadha_Stukopin_640x427.jpg">
                 <p>Kesav playing a game against GM Stukopin at University of Texas at Brownsville (2015)</p>
