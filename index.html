@@ -4,6 +4,8 @@
         <title>Kesav's Website</title>
         <style>
             body {
+                margin-left: 80px;
+                margin-right: 80px;
                 background-image: radial-gradient(white, blue);
             }
             p {
@@ -15,7 +17,6 @@
             h1 {
                 font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
                 font-weight: 100;
-                background-color: rgba(255, 255, 255, 0.3);
                 background-size: 800px 100px;
                 color: black;
                 text-align: center;
@@ -51,6 +52,7 @@
                 display: inline-block;
                 margin: 20px;
             }
+
             #button1 {
                 background-image: url("http://previews.123rf.com/images/studiom1/studiom11312/studiom1131200084/24372512-A-3d-perspective-view-of-a-chess-board--Stock-Vector.jpg");
                 background-size: cover;
@@ -68,58 +70,71 @@
                 background-repeat: no-repeat;
             }
             .buttontext {
+                box-shadow: 0px 0px 8px 4px #555555;
                 background-color: rgba(255, 255, 255, 0.8);
                 font-weight: 200;
                 color: black;
                 font-size: 40px;
                 font-family: "Comic Sans MS", cursive, sans-serif;
+                padding-left: 7px;
+                padding-right: 7px;
             }
-
             #buttongroup1 {
                 text-align: center;
             }
             .achievementlinks {
                 color: red;
             }
+            #entirepage {
+                background-color: rgba(255, 255, 255, 0.5);
+                margin-bottom: 50px;
+                margin-top: 50px;
+                margin-left: auto;
+                margin-right: auto;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
         </style>
     </head>
     <body>
-        <h1>
-            WELCOME TO MY WEBSITE!!!!
-        </h1>
-        <img id="image1" src="http://chess123.github.io/images/Kesav.JPG">
-        <p>
-            Hey everyone! I'm Kesav Viswanadha, a 16-year-old student at Monta Vista High School in Cupertino, CA. I am an International Master (IM) of chess - I travel all over the world to play in tournaments, and I really enjoy it! I also sing Carnatic music and have performed several times in the Bay Area. In my free time, I enjoy programming, playing video games, and basketball. Here are some achievements I'm most proud of:
-        </p>
-        <ul>
-            <li>
-                <a class="achievementlinks" href="http://en.chessbase.com/post/2015-north-american-junior-championships">North American Junior (U20) Chess Championship</a> Gold Medalist 2015 - earned me my first Grandmaster norm!
-            </li>
-            <li>
-                <a class="achievementlinks" href="http://www.uschess.org/content/view/12708/767/">North American Youth (U16) Chess Championship</a> Gold Medalist 2014 - earned me the FM title and my first IM norm!
-            </li>
-            <li>
-                Straight As in all academic classes in high school so far
-            </li>
-            <li>
-                5-time member of the prestigious <a class="achievementlinks" href="https://new.uschess.org/news/2016-all-america-chess-team-announced/">All-America Chess Team</a> (2012 - 2016)
-            </li>
-            <li>
-                Bronze and Silver medals on the <a class="achievementlinks" href="https://www.frenchteachers.org/concours/">National French Contest</a> in 2014 and 2015 respectively
-            </li>
-        </ul>
-        <p>
-            Click any of the buttons below to find out more about me:
-        </p>
-        <div id="buttongroup1">
-            <script>
-                function visitPage(name) {
-                    window.location=name;
-                }
-            </script>
-            <button onclick="visitPage('http://fide.com');" id="button1" type="button" class="actualbuttons"><a class="buttontext">CHESS</a></button>
-            <button onclick="visitPage('http://mvhs.fuhsd.org');" id="button2" type="button" class="actualbuttons"><a class="buttontext">SCHOOL</a></button>
-            <button onclick="visitPage('http://github.com/chess123');" id="button3" type="button" class="actualbuttons"><a class="buttontext">DEVELOPER</a></button>
+        <div id="entirepage">
+            <h1>
+                WELCOME TO MY WEBSITE!!!!
+            </h1>
+            <img id="image1" src="http://chess123.github.io/images/Kesav.JPG">
+            <p>
+                Hey everyone! I'm Kesav Viswanadha, a 16-year-old student at Monta Vista High School in Cupertino, CA. I am an International Master (IM) of chess - I travel all over the world to play in tournaments, and I really enjoy it! I also sing Carnatic music and have performed several times in the Bay Area. In my free time, I enjoy programming, playing video games, and basketball. Here are some achievements I'm most proud of:
+            </p>
+            <ul>
+                <li>
+                    <a class="achievementlinks" href="http://en.chessbase.com/post/2015-north-american-junior-championships">North American Junior (U20) Chess Championship</a> Gold Medalist 2015 - earned me my first Grandmaster norm!
+                </li>
+                <li>
+                    <a class="achievementlinks" href="http://www.uschess.org/content/view/12708/767/">North American Youth (U16) Chess Championship</a> Gold Medalist 2014 - earned me the FM title and my first IM norm!
+                </li>
+                <li>
+                    Straight As in all academic classes in high school so far
+                </li>
+                <li>
+                    5-time member of the prestigious <a class="achievementlinks" href="https://new.uschess.org/news/2016-all-america-chess-team-announced/">All-America Chess Team</a> (2012 - 2016)
+                </li>
+                <li>
+                    Bronze and Silver medals on the <a class="achievementlinks" href="https://www.frenchteachers.org/concours/">National French Contest</a> in 2014 and 2015 respectively
+                </li>
+            </ul>
+            <p>
+                Click any of the buttons below to find out more about me:
+            </p>
+            <div id="buttongroup1">
+                <script>
+                    function visitPage(name) {
+                        window.location=name;
+                    }
+                </script>
+                <button onclick="visitPage('http://fide.com');" id="button1" type="button" class="actualbuttons"><a class="buttontext">CHESS</a></button>
+                <button onclick="visitPage('http://mvhs.fuhsd.org');" id="button2" type="button" class="actualbuttons"><a class="buttontext">SCHOOL</a></button>
+                <button onclick="visitPage('http://github.com/chess123');" id="button3" type="button" class="actualbuttons"><a class="buttontext">DEVELOPER</a></button>
+            </div>
         </div>
     </body>
 </html>
