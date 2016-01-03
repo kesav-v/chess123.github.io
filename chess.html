@@ -120,7 +120,52 @@
             }
 		</style>
 	</head>
-	<body>
+	<body onload="slideshow();">
+        <script>
+            var urls = ["http://www.utb.edu/sa/chess/PublishingImages/2015SpringGM/Viswanadha_Stukopin_640x427.jpg", "http://www.utb.edu/sa/chess/PublishingImages/2015SpringGM/Kovalyov_Viswanadha_640x427.jpg"];
+            var captions = ["Kesav playing a game against GM Stukopin at University of Texas at Brownsville (2015)", "Kesav playing a game against GM Kovalyov at University of Texas at Brownsville (2015)"]
+            var num = 0;
+            var element1;
+            var timer;
+            var timer2;
+            function fadeout() {
+                element1 = document.getElementById("image1");
+                element1.style.opacity = 1;
+                console.log("***********" + this.element1.style.opacity + "*************");
+                timer = window.setInterval(make_more_clear, 5);
+            }
+            function make_more_clear() {
+                element1.style.opacity -= 0.01;
+                console.log(this.element1.style.opacity + " HEREEEEEE");
+                if (this.element1.style.opacity - 0.01 < 0) {
+                    console.log("clearing");
+                    window.clearInterval(timer);
+                    change_pic();
+                }
+            }
+            function make_less_clear() {
+                console.log(element1.style.opacity + "HEREOOOOOOOOO");
+                element1.style.opacity += 0.01;
+                console.log(element1.style.opacity + " HEREAAAAAAA");
+                if (this.element1.style.opacity + 0.01 > 1) {
+                    console.log("clearing2");
+                    window.clearInterval(timer2);
+                    change_pic();
+                }
+            }
+            function change_pic() {
+                this.element1.src = urls[num];
+                var element2 = document.getElementById("caption");
+                element2.innerHTML = captions[num];
+                element1.style.opacity = 0;
+                timer2 = window.setInterval(make_less_clear, 5);
+                num++;
+                num %= urls.length;
+            }
+            function slideshow() {
+                setInterval(fadeout, 5000);
+            }
+        </script>
         <div id="entirepage">
             <h1>
                 CHESS
@@ -138,7 +183,7 @@
             </div>
             <div id="chesspics">
                 <img id="image1" src="http://www.utb.edu/sa/chess/PublishingImages/2015SpringGM/Viswanadha_Stukopin_640x427.jpg">
-                <p>Kesav playing a game against GM Stukopin at University of Texas at Brownsville (2015)</p>
+                <p id="caption">Kesav playing a game against GM Stukopin at University of Texas at Brownsville (2015)</p>
             </div>
             <p>
                 Welcome to the chess portion of my website! I am an International Master (IM) of chess and I continue to play in tournaments all over the country and even the world! This is where I will keep you updated on my latest chess adventures and other thoughts on the chess world. My <a href="http://www.uschess.org/msa/MbrDtlMain.php?13159334" class="chesslink">USCF rating</a> is 2420, and my <a class="chesslink" href="https://ratings.fide.com/card.phtml?event=2059533">FIDE rating</a> is 2359.
