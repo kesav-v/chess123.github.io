@@ -145,27 +145,28 @@
 	</head>
 	<body onload="slideshow();">
         <script>
-            var urls = ["./KesavGrade3.JPG", "./KesavBayArea2012.jpg",  "./KesavMVChess.jpg", "http://www.utb.edu/sa/chess/PublishingImages/2015SpringGM/Viswanadha_Stukopin_640x427.jpg", "http://www.utb.edu/sa/chess/PublishingImages/2015SpringGM/Kovalyov_Viswanadha_640x427.jpg", "./KesavSimul.jpg"];
-            var captions = ["Kesav behind the chess board (May 2008)", "Kesav at the Bay Area International (January 2012)", "Kesav at Monta Vista chess club (January 2014)", "Kesav playing a game against GM Stukopin at University of Texas at Brownsville (March 2015)", "Kesav playing a game against GM Kovalyov at University of Texas at Brownsville (March 2015)", "Kesav playing a simul at Let's Play Chess Club (October 2015)"];
+            var urls = ["./images/KesavGrade3.JPG", "./images/KesavBayArea2012.jpg",  "./images/KesavMVChess.jpg", "./images/KesavStukopin.jpg", "./images/KesavKovalyov.jpg", "./images/KesavRuifeng.jpg", "./images/KesavSimul.jpg"];
+            var captions = ["Kesav behind the chess board (May 2008)", "Kesav at the Bay Area International (January 2012)", "Kesav at Monta Vista chess club (January 2014)", "Kesav playing a game against GM Stukopin at University of Texas at Brownsville (March 2015)", "Kesav playing a game against GM Kovalyov at University of Texas at Brownsville (March 2015)", "Kesav playing a game against IM Li at University of Texas at Brownsville (May 2015)", "Kesav playing a simul at Let's Play Chess Club (October 2015)"];
             var num = 0;
             var timer;
             var timer2;
+            var times = 0;
             function change_pic() {
                 $("#caption").fadeTo(1000, 0);
-                $("#image1").fadeTo(1000, 0, function() {                 
+                $("#image1").fadeTo(1000, 0, function() {
                     num++;
                     num %= urls.length;
-                    console.log(num);
                     document.getElementById("image1").src = urls[num];
                     document.getElementById("caption").innerHTML = captions[num];
                 });
-                document.getElementById("image1").onload = $("#image1").fadeTo(500, 0);
-                document.getElementById("image1").onload = $("#image1").fadeTo(1000, 1);
-                document.getElementById("caption").onload = $("#caption").fadeTo(500, 0);
-                document.getElementById("caption").onload = $("#caption").fadeTo(1000, 1);
             }
             function slideshow() {
-                setInterval(change_pic, 6000);
+                $("#image1").load(function() {
+                    times++;
+                    $("#image1").fadeTo(1000, 1);
+                    $("#caption").fadeTo(1000, 1);
+                });
+                timer = setInterval(change_pic, 6000);
             }
         </script>
         <div id="entirepage">
@@ -184,7 +185,7 @@
                 <button id="backbutton" onclick="visitPage('http://chess123.github.io')"><a id="buttontext">< BACK TO HOME</a></button>
             </div>
             <div id="chesspics">
-                <img id="image1" src="./KesavGrade3.JPG">
+                <img id="image1" src="./images/KesavGrade3.JPG">
                      <div id="caption">Kesav behind the chess board (May 2008)</div></img>
             </div>
             <p>
