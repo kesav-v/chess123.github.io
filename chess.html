@@ -91,21 +91,25 @@
                 color: green;
             }
             #caption {
+                padding-top: 5px;
                 color: white;
-                background-color: rgba(0, 0, 0, 0.6);
                 left: 0px;
                 text-align: center;
                 font-style: italic;
-                font-size: 15px;
+                font-size: 18px;
                 text-indent: 0;
+                background-size: 25%;
             }
             #chesspics {
-                background-color: black;
+                background-color: #222222;
                 background-size: cover;
                 margin-left: 0px;
                 margin-right: 0px;
                 margin-top: 0px;
                 margin-bottom: 0px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                border-radius: 10px;
             }
             #image1.scaled {
               width: 100%;
@@ -118,6 +122,7 @@
                 height: 100px;
                 margin-bottom: 20px;
                 background-image: linear-gradient(white, blue, white);
+                border-radius: 10px;
             }
             #buttontext {
                 font-size: 40px;
@@ -137,6 +142,7 @@
             var timer;
             var timer2;
             function change_pic() {
+                $("#caption").fadeTo(1000, 0);
                 $("#image1").fadeTo(1000, 0, function() {                 
                     num++;
                     num %= urls.length;
@@ -145,6 +151,7 @@
                     document.getElementById("caption").innerHTML = captions[num];
                 });
                 $("#image1").fadeTo(1000, 1);
+                $("#caption").fadeTo(1000, 1);
             }
             function slideshow() {
                 setInterval(change_pic, 5000);
