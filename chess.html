@@ -125,6 +125,14 @@
                 background-image: linear-gradient(white, blue, white);
                 border-radius: 10px;
             }
+            #backbutton:hover {
+                animation-name: makeblurry;
+                animation-duration: 0.5s;
+                animation-fill-mode: forwards;
+            }
+            @keyframes makeblurry {
+                to {opacity: 0.5;}
+            }
             #buttontext {
                 font-size: 40px;
                 color: white;
