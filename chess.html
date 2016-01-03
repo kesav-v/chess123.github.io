@@ -4,6 +4,12 @@
         <link rel='shortcut icon' type='image/x-icon' href='http://chess123.github.io/favicon-32x32.png'/>
 		<title>Chess on Kesav's Website</title>
         <script src="jquery-1.11.3.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#caption').width($('#caption').parent().width());
+                $('#caption').css("top", $('#caption').parent().offset().top + $('#caption').parent().height() - $('#caption').height() + "px");
+            });
+        </script>
 		<style>
             body {
                 background-image: url("http://chess123.github.io/WoodenChessBoard.jpg");
@@ -35,10 +41,7 @@
                 margin-right: auto;
                 border: 10px solid rgba(0, 0, 0, 0.5);
                 border-radius: 4px;
-                width: 50%;
                 border: thin silver solid;
-                padding: 0.5em;
-                padding: 0.5em;
             }
             @keyframes fadeintext {
                 from {opacity: 0;}
@@ -87,26 +90,22 @@
             .upcoming {
                 color: green;
             }
-            #chesspics p {
+            #caption {
                 color: white;
                 background-color: rgba(0, 0, 0, 0.6);
-                width: 50%;
-                position: relative;
-                top: -61px;
-                left: 25%;
+                left: 0px;
                 text-align: center;
                 font-style: italic;
-                font-size: 14px;
+                font-size: 15px;
                 text-indent: 0;
             }
             #chesspics {
                 background-color: black;
-                background-size: 50%;
-                padding-top: 20px;
-                margin-bottom: 10px;
-            }
-            #chesspics img {
-                height: 427px;
+                background-size: cover;
+                margin-left: 0px;
+                margin-right: 0px;
+                margin-top: 0px;
+                margin-bottom: 0px;
             }
             #image1.scaled {
               width: 100%;
@@ -168,7 +167,7 @@
             </div>
             <div id="chesspics">
                 <img id="image1" src="http://www.utb.edu/sa/chess/PublishingImages/2015SpringGM/Viswanadha_Stukopin_640x427.jpg">
-                <p id="caption">Kesav playing a game against GM Stukopin at University of Texas at Brownsville (2015)</p>
+                     <div id="caption">Kesav playing a game against GM Stukopin at University of Texas at Brownsville (2015)</div></img>
             </div>
             <p>
                 Welcome to the chess portion of my website! I am an International Master (IM) of chess and I continue to play in tournaments all over the country and even the world! This is where I will keep you updated on my latest chess adventures and other thoughts on the chess world. My <a href="http://www.uschess.org/msa/MbrDtlMain.php?13159334" class="chesslink">USCF rating</a> is 2420, and my <a class="chesslink" href="https://ratings.fide.com/card.phtml?event=2059533">FIDE rating</a> is 2359.
