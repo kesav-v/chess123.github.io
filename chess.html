@@ -145,7 +145,7 @@
 	</head>
 	<body onload="slideshow();">
         <script>
-            var urls = ["./KesavGrade3.JPG", "./KesavBayArea2012.jpg",  "./KesavMVChess.jpg", "http://www.utb.edu/sa/chess/PublishingImages/2015SpringGM/Viswanadha_Stukopin_640x427.jpg", "http://www.utb.edu/sa/chess/PublishingImages/2015SpringGM/Kovalyov_Viswanadha_640x427.jpg", "http://chess123.github.io/KesavSimul.jpg"];
+            var urls = ["./KesavGrade3.JPG", "./KesavBayArea2012.jpg",  "./KesavMVChess.jpg", "http://www.utb.edu/sa/chess/PublishingImages/2015SpringGM/Viswanadha_Stukopin_640x427.jpg", "http://www.utb.edu/sa/chess/PublishingImages/2015SpringGM/Kovalyov_Viswanadha_640x427.jpg", "./KesavSimul.jpg"];
             var captions = ["Kesav behind the chess board (May 2008)", "Kesav at the Bay Area International (January 2012)", "Kesav at Monta Vista chess club (January 2014)", "Kesav playing a game against GM Stukopin at University of Texas at Brownsville (March 2015)", "Kesav playing a game against GM Kovalyov at University of Texas at Brownsville (March 2015)", "Kesav playing a simul at Let's Play Chess Club (October 2015)"];
             var num = 0;
             var timer;
@@ -159,11 +159,13 @@
                     document.getElementById("image1").src = urls[num];
                     document.getElementById("caption").innerHTML = captions[num];
                 });
+                document.getElementById("image1").onload = $("#image1").fadeTo(500, 0);
                 document.getElementById("image1").onload = $("#image1").fadeTo(1000, 1);
+                document.getElementById("caption").onload = $("#caption").fadeTo(500, 0);
                 document.getElementById("caption").onload = $("#caption").fadeTo(1000, 1);
             }
             function slideshow() {
-                setInterval(change_pic, 5000);
+                setInterval(change_pic, 6000);
             }
         </script>
         <div id="entirepage">
