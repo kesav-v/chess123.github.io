@@ -15,9 +15,10 @@ var timer;
 var dead;
 var score;
 var high_score = 0;
-var old_keyCode = 73;
+var old_keyCode = 37;
 
 function start_game() {
+	clearInterval(timer);
 	c = document.getElementById("mycanvas");
 	ctx = c.getContext("2d");
 	x_locations = new Array();
@@ -46,18 +47,18 @@ function initialize_locations() {
 }
 
 function register_key(e) {
-	if (e.keyCode <= 76 && e.keyCode >= 73 && !moving) {
-		e.preventDefault();
+	e.preventDefault();
+	if (e.keyCode <= 40 && e.keyCode >= 37 && !moving) {
 		moving = true;
 		timer = setInterval(move_snake, 25);
 	}
 	if (Math.abs(e.keyCode - old_keyCode) == 2 && snake_parts != 1) return;
 	old_keyCode = e.keyCode;
 	switch (e.keyCode) {
-		case 73: direction = 0; break;
-		case 74: direction = 3; break;
-		case 75: direction = 2; break;
-		case 76: direction = 1; break;
+		case 37: direction = 3; break;
+		case 38: direction = 0; break;
+		case 39: direction = 1; break;
+		case 40: direction = 2; break;
 	}
 }
 
