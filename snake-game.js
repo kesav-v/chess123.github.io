@@ -137,7 +137,7 @@ function paintComponent() {
 	ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
 	ctx.fillText("Score: " + score, 50, 50);
 	if (dead) {
-		ctx.font = "48px Arial";
+		ctx.font = "48px Comic Sans MS";
 		ctx.fillStyle = "#009900";
 		if (score > high_score) {
 			high_score = score;
@@ -145,7 +145,6 @@ function paintComponent() {
 		}
 		else ctx.fillText("GAME OVER", 350, 350);
 		ctx.fillStyle = "#0000ff";
-		ctx.font = "48px Comic Sans MS";
 		ctx.fillText("High score: " + high_score, 350, 420);
 	}
 }
