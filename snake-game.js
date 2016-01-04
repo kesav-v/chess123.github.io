@@ -15,6 +15,7 @@ var timer;
 var dead;
 var score;
 var high_score = 0;
+var old_keyCode = 73;
 
 function start_game() {
 	c = document.getElementById("mycanvas");
@@ -46,9 +47,13 @@ function initialize_locations() {
 
 function register_key(e) {
 	if (e.keyCode <= 76 && e.keyCode >= 73 && !moving) {
+		e.preventDefault();
 		moving = true;
 		timer = setInterval(move_snake, 25);
 	}
+	if (Math.abs(e.keyCode - old_keyCode) == 2 && snake_parts != 1) break;
+	old_keyCode = e.keyCode;
+	var old_direction = direction;
 	switch (e.keyCode) {
 		case 73: direction = 0; break;
 		case 74: direction = 3; break;
