@@ -145,6 +145,7 @@ function paintComponent() {
 		}
 		else ctx.fillText("GAME OVER", 350, 350);
 		ctx.fillStyle = "#0000ff";
+		ctx.font = "48px Comic Sans MS";
 		ctx.fillText("High score: " + high_score, 350, 420);
 	}
 }
