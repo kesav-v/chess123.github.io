@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Snake Game on Kesav's Website</title>
+        <style>
+            #restart {
+                background-color: green;
+                border: 5px solid #ffffff;
+                border-radius: 10px;
+                width: 400px;
+                height: 100px;
+            }
+            #button1 {
+                text-align: center;
+            }
+            #buttontext1 {
+                color: white;
+                font-size: 30px;
+            }
+            #game {
+                text-align: center;
+            }
+            .alltext {
+                text-align: center;
+                font-family: "Comic Sans MS", "Marker Felt", sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 class="alltext">
+            SNAKE GAME
+        </h1>
+        <h2 class="alltext">
+            on Kesav's Website
+        </h2>
+        <h3 class="alltext">
+            Use 'i', 'j', 'k', and 'l' to move up, left, down, and right. Eat as many of the squares as you can without hitting yourself!
+        </h3>
+        <div id="game">     
+            <canvas id="mycanvas" width="1000px" height="700px" style="border: 5px solid #000000; border-radius: 20px;">
+                <script src="./snake-game.js"></script>
+            </canvas>
+        </div>
+        <div id="button1">
+            <button id="restart" onclick="start_game();"><div class="alltext" id="buttontext1">RESTART</div></button>
+        </div>
+    </body>
+</html>
