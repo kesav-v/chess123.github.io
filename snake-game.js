@@ -77,9 +77,9 @@ function move_snake() {
 		case 3: snake_x -= 10; break;
 	}
 	var col_index = collision();
-	if (snake_y <= 0) snake_y = 700;
+	if (snake_y <= -10) snake_y = 700;
 	else if (snake_y >= 700) snake_y = 0;
-	if (snake_x <= 0) snake_x = 1000;
+	if (snake_x <= -10) snake_x = 1000;
 	else if (snake_x >= 1000) snake_x = 0;
 	if (col_index != -1) {
 		score += 10;
@@ -94,8 +94,18 @@ function move_snake() {
 	snake_lefts[0] = snake_x;
 	snake_tops[0] = snake_y;
 	if (duplicates()) {
+		ctx.font = "48px Comic Sans MS";
+		ctx.fillStyle = "#009900";
+		if (score > high_score) {
+			high_score = score;
+			ctx.fillText("NEW BEST!", 350, 350);
+		}
+		else ctx.fillText("GAME OVER", 350, 350);
+		ctx.fillStyle = "#0000ff";
+		ctx.fillText("High score: " + high_score, 350, 420);
 		clearInterval(timer);
 		dead = true;
+		return;
 	}
 	paintComponent();
 }
