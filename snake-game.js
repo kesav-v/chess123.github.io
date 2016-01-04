@@ -51,9 +51,8 @@ function register_key(e) {
 		moving = true;
 		timer = setInterval(move_snake, 25);
 	}
-	if (Math.abs(e.keyCode - old_keyCode) == 2 && snake_parts != 1) break;
+	if (Math.abs(e.keyCode - old_keyCode) == 2 && snake_parts != 1) return;
 	old_keyCode = e.keyCode;
-	var old_direction = direction;
 	switch (e.keyCode) {
 		case 73: direction = 0; break;
 		case 74: direction = 3; break;
@@ -70,7 +69,6 @@ function place_snake() {
 }
 
 function move_snake() {
-	console.log(direction);
 	switch (direction) {
 		case 0: snake_y -= 10; break;
 		case 1: snake_x += 10; break;
@@ -124,7 +122,6 @@ function collision() {
 
 function paintComponent() {
 	ctx.clearRect(0, 0, c.width, c.height);
-	console.log("REPAINTING");
 	ctx.fillStyle = "#000000";
 	for (i = 0; i < x_locations.length; i++) {
 		ctx.fillRect(x_locations[i], y_locations[i], 10, 10);
