@@ -14,6 +14,7 @@ var moving;
 var timer;
 var dead;
 var score;
+var high_score = 0;
 
 function start_game() {
 	c = document.getElementById("mycanvas");
@@ -138,6 +139,12 @@ function paintComponent() {
 	if (dead) {
 		ctx.font = "48px Arial";
 		ctx.fillStyle = "#009900";
-		ctx.fillText("GAME OVER", 350, 350);
+		if (score > high_score) {
+			high_score = score;
+			ctx.fillText("NEW BEST!", 350, 350);
+		}
+		else ctx.fillText("GAME OVER", 350, 350);
+		ctx.fillStyle = "#0000ff";
+		ctx.fillText("High score: " + high_score, 350, 420);
 	}
 }
