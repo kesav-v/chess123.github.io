@@ -15,7 +15,6 @@ var timer;
 var dead;
 var score;
 var high_score = 0;
-var old_keyCode = 37;
 var portal_lefts_in;
 var portal_tops_in;
 var portal_lefts_out;
@@ -116,7 +115,7 @@ function register_key(e) {
 		moving = true;
 		timer = setInterval(move_snake, 25);
 	}
-	old_keyCode = e.keyCode;
+	if (e.keyCode > 40 || e.keyCode < 37) return;
 	if (Math.abs(e.keyCode - 37 - last_moved_direction) == 2 && snake_parts != 1) {
 		return;
 	}
