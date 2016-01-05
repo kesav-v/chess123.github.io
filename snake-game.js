@@ -53,6 +53,7 @@ function start_game() {
 	moving = false;
 	dead = false;
 	score = 0;
+	update_gradient();
 	paintComponent();
 }
 
@@ -60,6 +61,12 @@ function initialize_locations() {
 	for (i = 0; i < numFoods; i++) {
 		x_locations[i] = 10 * Math.floor(Math.random() * 99);
 		y_locations[i] = 10 * Math.floor(Math.random() * 69);
+	}
+}
+
+function update_gradient() {
+	for (i = 0; i < snake_parts; i++) {
+		colors[i] = Math.floor(i * 255.0 / snake_parts);
 	}
 }
 
@@ -141,6 +148,7 @@ function move_snake() {
 		x_locations[col_index] = 10 * Math.floor(Math.random() * 99);
 		y_locations[col_index] = 10 * Math.floor(Math.random() * 69);
 		snake_parts++;
+		update_gradient();
 	}
 	if (out_of_portal) {
 		num_portal_moves++;
@@ -229,8 +237,7 @@ function paintComponent() {
 	ctx.strokeStyle = "#ff0000";
 	ctx.fillStyle = "#ff0000";
 	for (i = 0; i < snake_parts; i++) {
-		if (i == 0) ctx.fillStyle = "#0000ff";
-		else ctx.fillStyle = "#ff0000";
+		ctx.fillStyle = "rgb(" + colors[i] + ", " + colors[i] + ", 255)";
 		ctx.beginPath();
 		ctx.ellipse(snake_lefts[i] + 5, snake_tops[i] + 5, 5, 5, 0, 0, 2 * Math.PI);
 		ctx.fill();
