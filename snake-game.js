@@ -161,16 +161,30 @@ function move_snake() {
 		for (i = 0; i < numPortals; i++) {
 			if (Math.sqrt((portal_tops_in[i] + 10 - snake_y - 5) * (portal_tops_in[i] + 10 - snake_y - 5)
 			 + (portal_lefts_in[i] + 10 - snake_x - 5) * (portal_lefts_in[i] + 10 - snake_x - 5)) <= 20) {
-				snake_x = portal_lefts_out[i] + 5;
-				snake_y = portal_tops_out[i] + 5;
+				snake_x = portal_lefts_out[i] + 10;
+				snake_y = portal_tops_out[i] + 10;
 				out_of_portal = true;
+				direction = Math.floor(Math.random() * 4);
+				switch (direction) {
+					case 3: old_keyCode = 37; break;
+					case 2: old_keyCode = 40; break;
+					case 1: old_keyCode = 39; break;
+					case 0: old_keyCode = 38; break;
+				}
 				break;
 			}
 			if (Math.sqrt((portal_tops_out[i] + 10 - snake_y - 5) * (portal_tops_out[i] + 10 - snake_y - 5)
 			 + (portal_lefts_out[i] + 10 - snake_x - 5) * (portal_lefts_out[i] + 10 - snake_x - 5)) <= 20) {
-				snake_x = portal_lefts_in[i] + 5;
-				snake_y = portal_tops_in[i] + 5;
+				snake_x = portal_lefts_in[i] + 10;
+				snake_y = portal_tops_in[i] + 10;
 				out_of_portal = true;
+				direction = Math.floor(Math.random() * 4);
+				switch (direction) {
+					case 3: old_keyCode = 37; break;
+					case 2: old_keyCode = 40; break;
+					case 1: old_keyCode = 39; break;
+					case 0: old_keyCode = 38; break;
+				}
 				break;
 			}
 		}
