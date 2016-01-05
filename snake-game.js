@@ -16,8 +16,21 @@ var dead;
 var score;
 var high_score = 0;
 var old_keyCode = 37;
+var portal_lefts_in;
+var portal_tops_in;
+var portal_lefts_out;
+var portal_tops_out;
+var numPortals;
+var out_of_portal;
+var num_portal_moves;
 
 function start_game() {
+	num_portal_moves = 0;
+	out_of_portal = false;
+	portal_lefts_in = new Array();
+	portal_tops_in = new Array();
+	portal_lefts_out = new Array();
+	portal_tops_out = new Array();
 	clearInterval(timer);
 	c = document.getElementById("mycanvas");
 	ctx = c.getContext("2d");
@@ -26,12 +39,14 @@ function start_game() {
 	snake_x;
 	snake_y;
 	numFoods = 5;
+	numPortals = 5;
 	snake_parts = 1;
 	initialize_locations();
 	direction = 0;
 	snake_lefts = new Array();
 	snake_tops = new Array();
 	place_snake();
+	initialize_portals();
 	document.onkeydown = register_key;
 	moving = false;
 	dead = false;
@@ -44,6 +59,44 @@ function initialize_locations() {
 		x_locations[i] = 10 * Math.floor(Math.random() * 99);
 		y_locations[i] = 10 * Math.floor(Math.random() * 69);
 	}
+}
+
+function initialize_portals() {
+	for (i = 0; i < numPortals; i++) {
+		do {
+			console.log("re-initializing");
+			portal_lefts_in[i] = 10 * Math.floor(Math.random() * 99);
+			portal_tops_in[i] = 10 * Math.floor(Math.random() * 69);
+			portal_lefts_out[i] = 10 * Math.floor(Math.random() * 99);
+			portal_tops_out[i] = 10 * Math.floor(Math.random() * 69);
+		} while (close_to_others(i));
+	}
+}
+
+function close_to_others(i) {
+	var x2 = portal_lefts_in[i];
+	var y2 = portal_tops_in[i];
+	for (j = 0; j < i; j++) {
+		console.log("checking " + j + " " + i);
+		var x1 = portal_lefts_in[j];
+		var y1 = portal_tops_in[j];
+		if (Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)) < 50) return true;
+		x1 = portal_lefts_out[j];
+		y1 = portal_tops_out[j];
+		if (Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)) < 50) return true;
+	}
+	x2 = portal_lefts_out[i];
+	y2 = portal_tops_out[i];
+	for (j = 0; j < i; j++) {
+		console.log("checking2");
+		var x1 = portal_lefts_in[j];
+		var y1 = portal_tops_in[j];
+		if (Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)) < 50) return true;
+		x1 = portal_lefts_out[j];
+		y1 = portal_tops_out[j];
+		if (Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)) < 50) return true;
+	}
+	return false;
 }
 
 function register_key(e) {
@@ -86,6 +139,31 @@ function move_snake() {
 		x_locations[col_index] = 10 * Math.floor(Math.random() * 99);
 		y_locations[col_index] = 10 * Math.floor(Math.random() * 69);
 		snake_parts++;
+	}
+	if (out_of_portal) {
+		num_portal_moves++;
+		if (num_portal_moves == 3) {
+			num_portal_moves = 0;
+			out_of_portal = false;
+		}
+	}
+	if (!out_of_portal) {
+		for (i = 0; i < numPortals; i++) {
+			if (Math.sqrt((portal_tops_in[i] + 10 - snake_y - 5) * (portal_tops_in[i] + 10 - snake_y - 5)
+			 + (portal_lefts_in[i] + 10 - snake_x - 5) * (portal_lefts_in[i] + 10 - snake_x - 5)) <= 20) {
+				snake_x = portal_lefts_out[i] + 5;
+				snake_y = portal_tops_out[i] + 5;
+				out_of_portal = true;
+				break;
+			}
+			if (Math.sqrt((portal_tops_out[i] + 10 - snake_y - 5) * (portal_tops_out[i] + 10 - snake_y - 5)
+			 + (portal_lefts_out[i] + 10 - snake_x - 5) * (portal_lefts_out[i] + 10 - snake_x - 5)) <= 20) {
+				snake_x = portal_lefts_in[i] + 5;
+				snake_y = portal_tops_in[i] + 5;
+				out_of_portal = true;
+				break;
+			}
+		}
 	}
 	for (i = snake_parts - 1; i > 0; i--) {
 		snake_lefts[i] = snake_lefts[i - 1];
@@ -136,6 +214,15 @@ function paintComponent() {
 	ctx.fillStyle = "#000000";
 	for (i = 0; i < x_locations.length; i++) {
 		ctx.fillRect(x_locations[i], y_locations[i], 10, 10);
+	}
+	ctx.strokeStyle = "#009900";
+	for (i = 0; i < numPortals; i++) {
+		ctx.beginPath();
+		ctx.ellipse(portal_lefts_in[i] + 10, portal_tops_in[i] + 10, 10, 10, 0, 0, 2 * Math.PI);
+		ctx.stroke();
+		ctx.beginPath();
+		ctx.ellipse(portal_lefts_out[i] + 10, portal_tops_out[i] + 10, 10, 10, 0, 0, 2 * Math.PI);
+		ctx.stroke();
 	}
 	ctx.strokeStyle = "#ff0000";
 	ctx.fillStyle = "#ff0000";
