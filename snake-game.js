@@ -23,6 +23,7 @@ var portal_tops_out;
 var numPortals;
 var out_of_portal;
 var num_portal_moves;
+var colors;
 
 function start_game() {
 	num_portal_moves = 0;
@@ -31,6 +32,7 @@ function start_game() {
 	portal_tops_in = new Array();
 	portal_lefts_out = new Array();
 	portal_tops_out = new Array();
+	colors = new Array();
 	clearInterval(timer);
 	c = document.getElementById("mycanvas");
 	ctx = c.getContext("2d");
