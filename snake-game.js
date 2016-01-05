@@ -24,9 +24,11 @@ var numPortals;
 var out_of_portal;
 var num_portal_moves;
 var colors;
+var last_moved_direction;
 
 function start_game() {
 	num_portal_moves = 0;
+	last_moved_direction = 0;
 	out_of_portal = false;
 	portal_lefts_in = new Array();
 	portal_tops_in = new Array();
@@ -114,14 +116,11 @@ function register_key(e) {
 		moving = true;
 		timer = setInterval(move_snake, 25);
 	}
-	if (Math.abs(e.keyCode - old_keyCode) == 2 && snake_parts != 1) return;
 	old_keyCode = e.keyCode;
-	switch (e.keyCode) {
-		case 37: direction = 3; break;
-		case 38: direction = 0; break;
-		case 39: direction = 1; break;
-		case 40: direction = 2; break;
+	if (Math.abs(e.keyCode - 37 - last_moved_direction) == 2 && snake_parts != 1) {
+		return;
 	}
+	else direction = e.keyCode - 37;
 }
 
 function place_snake() {
@@ -133,10 +132,10 @@ function place_snake() {
 
 function move_snake() {
 	switch (direction) {
-		case 0: snake_y -= 10; break;
-		case 1: snake_x += 10; break;
-		case 2: snake_y += 10; break;
-		case 3: snake_x -= 10; break;
+		case 1: snake_y -= 10; break;
+		case 2: snake_x += 10; break;
+		case 3: snake_y += 10; break;
+		case 0: snake_x -= 10; break;
 	}
 	var col_index = collision();
 	if (snake_y <= -10) snake_y = 700;
@@ -166,10 +165,10 @@ function move_snake() {
 				out_of_portal = true;
 				direction = Math.floor(Math.random() * 4);
 				switch (direction) {
-					case 3: old_keyCode = 37; break;
-					case 2: old_keyCode = 40; break;
-					case 1: old_keyCode = 39; break;
-					case 0: old_keyCode = 38; break;
+					case 1: old_keyCode = 37; break;
+					case 0: old_keyCode = 40; break;
+					case 3: old_keyCode = 39; break;
+					case 2: old_keyCode = 38; break;
 				}
 				break;
 			}
@@ -180,10 +179,10 @@ function move_snake() {
 				out_of_portal = true;
 				direction = Math.floor(Math.random() * 4);
 				switch (direction) {
-					case 3: old_keyCode = 37; break;
-					case 2: old_keyCode = 40; break;
-					case 1: old_keyCode = 39; break;
-					case 0: old_keyCode = 38; break;
+					case 1: old_keyCode = 37; break;
+					case 0: old_keyCode = 40; break;
+					case 3: old_keyCode = 39; break;
+					case 2: old_keyCode = 38; break;
 				}
 				break;
 			}
@@ -235,6 +234,7 @@ function collision() {
 
 function paintComponent() {
 	ctx.clearRect(0, 0, c.width, c.height);
+	last_moved_direction = direction;
 	ctx.fillStyle = "#000000";
 	for (i = 0; i < x_locations.length; i++) {
 		ctx.fillRect(x_locations[i], y_locations[i], 10, 10);
