@@ -24,8 +24,10 @@ var out_of_portal;
 var num_portal_moves;
 var colors;
 var last_moved_direction;
+var portals_visible;
 
 function start_game() {
+	portals_visible = false;
 	num_portal_moves = 0;
 	last_moved_direction = 0;
 	out_of_portal = false;
@@ -238,19 +240,21 @@ function paintComponent() {
 	for (i = 0; i < x_locations.length; i++) {
 		ctx.fillRect(x_locations[i], y_locations[i], 10, 10);
 	}
-	ctx.strokeStyle = "#009900";
-	for (i = 0; i < numPortals; i++) {
-		ctx.beginPath();
-		ctx.ellipse(portal_lefts_in[i] + 10, portal_tops_in[i] + 10, 10, 10, 0, 0, 2 * Math.PI);
-		ctx.stroke();
-		ctx.beginPath();
-		ctx.ellipse(portal_lefts_out[i] + 10, portal_tops_out[i] + 10, 10, 10, 0, 0, 2 * Math.PI);
-		ctx.stroke();
+	if (portals_visible) {
+		ctx.strokeStyle = "#009900";
+		for (i = 0; i < numPortals; i++) {
+			ctx.beginPath();
+			ctx.ellipse(portal_lefts_in[i] + 10, portal_tops_in[i] + 10, 10, 10, 0, 0, 2 * Math.PI);
+			ctx.stroke();
+			ctx.beginPath();
+			ctx.ellipse(portal_lefts_out[i] + 10, portal_tops_out[i] + 10, 10, 10, 0, 0, 2 * Math.PI);
+			ctx.stroke();
+		}
 	}
 	ctx.strokeStyle = "#ff0000";
 	ctx.fillStyle = "#ff0000";
 	for (i = 0; i < snake_parts; i++) {
-		ctx.fillStyle = "rgb(" + colors[i] + ", " + colors[i] + ", 255)";
+		ctx.fillStyle = "rgb(0, " + colors[i] + ", " + (255 - colors[i]) + ")";
 		ctx.beginPath();
 		ctx.ellipse(snake_lefts[i] + 5, snake_tops[i] + 5, 5, 5, 0, 0, 2 * Math.PI);
 		ctx.fill();
