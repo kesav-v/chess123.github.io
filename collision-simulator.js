@@ -62,7 +62,7 @@ function kinetic_energy() {
 
 function check_collision(i) {
 	for (j = i - 1; j >= 0; j--) {
-		if (Math.sqrt((ball_x[i] - ball_x[j]) * (ball_x[i] - ball_x[j]) + (ball_y[i] - ball_y[j]) * (ball_y[i] - ball_y[j])) <= 20) return j;
+		if (Math.sqrt((ball_x[i] - ball_x[j]) * (ball_x[i] - ball_x[j]) + (ball_y[i] - ball_y[j]) * (ball_y[i] - ball_y[j])) <= 10) return j;
 	}
 	return -1;
 }
