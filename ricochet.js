@@ -17,11 +17,14 @@ var enemy_x;
 var enemy_y;
 var num_enemies;
 var ball_color;
+var angular_velocity;
+var times = 0;
 document.onload = start_game();
 document.onkeydown = register_key_down;
 document.onkeyup = register_key_up;
 
 function start_game() {
+	times = 0;
 	enemy_x = new Array();
 	enemy_y = new Array();
 	num_enemies = 10;
@@ -42,6 +45,7 @@ function start_game() {
 	mouse_x = 500;
 	mouse_y = 350;
 	angle = 0;
+	angular_velocity = 0.1 / 10;
 	ball_color = "#000000";
 	paintComponent();
 }
@@ -64,6 +68,8 @@ function register_key_down(e) {
 
 function register_key_up(e) {
 	clearInterval(angle_timer);
+	times = 0;
+	angular_velocity = 0.1 / 10;
 	moving_angle = false;
 }
 
@@ -158,13 +164,17 @@ function move_ball() {
 }
 
 function increase_angle() {
-	angle += 0.1 / 6;
+	times++;
+	angular_velocity += 0.001 / (times + 1);
+	angle += angular_velocity;
 	angle %= 2 * Math.PI;
 	paintComponent();
 }
 
 function decrease_angle() {
-	angle -= 0.1 / 6;
+	times++;
+	angular_velocity += 0.001 / (times + 1);
+	angle -= angular_velocity;
 	angle %= 2 * Math.PI;
 	paintComponent();
 }
