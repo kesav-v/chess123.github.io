@@ -19,6 +19,8 @@ document.onmousedown = function() {
 document.onmouseup = function() {
 	mouseDown = false;
 	current_charge = -1;
+	space = 10;
+	paintComponent();
 }
 
 function start_sim() {
@@ -46,7 +48,8 @@ function register_mouse_moved(e) {
 	mouseY = e.clientY - $("#mycanvas").position().top;
 	var ind = find_charge(mouseX, mouseY);
 	if (ind > -1 || current_charge != -1) {
-		if (ind != -1) current_charge = ind;
+		space = 20;
+		if (ind != -1 && current_charge == -1) current_charge = ind;
 		charge_x[current_charge] = (mouseX - 500) / 50;
 		charge_y[current_charge] = (mouseY - 350) / -35;
 		paintComponent();
