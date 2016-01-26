@@ -1,3 +1,8 @@
+$("#reschange").on("input", function() {
+	console.log("changing resolution");
+	space = $(this).val() / 10 * 3 + 10;
+	paintComponent();
+});
 var charge_x;
 var charge_y;
 var charge_val;
@@ -13,7 +18,6 @@ var img = document.getElementById("arrowimg");
 img.onload = start_sim();
 document.onmousemove = register_mouse_moved;
 document.onmousedown = function() {
-	console.log("here");
 	mouseDown = true;
 }
 document.onmouseup = function() {

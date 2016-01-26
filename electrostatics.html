@@ -12,6 +12,9 @@
                 border: 1px solid #000000;
                 background-color: black;
             }
+            #reschange {
+                width: 1000px;
+            }
         </style>
     </head>
     <body>
@@ -21,8 +24,11 @@
         <div>
             <img id="arrowimg" src="images/arrow.jpeg" style="display: none;">
         </div>
-        <canvas id="mycanvas" width="1000px" height="700px">
-            <script src="./electrostatics.js"></script>
-        </canvas>
+        <div>
+            <canvas id="mycanvas" width="1000px" height="700px">
+                <script src="./electrostatics.js"></script>
+            </canvas>
+        </div>
+        <input id="reschange" type="range" min="0" max="100" name="resolution-range" value="0">
     </body>
 </html>
