@@ -18,11 +18,11 @@ window.onload = function() {
 	   paintComponent();
 	});
 }
-document.onmousemove = register_mouse_moved;
-document.onmousedown = function() {
+document.getElementById("mycanvas").onmousemove = register_mouse_moved;
+document.getElementById("mycanvas").onmousedown = function() {
 	mouseDown = true;
 }
-document.onmouseup = function() {
+document.getElementById("mycanvas").onmouseup = function() {
 	mouseDown = false;
 	current_charge = -1;
 	space = old_space;
@@ -105,15 +105,11 @@ function paintComponent() {
 			var alpha = 2 / (1 + Math.pow(Math.E, -0.5 * field[2])) - 1;
 			ctx.fillStyle = "rgba(0, 255, 0, " + alpha + ")";
 			ctx.strokeStyle = "rgba(0, 255, 0, " + alpha + ")";
-			if (field[2] <= 0.0001) {
-				ctx.fillStyle = "#ffa500";
-				ctx.strokeStyle = "#ffa500";
-			}
 			if (field[2] < min_field) {
 				min_field = field[2];
 				min_x = a;
 				min_y = j;
-			}	
+			}
 			ctx.beginPath();
 			ctx.moveTo(a + space / 2, j + space / 2);
 			ctx.lineTo((a + space / 2) + ((space / 2) * field[0] / field[2]), (j + space / 2) + ((space / 2) * field[1] / field[2]));
@@ -168,6 +164,25 @@ function get_field(x, y) {
 	force_arr[2] = Math.sqrt(sum_fx * sum_fx + sum_fy * sum_fy);
 	force_arr[2] = Math.round(force_arr[2] * 1000) / 1000;
 	return force_arr;
+}
+
+function add_charge() {
+	do {
+		charge_x[numCharges] = (Math.random() * 20 - 10) | 0;
+		charge_y[numCharges] = (Math.random() * 20 - 10) | 0;
+	} while (found(charge_x[numCharges], charge_y[numCharges], numCharges));
+	charge_val[numCharges] = Math.random() * 10 + 5;
+	if (Math.random() > 0.5) charge_val[numCharges] *= -1;
+	numCharges++;
+	paintComponent();
+}
+
+function remove_charge() {
+	numCharges--;
+	charge_x[numCharges] = null;
+	charge_y[numCharges] = null;
+	charge_val[numCharges] = null;
+	paintComponent();
 }
 
 function print_field(x, y) {

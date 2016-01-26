@@ -16,10 +16,6 @@
                 border: 1px solid #000000;
                 background-color: black;
             }
-            #mycanvas2 {
-                border: 1px solid #000000;
-                background-color: black;
-            }
             #reschange {
                 width: 800px;
             }
@@ -33,6 +29,14 @@
                 margin-left: 40px;
                 margin-right: 40px;
                 border-radius: 20px;
+            }
+            #mycanvas:active {
+                cursor: all-scroll;
+            }
+            .plusminus {
+                width: 500px;
+                height: 100px;
+                font-size: 96px;
             }
         </style>
     </head>
@@ -48,6 +52,10 @@
             </div>
             <div class="alltext">
                 Low Resolution<input id="reschange" type="range" min="0" max="30" name="resolution-range" value="15">High Resolution
+            </div>
+            <div id="buttongroup1" class="alltext">
+                <button class="plusminus" class="alltext" onclick="add_charge();">+</button>
+                <button class="plusminus" class="alltext" onclick="remove_charge();">-</button>
             </div>
         </div>
     </body>
