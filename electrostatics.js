@@ -3,28 +3,66 @@ var charge_y;
 var charge_val;
 var numCharges;
 var space;
+var mouseX;
+var mouseY;
+var current_charge = -1;
+var mouseDown = false;
 var c = document.getElementById("mycanvas");
 var ctx = c.getContext("2d");
 var img = document.getElementById("arrowimg");
 img.onload = start_sim();
+document.onmousemove = register_mouse_moved;
+document.onmousedown = function() {
+	console.log("here");
+	mouseDown = true;
+}
+document.onmouseup = function() {
+	mouseDown = false;
+	current_charge = -1;
+}
 
 function start_sim() {
-	setTimeout(paintComponent, 100);
 	charge_x = new Array();
 	charge_y = new Array();
 	charge_val = new Array();
-	numCharges = 3;
-	space = 20;
+	numCharges = 10;
+	space = 10;
 	for (i = 0; i < numCharges; i++) {
 		do {
 			charge_x[i] = (Math.random() * 20 - 10) | 0;
 			charge_y[i] = (Math.random() * 20 - 10) | 0;
-		} while(found(charge_x[i], charge_y[i], i));
-		charge_val[i] = (Math.random() * 20 - 10);
-		console.log("Charge #" + (i + 1) + ": (" + charge_x[i] + ", " + charge_y[i] + ") with q = " + charge_val[i] + " C");
+		} while (found(charge_x[i], charge_y[i], i));
+		// console.log(charge_vel_x[i], charge_vel_y[i]);
+		charge_val[i] = (Math.random() * 10 + 5);
+		if (Math.random() > 0.5) charge_val[i] *= -1;
 	}
-	// paintComponent();
+	paintComponent();
 	// document.getElementById("arrowimg").onload = paintComponent();
+}
+
+function register_mouse_moved(e) {
+	if (!mouseDown) return;
+	mouseX = e.clientX - $("#mycanvas").position().left;
+	mouseY = e.clientY - $("#mycanvas").position().top;
+	var ind = find_charge(mouseX, mouseY);
+	if (ind > -1 || current_charge != -1) {
+		if (ind != -1) current_charge = ind;
+		charge_x[current_charge] = (mouseX - 500) / 50;
+		charge_y[current_charge] = (mouseY - 350) / -35;
+		paintComponent();
+	}
+}
+
+function find_charge(mx, my) {
+	for (i = 0; i < numCharges; i++) {
+		var x = charge_x[i];
+		var y = charge_y[i];
+		var r = Math.sqrt(Math.pow(mx - (50 * x + 500), 2) + Math.pow(my - (350 - 35 * y), 2));
+		if (r <= (Math.round(Math.abs(charge_val[i])) + 5)) {
+			return i;
+		}
+	}
+	return -1;
 }
 
 function found(x, y, ind) {
@@ -36,40 +74,50 @@ function found(x, y, ind) {
 
 function paintComponent() {
 	ctx.clearRect(0, 0, c.width, c.height);
+	ctx.fillStyle = "#000000";
+	ctx.fillRect(0, 0, c.width, c.height);
+	var min_field = get_field(0, 0)[2];
+	var min_x = 500;
+	var min_y = 350;
 	for (a = 0; a < 1000; a += space) {
 		for (j = 0; j < 700; j += space) {
-			// ctx.save();
 			var field = get_field((a + space / 2 - 500) / 50, (j + space / 2 - 350) / -35);
-			if (field[2] > 5) {
-				ctx.fillStyle = "rgba(0, 255, 0, 1)";
-				ctx.strokeStyle = "rgba(0, 255, 0, 1)";
+			// if (field[2] > 5) {
+			// 	ctx.fillStyle = "rgba(0, 255, 0, 1)";
+			// 	ctx.strokeStyle = "rgba(0, 255, 0, 1)";
+			// }
+			// else {
+			// 	var alpha = Math.pow(field[2] / 5, 0.4);
+			// 	ctx.fillStyle = "rgba(0, 255, 0, " + alpha + ")";
+			// 	ctx.strokeStyle = "rgba(0, 255, 0, " + alpha + ")";				
+			// }
+			var alpha = 2 / (1 + Math.pow(Math.E, -0.5 * field[2])) - 1;
+			ctx.fillStyle = "rgba(0, 255, 0, " + alpha + ")";
+			ctx.strokeStyle = "rgba(0, 255, 0, " + alpha + ")";
+			if (field[2] <= 0.0001) {
+				ctx.fillStyle = "#ffa500";
+				ctx.strokeStyle = "#ffa500";
 			}
-			else {
-				var alpha = Math.pow(field[2] / 5, 0.4);
-				ctx.fillStyle = "rgba(0, 255, 0, " + alpha + ")";
-				ctx.strokeStyle = "rgba(0, 255, 0, " + alpha + ")";				
-			}
-			// var angle = Math.atan(field[1] / field[0]);
-			// if (field[0] < 0) angle += Math.PI;
-			// ctx.rotate(angle);
-			// var a1 = a * Math.cos(angle) + j * Math.sin(angle);
-			// var j1 = -a * Math.sin(angle) + j * Math.cos(angle);
-			// var a2 = (a + space) * Math.cos(angle) + j * Math.sin(angle);
-			// var j2 = -a * Math.sin(angle) + (j + space) * Math.cos(angle);
-			// ctx.drawImage(img, a1, j1, a2 - a1, j2 - j1);
-			// ctx.beginPath();
-			// ctx.rect(a1, j1, a2 - a1, j2 - j1);
-			// ctx.stroke();
-			// ctx.restore();
+			if (field[2] < min_field) {
+				min_field = field[2];
+				min_x = a;
+				min_y = j;
+			}	
 			ctx.beginPath();
 			ctx.moveTo(a + space / 2, j + space / 2);
 			ctx.lineTo((a + space / 2) + ((space / 2) * field[0] / field[2]), (j + space / 2) + ((space / 2) * field[1] / field[2]));
+			ctx.moveTo(a + space / 2, j + space / 2);
+			ctx.lineTo((a + space / 2) - ((space / 2) * field[0] / field[2]), (j + space / 2) - ((space / 2) * field[1] / field[2]));
 			ctx.stroke();
 			ctx.beginPath();
 			ctx.ellipse((a + space / 2) + ((space / 2) * field[0] / field[2]), (j + space / 2) + ((space / 2) * field[1] / field[2]), 2 * space / 20, 2 * space / 20, 0, 0, 2 * Math.PI);
 			ctx.fill();
+			// ctx.fillRect(a, j, space, space);
 		}
 	}
+	ctx.fillStyle = "#ffa500";
+	ctx.strokeStyle = "#ffa500";
+	ctx.fillRect(min_x - 2, min_y - 2, 4, 4);
 	for (i = 0; i < numCharges; i++) {
 		if (charge_val[i] < 0) ctx.fillStyle = "#0000ff";
 		else ctx.fillStyle = "#ff0000";
@@ -80,6 +128,16 @@ function paintComponent() {
 		ctx.ellipse(ell_x, ell_y, val / 2, val / 2, 0, 0, 2 * Math.PI);
 		ctx.fill();
 	}
+	ctx.strokeWeight = 5;
+	ctx.strokeStyle = "#ffffff";
+	ctx.beginPath();
+	ctx.moveTo(500, 0);
+	ctx.lineTo(500, 700);
+	ctx.stroke();
+	ctx.beginPath();
+	ctx.moveTo(0, 350);
+	ctx.lineTo(1000, 350);
+	ctx.stroke();
 }
 
 function get_field(x, y) {
@@ -101,6 +159,12 @@ function get_field(x, y) {
 	return force_arr;
 }
 
+function print_field(x, y) {
+	var field = get_field(x, y);
+	var direction = get_direction(field);
+	console.log(field[2] + " N/C " + direction);
+}
+
 function get_direction(field) {
 	var theta = Math.atan(field[1] / field[0]);
 	theta *= 180 / Math.PI;
@@ -108,8 +172,8 @@ function get_direction(field) {
 	var vert = "";
 	if (field[0] > 0) horiz = "E";
 	if (field[0] < 0) horiz = "W";
-	if (field[1] > 0) vert = "N";
-	if (field[1] < 0) vert = "S";
+	if (field[1] > 0) vert = "S";
+	if (field[1] < 0) vert = "N";
 	var angle = "";
 	theta = Math.round(theta * 10) / 10;
 	theta = Math.abs(theta);
