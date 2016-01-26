@@ -1,21 +1,23 @@
-$("#reschange").on("input", function() {
-	console.log("changing resolution");
-	space = $(this).val() / 10 * 3 + 10;
-	paintComponent();
-});
 var charge_x;
 var charge_y;
 var charge_val;
 var numCharges;
 var space;
+var old_space;
 var mouseX;
 var mouseY;
 var current_charge = -1;
 var mouseDown = false;
 var c = document.getElementById("mycanvas");
 var ctx = c.getContext("2d");
-var img = document.getElementById("arrowimg");
-img.onload = start_sim();
+window.onload = function() {
+	start_sim();
+	$("#reschange").on("input", function() {
+	   space = (40 - $(this).val());
+	   old_space = space;
+	   paintComponent();
+	});
+}
 document.onmousemove = register_mouse_moved;
 document.onmousedown = function() {
 	mouseDown = true;
@@ -23,16 +25,17 @@ document.onmousedown = function() {
 document.onmouseup = function() {
 	mouseDown = false;
 	current_charge = -1;
-	space = 10;
+	space = old_space;
 	paintComponent();
 }
 
 function start_sim() {
-	charge_x = new Array();
-	charge_y = new Array();
-	charge_val = new Array();
+	charge_x = [];
+	charge_y = [];
+	charge_val = [];
 	numCharges = 10;
-	space = 10;
+	space = 25;
+	old_space = 25;
 	for (i = 0; i < numCharges; i++) {
 		do {
 			charge_x[i] = (Math.random() * 20 - 10) | 0;
@@ -48,11 +51,12 @@ function start_sim() {
 
 function register_mouse_moved(e) {
 	if (!mouseDown) return;
-	mouseX = e.clientX - $("#mycanvas").position().left;
-	mouseY = e.clientY - $("#mycanvas").position().top;
+	mouseX = e.clientX - $("#mycanvas").position().left + window.scrollX;
+	mouseY = e.clientY - $("#mycanvas").position().top + window.scrollY;
+	console.log(window.scrollY);
 	var ind = find_charge(mouseX, mouseY);
 	if (ind > -1 || current_charge != -1) {
-		space = 20;
+		if (space < 20) space = 20;
 		if (ind != -1 && current_charge == -1) current_charge = ind;
 		charge_x[current_charge] = (mouseX - 500) / 50;
 		charge_y[current_charge] = (mouseY - 350) / -35;
@@ -158,7 +162,7 @@ function get_field(x, y) {
 		sum_fx += fx;
 		sum_fy += fy;
 	}
-	var force_arr = new Array();
+	var force_arr = [];
 	force_arr[0] = sum_fx;
 	force_arr[1] = sum_fy;
 	force_arr[2] = Math.sqrt(sum_fx * sum_fx + sum_fy * sum_fy);

@@ -4,6 +4,14 @@
     <head>
         <title>Electrostatics Simulator on Kesav's Website</title>
         <style>
+            body {
+                background-image: url("./images/blue_lightning.jpg");
+                background-size: 100%;
+            }
+            h1 {
+                text-align: center;
+                font-family: "Comic Sans MS", "Marker Felt", sans-serif;
+            }
             #mycanvas {
                 border: 1px solid #000000;
                 background-color: black;
@@ -13,22 +21,34 @@
                 background-color: black;
             }
             #reschange {
-                width: 1000px;
+                width: 800px;
+            }
+            .alltext {
+                font-family: "Comic Sans MS", "Marker Felt", sans-serif;
+                text-align: center;
+            }
+            #entirepage {
+                background-color: rgba(255, 255, 255, 0.7);
+                padding-bottom: 20px;
+                margin-left: 40px;
+                margin-right: 40px;
+                border-radius: 20px;
             }
         </style>
     </head>
     <body>
-        <h1>
-            WELCOME TO THE ELECTROSTATICS SIMULATOR
-        </h1>
-        <div>
-            <img id="arrowimg" src="images/arrow.jpeg" style="display: none;">
+        <div id="entirepage">
+            <h1>
+                WELCOME TO THE ELECTROSTATICS SIMULATOR
+            </h1>
+            <div class="alltext">
+                <canvas id="mycanvas" width="1000px" height="700px">
+                    <script src="./electrostatics.js"></script>
+                </canvas>
+            </div>
+            <div class="alltext">
+                Low Resolution<input id="reschange" type="range" min="0" max="30" name="resolution-range" value="15">High Resolution
+            </div>
         </div>
-        <div>
-            <canvas id="mycanvas" width="1000px" height="700px">
-                <script src="./electrostatics.js"></script>
-            </canvas>
-        </div>
-        <input id="reschange" type="range" min="0" max="100" name="resolution-range" value="0">
     </body>
 </html>
