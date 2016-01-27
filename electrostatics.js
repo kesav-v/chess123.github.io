@@ -104,8 +104,18 @@ function found(x, y, ind) {
 }
 
 function paintComponent() {
-	ctx.lineWidth = 1;
 	ctx.clearRect(0, 0, width, height);
+	ctx.lineWidth = 5;
+	ctx.strokeStyle = "#ffffff";
+	ctx.beginPath();
+	ctx.moveTo(width / 2, 0);
+	ctx.lineTo(width / 2, height);
+	ctx.stroke();
+	ctx.beginPath();
+	ctx.moveTo(0, height / 2);
+	ctx.lineTo(width, height / 2);
+	ctx.stroke();
+	ctx.lineWidth = 1;
 	ctx.fillStyle = "#000000";
 	ctx.fillRect(0, 0, width, height);
 	for (a = 0; a < width; a += space) {
@@ -145,16 +155,6 @@ function paintComponent() {
 		ctx.ellipse(ell_x, ell_y, val / 2, val / 2, 0, 0, 2 * Math.PI);
 		ctx.fill();
 	}
-	ctx.lineWidth = 5;
-	ctx.strokeStyle = "#ffffff";
-	ctx.beginPath();
-	ctx.moveTo(width / 2, 0);
-	ctx.lineTo(width / 2, height);
-	ctx.stroke();
-	ctx.beginPath();
-	ctx.moveTo(0, height / 2);
-	ctx.lineTo(width, height / 2);
-	ctx.stroke();
 }
 
 function get_field(x, y) {
