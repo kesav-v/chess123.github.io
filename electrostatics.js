@@ -105,6 +105,7 @@ function found(x, y, ind) {
 
 function paintComponent() {
 	ctx.clearRect(0, 0, width, height);
+	ctx.fillRect(0, 0, width, height);
 	ctx.lineWidth = 5;
 	ctx.strokeStyle = "#ffffff";
 	ctx.beginPath();
@@ -117,7 +118,6 @@ function paintComponent() {
 	ctx.stroke();
 	ctx.lineWidth = 1;
 	ctx.fillStyle = "#000000";
-	ctx.fillRect(0, 0, width, height);
 	for (a = 0; a < width; a += space) {
 		for (j = 0; j < height; j += space) {
 			var field = get_field((a + space / 2 - width / 2) / (width / 20), (j + space / 2 - height / 2) / -(height / 20));

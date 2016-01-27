@@ -73,6 +73,15 @@
                 font-size: 30px;
                 margin-bottom: 10px;
             }
+            .buttontext {
+                color: white;
+            }
+            #plus {
+                background-color: green;
+            }
+            #minus {
+                background-color: red;
+            }
         </style>
     </head>
     <body>
@@ -95,8 +104,8 @@
                 </div>
             </div>
             <div id="buttongroup1" class="alltext">
-                <button class="plusminus" class="alltext" onclick="add_charge();">+</button>
-                <button class="plusminus" class="alltext" onclick="remove_charge();">-</button>
+                <button id="plus" class="plusminus" class="alltext" onclick="add_charge();"><div class="buttontext">+</div></button>
+                <button id="minus" class="plusminus" class="alltext" onclick="remove_charge();"><div class="buttontext">-</div></button>
             </div>
             <div id="editcharges" class="alltext">
                 <form id="form1">
