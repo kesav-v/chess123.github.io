@@ -31,11 +31,15 @@ document.getElementById("mycanvas").onmouseup = function() {
 	paintComponent();
 }
 
-function update_vals() {
-	var qx = $('input[name="input1"]').val();
-	var qy = $('input[name="input2"]').val();
+function update_vals(mx, my) {
+	var qx = (mx - (width / 2)) / (width / 20);
+	var qy = (my - (height / 2)) / -(height / 20);
 	var mag = print_field(qx, qy);
-	document.getElementById("emag").innerHTML = mag;
+	qx = Math.round(qx * 1000) / 1000;
+	qy = Math.round(qy * 1000) / 1000;
+	document.getElementById("text_x").innerHTML = qx;
+	document.getElementById("text_y").innerHTML = " , " + qy;
+	document.getElementById("emag").innerHTML = ") = " + mag;
 }
 
 function start_sim() {
@@ -59,9 +63,12 @@ function start_sim() {
 }
 
 function register_mouse_moved(e) {
-	if (!mouseDown) return;
 	mouseX = e.clientX - $("#mycanvas").position().left + window.scrollX;
 	mouseY = e.clientY - $("#mycanvas").position().top + window.scrollY;
+	if (!mouseDown) {
+		update_vals(mouseX, mouseY);
+		return;
+	}
 	console.log(window.scrollY);
 	var ind = find_charge(mouseX, mouseY);
 	if (ind > -1 || current_charge != -1) {
@@ -214,5 +221,7 @@ function get_direction(field) {
 	theta = Math.round(theta * 10) / 10;
 	theta = Math.abs(theta);
 	if (theta % 90 != 0) angle = theta + "";
+	if (theta == 0) vert = "";
+	if (theta == 90) horiz == "";
 	return "[" + horiz + angle + vert + "]";
 }

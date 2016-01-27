@@ -16,6 +16,7 @@
                 border: 1px solid #000000;
                 background-color: black;
                 display: inline-block;
+                cursor: crosshair;
             }
             #reschange {
                 -webkit-appearance: slider-vertical;
@@ -63,6 +64,12 @@
             #form1 {
                 font-size: 30px;
             }
+            #text_x {
+                display: inline-block;
+            }
+            #text_y {
+                display: inline-block;
+            }
         </style>
     </head>
     <body>
@@ -90,11 +97,10 @@
             </div>
             <div id="editcharges" class="alltext">
                 <form id="form1">
-                    Electric field at (<input name="input1" type="text" class="textfield" class="alltext">
-                    , <input name="input2" type="text" class="textfield" class="alltext">)
-                    = <div id="emag" class="alltext"></div>
+                    Electric field at (<div id="text_x" class="alltext"></div>
+                    <div id="text_y" class="alltext"> , </div>
+                    <div id="emag" class="alltext">) = </div>
                 </form>
-                <button id="submitit" onclick="update_vals();"><div class="alltext">SUBMIT</div></button>
             </div>
         </div>
     </body>
