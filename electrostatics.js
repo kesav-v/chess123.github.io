@@ -10,6 +10,8 @@ var current_charge = -1;
 var mouseDown = false;
 var c = document.getElementById("mycanvas");
 var ctx = c.getContext("2d");
+var width = c.width;
+var height = c.height;
 window.onload = function() {
 	start_sim();
 	$("#reschange").on("input", function() {
@@ -27,6 +29,13 @@ document.getElementById("mycanvas").onmouseup = function() {
 	current_charge = -1;
 	space = old_space;
 	paintComponent();
+}
+
+function update_vals() {
+	var qx = $('input[name="input1"]').val();
+	var qy = $('input[name="input2"]').val();
+	var mag = print_field(qx, qy);
+	document.getElementById("emag").innerHTML = mag;
 }
 
 function start_sim() {
@@ -58,8 +67,8 @@ function register_mouse_moved(e) {
 	if (ind > -1 || current_charge != -1) {
 		if (space < 20) space = 20;
 		if (ind != -1 && current_charge == -1) current_charge = ind;
-		charge_x[current_charge] = (mouseX - 500) / 50;
-		charge_y[current_charge] = (mouseY - 350) / -35;
+		charge_x[current_charge] = (mouseX - width / 2) / (width / 20);
+		charge_y[current_charge] = (mouseY - height / 2) / -(height / 20);
 		paintComponent();
 	}
 }
@@ -68,7 +77,7 @@ function find_charge(mx, my) {
 	for (i = 0; i < numCharges; i++) {
 		var x = charge_x[i];
 		var y = charge_y[i];
-		var r = Math.sqrt(Math.pow(mx - (50 * x + 500), 2) + Math.pow(my - (350 - 35 * y), 2));
+		var r = Math.sqrt(Math.pow(mx - (width / 20 * x + width / 2), 2) + Math.pow(my - (height / 2 - height / 20 * y), 2));
 		if (r <= (Math.round(Math.abs(charge_val[i])) + 5)) {
 			return i;
 		}
@@ -84,15 +93,15 @@ function found(x, y, ind) {
 }
 
 function paintComponent() {
-	ctx.clearRect(0, 0, c.width, c.height);
+	ctx.clearRect(0, 0, width, height);
 	ctx.fillStyle = "#000000";
-	ctx.fillRect(0, 0, c.width, c.height);
+	ctx.fillRect(0, 0, width, height);
 	var min_field = get_field(0, 0)[2];
-	var min_x = 500;
-	var min_y = 350;
-	for (a = 0; a < 1000; a += space) {
-		for (j = 0; j < 700; j += space) {
-			var field = get_field((a + space / 2 - 500) / 50, (j + space / 2 - 350) / -35);
+	var min_x = width / 2;
+	var min_y = height / 2;
+	for (a = 0; a < width; a += space) {
+		for (j = 0; j < height; j += space) {
+			var field = get_field((a + space / 2 - width / 2) / (width / 20), (j + space / 2 - height / 2) / -(height / 20));
 			// if (field[2] > 5) {
 			// 	ctx.fillStyle = "rgba(0, 255, 0, 1)";
 			// 	ctx.strokeStyle = "rgba(0, 255, 0, 1)";
@@ -130,20 +139,20 @@ function paintComponent() {
 		else ctx.fillStyle = "#ff0000";
 		ctx.beginPath();
 		var val = Math.round(Math.abs(charge_val[i])) + 5;
-		var ell_x = 500 + charge_x[i] * 50;
-		var ell_y = 350 - charge_y[i] * 35;
+		var ell_x = width / 2 + charge_x[i] * width / 20;
+		var ell_y = height / 2 - charge_y[i] * height / 20;
 		ctx.ellipse(ell_x, ell_y, val / 2, val / 2, 0, 0, 2 * Math.PI);
 		ctx.fill();
 	}
 	ctx.strokeWeight = 5;
 	ctx.strokeStyle = "#ffffff";
 	ctx.beginPath();
-	ctx.moveTo(500, 0);
-	ctx.lineTo(500, 700);
+	ctx.moveTo(width / 2, 0);
+	ctx.lineTo(width / 2, height);
 	ctx.stroke();
 	ctx.beginPath();
-	ctx.moveTo(0, 350);
-	ctx.lineTo(1000, 350);
+	ctx.moveTo(0, height / 2);
+	ctx.lineTo(width, height / 2);
 	ctx.stroke();
 }
 
@@ -178,6 +187,7 @@ function add_charge() {
 }
 
 function remove_charge() {
+	if (numCharges <= 0) return;
 	numCharges--;
 	charge_x[numCharges] = null;
 	charge_y[numCharges] = null;
@@ -188,7 +198,7 @@ function remove_charge() {
 function print_field(x, y) {
 	var field = get_field(x, y);
 	var direction = get_direction(field);
-	console.log(field[2] + " N/C " + direction);
+	return field[2] + " N/C " + direction;
 }
 
 function get_direction(field) {

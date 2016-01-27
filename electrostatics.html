@@ -15,9 +15,16 @@
             #mycanvas {
                 border: 1px solid #000000;
                 background-color: black;
+                display: inline-block;
             }
             #reschange {
-                width: 800px;
+                -webkit-appearance: slider-vertical;
+                height: 678px;
+            }
+            #reschange2 {
+                height: 700px;
+                display: inline-block;
+                position: absolute;
             }
             .alltext {
                 font-family: "Comic Sans MS", "Marker Felt", sans-serif;
@@ -38,6 +45,24 @@
                 height: 100px;
                 font-size: 96px;
             }
+            .textfield {
+                width: 70px;
+                height: 30px;
+                font-size: 28px;
+            }
+            #emag {
+                display: inline-block;
+            }
+            #submitit {
+                width: 250px;
+                height: 50px;
+                background-color: white;
+                margin-top: 20px;
+                font-size: 30px;
+            }
+            #form1 {
+                font-size: 30px;
+            }
         </style>
     </head>
     <body>
@@ -49,13 +74,27 @@
                 <canvas id="mycanvas" width="1000px" height="700px">
                     <script src="./electrostatics.js"></script>
                 </canvas>
-            </div>
-            <div class="alltext">
-                Low Resolution<input id="reschange" type="range" min="0" max="30" name="resolution-range" value="15">High Resolution
+                <div id="reschange2">
+                    <div>
+                        High Resolution
+                    </div>
+                    <input id="reschange" type="range" min="0" max="30" name="resolution-range" value="15" orientation>
+                    <div>
+                        Low Resolution
+                    </div>
+                </div>
             </div>
             <div id="buttongroup1" class="alltext">
                 <button class="plusminus" class="alltext" onclick="add_charge();">+</button>
                 <button class="plusminus" class="alltext" onclick="remove_charge();">-</button>
+            </div>
+            <div id="editcharges" class="alltext">
+                <form id="form1">
+                    Electric field at (<input name="input1" type="text" class="textfield" class="alltext">
+                    , <input name="input2" type="text" class="textfield" class="alltext">)
+                    = <div id="emag" class="alltext"></div>
+                </form>
+                <button id="submitit" onclick="update_vals();"><div class="alltext">SUBMIT</div></button>
             </div>
         </div>
     </body>
