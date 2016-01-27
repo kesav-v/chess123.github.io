@@ -18,6 +18,7 @@ window.onload = function() {
 	   space = (40 - $(this).val());
 	   old_space = space;
 	   paintComponent();
+	   paint();
 	});
 }
 document.getElementById("mycanvas").onmousemove = register_mouse_moved;
@@ -29,6 +30,7 @@ document.getElementById("mycanvas").onmouseup = function() {
 	current_charge = -1;
 	space = old_space;
 	paintComponent();
+	paint();
 }
 
 function update_vals(mx, my) {
@@ -59,6 +61,7 @@ function start_sim() {
 		if (Math.random() > 0.5) charge_val[i] *= -1;
 	}
 	paintComponent();
+	paint();
 	// document.getElementById("arrowimg").onload = paintComponent();
 }
 
@@ -77,6 +80,7 @@ function register_mouse_moved(e) {
 		charge_x[current_charge] = (mouseX - width / 2) / (width / 20);
 		charge_y[current_charge] = (mouseY - height / 2) / -(height / 20);
 		paintComponent();
+		paint();
 	}
 }
 
@@ -100,6 +104,7 @@ function found(x, y, ind) {
 }
 
 function paintComponent() {
+	ctx.lineWidth = 1;
 	ctx.clearRect(0, 0, width, height);
 	ctx.fillStyle = "#000000";
 	ctx.fillRect(0, 0, width, height);
@@ -151,7 +156,7 @@ function paintComponent() {
 		ctx.ellipse(ell_x, ell_y, val / 2, val / 2, 0, 0, 2 * Math.PI);
 		ctx.fill();
 	}
-	ctx.strokeWeight = 5;
+	ctx.lineWidth = 5;
 	ctx.strokeStyle = "#ffffff";
 	ctx.beginPath();
 	ctx.moveTo(width / 2, 0);
@@ -191,6 +196,7 @@ function add_charge() {
 	if (Math.random() > 0.5) charge_val[numCharges] *= -1;
 	numCharges++;
 	paintComponent();
+	paint();
 }
 
 function remove_charge() {
@@ -200,6 +206,7 @@ function remove_charge() {
 	charge_y[numCharges] = null;
 	charge_val[numCharges] = null;
 	paintComponent();
+	paint();
 }
 
 function print_field(x, y) {
@@ -223,5 +230,5 @@ function get_direction(field) {
 	if (theta % 90 != 0) angle = theta + "";
 	if (theta == 0) vert = "";
 	if (theta == 90) horiz == "";
-	return "[" + horiz + angle + vert + "]";
+	return "[" + horiz + angle + "o".sup() + vert + "]";
 }

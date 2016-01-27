@@ -54,21 +54,24 @@
             #emag {
                 display: inline-block;
             }
-            #submitit {
-                width: 250px;
-                height: 50px;
-                background-color: white;
-                margin-top: 20px;
-                font-size: 30px;
-            }
             #form1 {
                 font-size: 30px;
+                margin-top: 10px;
+                margin-bottom: 10px;
             }
             #text_x {
                 display: inline-block;
             }
             #text_y {
                 display: inline-block;
+            }
+            #mycanvas2 {
+                background-color: black;
+                border-radius: 20px;
+            }
+            #msg1 {
+                font-size: 30px;
+                margin-bottom: 10px;
             }
         </style>
     </head>
@@ -101,6 +104,14 @@
                     <div id="text_y" class="alltext"> , </div>
                     <div id="emag" class="alltext">) = </div>
                 </form>
+            </div>
+            <div id="msg1" class="alltext">
+                Graph of x-component of electric field vs. position on the x-axis:
+            </div>
+            <div class="alltext">
+                <canvas id="mycanvas2" width="1000px" height="700px">
+                    <script src="./graphfield.js"></script>
+                </canvas>
             </div>
         </div>
     </body>
