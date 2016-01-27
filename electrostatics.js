@@ -108,9 +108,6 @@ function paintComponent() {
 	ctx.clearRect(0, 0, width, height);
 	ctx.fillStyle = "#000000";
 	ctx.fillRect(0, 0, width, height);
-	var min_field = get_field(0, 0)[2];
-	var min_x = width / 2;
-	var min_y = height / 2;
 	for (a = 0; a < width; a += space) {
 		for (j = 0; j < height; j += space) {
 			var field = get_field((a + space / 2 - width / 2) / (width / 20), (j + space / 2 - height / 2) / -(height / 20));
@@ -126,11 +123,6 @@ function paintComponent() {
 			var alpha = 2 / (1 + Math.pow(Math.E, -0.5 * field[2])) - 1;
 			ctx.fillStyle = "rgba(0, 255, 0, " + alpha + ")";
 			ctx.strokeStyle = "rgba(0, 255, 0, " + alpha + ")";
-			if (field[2] < min_field) {
-				min_field = field[2];
-				min_x = a;
-				min_y = j;
-			}
 			ctx.beginPath();
 			ctx.moveTo(a + space / 2, j + space / 2);
 			ctx.lineTo((a + space / 2) + ((space / 2) * field[0] / field[2]), (j + space / 2) + ((space / 2) * field[1] / field[2]));
@@ -143,9 +135,6 @@ function paintComponent() {
 			// ctx.fillRect(a, j, space, space);
 		}
 	}
-	ctx.fillStyle = "#ffa500";
-	ctx.strokeStyle = "#ffa500";
-	ctx.fillRect(min_x - 2, min_y - 2, 4, 4);
 	for (i = 0; i < numCharges; i++) {
 		if (charge_val[i] < 0) ctx.fillStyle = "#0000ff";
 		else ctx.fillStyle = "#ff0000";
