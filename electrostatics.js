@@ -105,6 +105,7 @@ function found(x, y, ind) {
 
 function paintComponent() {
 	ctx.clearRect(0, 0, width, height);
+	ctx.fillStyle = "#000000";
 	ctx.fillRect(0, 0, width, height);
 	ctx.lineWidth = 5;
 	ctx.strokeStyle = "#ffffff";
