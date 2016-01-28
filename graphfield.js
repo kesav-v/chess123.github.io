@@ -95,6 +95,11 @@ function get_vals(e) {
 	var qqx = $('input[name="textfield2"]').val();
 	var qqy = $('input[name="textfield3"]').val();
 	var qqmag = $('input[name="textfield4"]').val();
+	if (qqindex > numCharges) {
+		document.getElementById("errormsg").style.display = "inherit";
+		return;
+	}
+	document.getElementById("errormsg").style.display = "none";		
 	charge_x[qqindex] = qqx;
 	charge_y[qqindex] = qqy;
 	charge_val[qqindex] = qqmag;
@@ -104,6 +109,5 @@ function get_vals(e) {
 
 function trace_graph(e) {
 	mouseX2 = e.clientX - $("#mycanvas2").position().left + window.scrollX;
-	console.log(mouseX2);
 	paint();
 }

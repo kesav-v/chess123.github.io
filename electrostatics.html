@@ -109,6 +109,13 @@
             #part3 {
                 color: #00ff00;
             }
+            #errormsg {
+                font-family: "Comic Sans MS", "Marker Felt", sans-serif;
+                text-align: center;
+                font-size: 16px;
+                color: red;
+                display: none;
+            }
         </style>
     </head>
     <body>
@@ -150,6 +157,7 @@
                     <div class="instructions">magnitude of charge: </div><input class="textfield" name="textfield4" type="text">
                 </form>
             </div>
+            <div id="errormsg">ERROR: No such charge exists.</div>
             <div id="msg1" class="alltext">
                 Graph of <div class="graphinfo" id="part1">x-component, </div><div class="graphinfo" id="part2">y-component, </div>and <div class="graphinfo" id="part3">magnitude</div> of electric field vs. position on the x-axis:
             </div>

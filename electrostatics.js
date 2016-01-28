@@ -60,7 +60,6 @@ function start_sim() {
 			charge_x[i] = (Math.random() * 20 - 10) | 0;
 			charge_y[i] = (Math.random() * 20 - 10) | 0;
 		} while (found(charge_x[i], charge_y[i], i));
-		// console.log(charge_vel_x[i], charge_vel_y[i]);
 		charge_val[i] = (Math.random() * 10 + 5);
 		if (Math.random() > 0.5) charge_val[i] *= -1;
 	}
@@ -76,7 +75,6 @@ function register_mouse_moved(e) {
 		update_vals(mouseX, mouseY);
 		return;
 	}
-	console.log(window.scrollY);
 	var ind = find_charge(mouseX, mouseY);
 	if (ind > -1 || current_charge != -1) {
 		if (space < 20) space = 20;
