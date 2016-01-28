@@ -56,22 +56,16 @@ function update_vals(mx, my) {
 
 function check_buttons1() {
 	show_x = !show_x;
-	if (show_x) document.getElementById("checkbox1text").innerHTML = "HIDE X-COMPONENT";
-	else document.getElementById("checkbox1text").innerHTML = "SHOW X-COMPONENT";
 	paint();
 }
 
 function check_buttons2() {
 	show_y = !show_y;
-	if (show_y) document.getElementById("checkbox2text").innerHTML = "HIDE Y-COMPONENT";
-	else document.getElementById("checkbox2text").innerHTML = "SHOW Y-COMPONENT";
 	paint();
 }
 
 function check_buttons3() {
 	show_mag = !show_mag;
-	if (show_mag) document.getElementById("checkbox3text").innerHTML = "HIDE MAGNITUDE";
-	else document.getElementById("checkbox3text").innerHTML = "SHOW MAGNITUDE";
 	paint();
 }
 
