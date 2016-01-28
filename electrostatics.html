@@ -116,6 +116,15 @@
                 color: red;
                 display: none;
             }
+            #checkbox1text {
+                display: inline-block;
+            }
+            #checkbox2text {
+                display: inline-block;
+            }
+            #checkbox3text {
+                display: inline-block;
+            }
         </style>
     </head>
     <body>
@@ -166,6 +175,11 @@
                     <script src="./graphfield.js"></script>
                 </canvas>
             </div>
+            <form class="alltext">
+                <input type="checkbox" name="checkbox1"><div id="checkbox1text">SHOW X-COMPONENT</div>
+                <input type="checkbox" name="checkbox2"><div id="checkbox2text">SHOW Y-COMPONENT</div>
+                <input type="checkbox" name="checkbox3"><div id="checkbox3text">SHOW MAGNITUDE</div>
+            </form>
         </div>
     </body>
 </html>

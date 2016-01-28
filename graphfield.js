@@ -38,7 +38,7 @@ function paint() {
 		var field2 = get_field(x2, 0);
 		var y1 = field1[0];
 		var y2 = field2[0];
-		if (y1 <= 10 || y2 >= -10 || y1 >= -10 || y2 <= 10) {
+		if (show_x) {
 			ctx2.beginPath();
 			ctx2.moveTo(b, height2 / 2 - height2 / 20 * y1);
 			ctx2.lineTo(b + 1, height2 / 2 - y2 * height2 / 20);
@@ -47,7 +47,7 @@ function paint() {
 		ctx2.strokeStyle = "#0000ff";
 		y1 = field1[1];
 		y2 = field2[1];
-		if (y1 <= 10 || y2 >= -10 || y1 >= -10 || y2 <= 10) {
+		if (show_y) {
 			ctx2.beginPath();
 			ctx2.moveTo(b, height2 / 2 + height2 / 20 * y1);
 			ctx2.lineTo(b + 1, height2 / 2 + y2 * height2 / 20);
@@ -56,37 +56,45 @@ function paint() {
 		ctx2.strokeStyle = "#00ff00";
 		y1 = field1[2];
 		y2 = field2[2];
-		if (y1 <= 10 || y2 >= -10 || y1 >= -10 || y2 <= 10) {
+		if (show_mag) {
 			ctx2.beginPath();
 			ctx2.moveTo(b, height2 / 2 - height2 / 20 * y1);
 			ctx2.lineTo(b + 1, height2 / 2 - y2 * height2 / 20);
 			ctx2.stroke();
 		}
 	}
-	ctx2.fillStyle = "#ff0000";
-	ctx2.beginPath();
-	var y3 = get_field((mouseX2 - width2 / 2) / (width2 / 20), 0)[0];
-	ctx2.ellipse(mouseX2, height2 / 2 - y3 * height2 / 20, 10, 10, 0, 0, 2 * Math.PI);
-	ctx2.fill();
-	ctx2.beginPath();
-	ctx2.fillStyle = "#0000ff";
-	ctx2.beginPath();
-	y3 = get_field((mouseX2 - width2 / 2) / (width2 / 20), 0)[1];
-	ctx2.ellipse(mouseX2, height2 / 2 + y3 * height2 / 20, 10, 10, 0, 0, 2 * Math.PI);
-	ctx2.fill();
-	ctx2.beginPath();
-	ctx2.fillStyle = "#00ff00";
-	ctx2.beginPath();
-	y3 = get_field((mouseX2 - width2 / 2) / (width2 / 20), 0)[2];
-	ctx2.ellipse(mouseX2, height2 / 2 - y3 * height2 / 20, 10, 10, 0, 0, 2 * Math.PI);
-	ctx2.fill();
-	ctx2.beginPath();
-	ctx2.fillStyle = "#ffffff";
-	var x3 = Math.round((mouseX2 - width2 / 2) / (width2 / 20) * 1000) / 1000;
-	y3 = Math.round(y3 * 1000) / 1000;
-	ctx2.font = "24px Comic Sans MS";
-	var coord = "E(" + x3 + ") = " + y3;
-	ctx2.fillText(coord, width * 0.7, height * 0.9);
+	if (show_x) {
+		ctx2.fillStyle = "#ff0000";
+		ctx2.beginPath();
+		var y3 = get_field((mouseX2 - width2 / 2) / (width2 / 20), 0)[0];
+		ctx2.ellipse(mouseX2, height2 / 2 - y3 * height2 / 20, 10, 10, 0, 0, 2 * Math.PI);
+		ctx2.fill();
+	}
+	if (show_y) {
+		ctx2.beginPath();
+		ctx2.fillStyle = "#0000ff";
+		ctx2.beginPath();
+		y3 = get_field((mouseX2 - width2 / 2) / (width2 / 20), 0)[1];
+		ctx2.ellipse(mouseX2, height2 / 2 + y3 * height2 / 20, 10, 10, 0, 0, 2 * Math.PI);
+		ctx2.fill();
+	}
+	if (show_mag) {
+		ctx2.beginPath();
+		ctx2.fillStyle = "#00ff00";
+		ctx2.beginPath();
+		y3 = get_field((mouseX2 - width2 / 2) / (width2 / 20), 0)[2];
+		ctx2.ellipse(mouseX2, height2 / 2 - y3 * height2 / 20, 10, 10, 0, 0, 2 * Math.PI);
+		ctx2.fill();
+	}
+	if (show_mag) {
+		ctx2.beginPath();
+		ctx2.fillStyle = "#ffffff";
+		var x3 = Math.round((mouseX2 - width2 / 2) / (width2 / 20) * 1000) / 1000;
+		y3 = Math.round(y3 * 1000) / 1000;
+		ctx2.font = "24px Comic Sans MS";
+		var coord = "E(" + x3 + ") = " + y3;
+		ctx2.fillText(coord, width * 0.7, height * 0.9);
+	}
 }
 
 function get_vals(e) {

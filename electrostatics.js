@@ -3,7 +3,7 @@ var charge_y;
 var charge_val;
 var numCharges;
 var space;
-var old_space;
+var old_space;1
 var mouseX;
 var mouseY;
 var current_charge = -1;
@@ -12,6 +12,9 @@ var c = document.getElementById("mycanvas");
 var ctx = c.getContext("2d");
 var width = c.width;
 var height = c.height;
+var show_x = false;
+var show_y = false;
+var show_mag = false;
 window.onload = function() {
 	start_sim();
 	$("#reschange").on("input", function() {
@@ -24,6 +27,9 @@ window.onload = function() {
 	$('input[name="textfield2"]').keypress(get_vals);
 	$('input[name="textfield3"]').keypress(get_vals);
 	$('input[name="textfield4"]').keypress(get_vals);
+	$('input[name="checkbox1"]').click(check_buttons1);
+	$('input[name="checkbox2"]').click(check_buttons2);
+	$('input[name="checkbox3"]').click(check_buttons3);
 }
 document.getElementById("mycanvas").onmousemove = register_mouse_moved;
 document.getElementById("mycanvas").onmousedown = function() {
@@ -46,6 +52,27 @@ function update_vals(mx, my) {
 	document.getElementById("text_x").innerHTML = qx;
 	document.getElementById("text_y").innerHTML = " , " + qy;
 	document.getElementById("emag").innerHTML = ") = " + mag;
+}
+
+function check_buttons1() {
+	show_x = !show_x;
+	if (show_x) document.getElementById("checkbox1text").innerHTML = "HIDE X-COMPONENT";
+	else document.getElementById("checkbox1text").innerHTML = "SHOW X-COMPONENT";
+	paint();
+}
+
+function check_buttons2() {
+	show_y = !show_y;
+	if (show_y) document.getElementById("checkbox2text").innerHTML = "HIDE Y-COMPONENT";
+	else document.getElementById("checkbox2text").innerHTML = "SHOW Y-COMPONENT";
+	paint();
+}
+
+function check_buttons3() {
+	show_mag = !show_mag;
+	if (show_mag) document.getElementById("checkbox3text").innerHTML = "HIDE MAGNITUDE";
+	else document.getElementById("checkbox3text").innerHTML = "SHOW MAGNITUDE";
+	paint();
 }
 
 function start_sim() {
