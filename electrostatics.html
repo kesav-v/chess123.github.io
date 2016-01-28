@@ -13,7 +13,7 @@
                 font-family: "Comic Sans MS", "Marker Felt", sans-serif;
             }
             #mycanvas {
-                border: 1px solid #000000;
+                border: 5px solid #ffffff;
                 background-color: black;
                 display: inline-block;
                 cursor: crosshair;
@@ -68,6 +68,7 @@
             #mycanvas2 {
                 background-color: black;
                 border-radius: 20px;
+                border: 5px solid #ffffff;
             }
             #msg1 {
                 font-size: 30px;
@@ -81,6 +82,32 @@
             }
             #minus {
                 background-color: red;
+            }
+            .instructions {
+                font-family: "Comic Sans MS", "Marker Felt", sans-serif;
+                font-size: 30px;
+                display: inline-block;
+            }
+            #edit1 {
+                font-family: "Comic Sans MS", "Marker Felt", sans-serif;
+                font-size: 30px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+            #thetext {
+                margin-bottom: 10px;
+            }
+            .graphinfo {
+                display: inline-block;
+            }
+            #part1 {
+                color: red;
+            }
+            #part2 {
+                color: blue;
+            }
+            #part3 {
+                color: #00ff00;
             }
         </style>
     </head>
@@ -114,8 +141,17 @@
                     <div id="emag" class="alltext">) = </div>
                 </form>
             </div>
+            <div id="editor" class="alltext">
+                <div id="edit1">Edit the parameters of any point charge below:</div>
+                <form id="thetext">
+                    <div class="instructions">Charge #:</div><input class="textfield" name="textfield1" type="text">
+                    <div class="instructions">x:</div><input class="textfield" name="textfield2" type="text">
+                    <div class="instructions">y: </div><input class="textfield" name="textfield3" type="text">
+                    <div class="instructions">magnitude of charge: </div><input class="textfield" name="textfield4" type="text">
+                </form>
+            </div>
             <div id="msg1" class="alltext">
-                Graph of x-component of electric field vs. position on the x-axis:
+                Graph of <div class="graphinfo" id="part1">x-component, </div><div class="graphinfo" id="part2">y-component, </div>and <div class="graphinfo" id="part3">magnitude</div> of electric field vs. position on the x-axis:
             </div>
             <div class="alltext">
                 <canvas id="mycanvas2" width="1000px" height="700px">

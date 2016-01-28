@@ -20,6 +20,10 @@ window.onload = function() {
 	   paintComponent();
 	   paint();
 	});
+	$('input[name="textfield1"]').keypress(get_vals);
+	$('input[name="textfield2"]').keypress(get_vals);
+	$('input[name="textfield3"]').keypress(get_vals);
+	$('input[name="textfield4"]').keypress(get_vals);
 }
 document.getElementById("mycanvas").onmousemove = register_mouse_moved;
 document.getElementById("mycanvas").onmousedown = function() {
@@ -201,6 +205,7 @@ function remove_charge() {
 
 function print_field(x, y) {
 	var field = get_field(x, y);
+	if (field[2] == 0) return "0 N/C";
 	var direction = get_direction(field);
 	return field[2] + " N/C " + direction;
 }
