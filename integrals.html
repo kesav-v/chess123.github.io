@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Integral Calculator on Kesav's Website</title>
+        <script src="./jquery-1.11.3.min.js"></script>
+        <script src="./math.min.js"></script>
+        <script src="./integraleval.js"></script>
+        <script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+        <style>
+            .alltext {
+                text-align: center;
+                font-size: 30px;
+            }
+            #field1 {
+                width: 1000px;
+                height: 30px;
+                font-size: 28px;
+            }
+            #eqndiv {
+                display: inline-block;
+            }
+        </style>
+    </head>
+    <body>
+        <form class="alltext">
+            <input type="text" name="entereqn" id="field1">
+        </form>
+        $$<div id="eqndiv" class="alltext"></div>$$
+        <div id="eqn1" class="alltext"></div>
+    </body>
+</html>

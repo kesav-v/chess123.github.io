@@ -2,6 +2,7 @@
 <html>
     <script src="jquery-1.11.3.min.js"></script>
     <head>
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
         <title>Electrostatics Simulator on Kesav's Website</title>
         <style>
             body {
@@ -9,6 +10,10 @@
                 background-size: 100%;
             }
             h1 {
+                text-align: center;
+                font-family: "Comic Sans MS", "Marker Felt", sans-serif;
+            }
+            h2 {
                 text-align: center;
                 font-family: "Comic Sans MS", "Marker Felt", sans-serif;
             }
@@ -125,6 +130,12 @@
             #checkbox3text {
                 display: inline-block;
             }
+            #explanation {
+                margin-top: 10px;
+                margin-left: 40px;
+                margin-right: 40px;
+                font-size: 20px;
+            }
         </style>
     </head>
     <body>
@@ -132,6 +143,19 @@
             <h1>
                 WELCOME TO THE ELECTROSTATICS SIMULATOR
             </h1>
+            <h2>
+                on Kesav's Website
+            </h2>
+            <div class="alltext" id="explanation">
+                According to Coulomb's Law, the magnitude of the electric field created by a point charge is given by:<br/>
+                $$|\vec{E}|=\frac{k|q|}{r^2}$$<br/>
+                Where \(|q|\) is the magnitude of the point charge, \(r\) is the radial distance from the point charge, and \(k\) is known as <b>Coulomb's constant</b> and generally has the value \(8.99\times10^9\). For the sake of reasonable numbers, in this simulation \(k\) is given a value of 1, so the equation becomes \(|\vec{E}|=\frac{|q|}{r^2}\).<br/>
+                The direction of \(\vec{E}\) is in the same direction as the distance vector \(\vec{r}\) from the point charge to the point where the electric field is calculated.
+                In this simulation, the magnitude of the <b>net</b> electric field is calculated by adding all the field vectors from each individual point charge:<br/>
+                $$|\vec{E_{tot}}|=\sum_{k=1}^n{\vec{E_k},}$$where \(n\) is the number of point charges.<br/><br/>
+                The following virtual xy-plane demonstrates the direction and magnitude of the electric field at various points. The original values and locations of the point charges are randomized, but can be edited, deleted, and added below.<br/><br/>
+                The graph below the plane shows values for the components and magnitude of the electric field as a function of \(x\) on the x-axis.<br/><br/>
+            </div>
             <div class="alltext">
                 <canvas id="mycanvas" width="1000px" height="700px">
                     <script src="./electrostatics.js"></script>
