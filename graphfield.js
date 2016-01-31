@@ -103,7 +103,13 @@ function get_vals(e) {
 	var qqx = $('input[name="textfield2"]').val();
 	var qqy = $('input[name="textfield3"]').val();
 	var qqmag = $('input[name="textfield4"]').val();
+	if (qqy === "" || qqx === "" || qqmag === "") {
+		document.getElementById("errormsg").innerHTML = "ERROR: All fields are required.";
+		document.getElementById("errormsg").style.display = "inherit";
+		return;		
+	}
 	if (qqindex > numCharges) {
+		document.getElementById("errormsg").innerHTML = "ERROR: No such charge exists.";
 		document.getElementById("errormsg").style.display = "inherit";
 		return;
 	}

@@ -15,6 +15,7 @@ var height = c.height;
 var show_x = false;
 var show_y = false;
 var show_mag = false;
+var showing = false;
 window.onload = function() {
 	start_sim();
 	$("#reschange").on("input", function() {
@@ -198,6 +199,18 @@ function get_field(x, y) {
 	force_arr[2] = Math.sqrt(sum_fx * sum_fx + sum_fy * sum_fy);
 	force_arr[2] = Math.round(force_arr[2] * 1000) / 1000;
 	return force_arr;
+}
+
+function show_explan() {
+	showing = !showing;
+	if (showing) {
+		document.getElementById("showtext").innerHTML = "HIDE EXPLANATION";
+		document.getElementById("explanation").style.display = "inherit";
+	}
+	if (!showing) {
+		document.getElementById("showtext").innerHTML = "SHOW EXPLANATION";
+		document.getElementById("explanation").style.display = "none";
+	}
 }
 
 function add_charge() {
