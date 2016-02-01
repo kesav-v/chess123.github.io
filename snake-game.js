@@ -255,9 +255,10 @@ function paintComponent() {
 	ctx.fillStyle = "#ff0000";
 	for (i = 0; i < snake_parts; i++) {
 		ctx.fillStyle = "rgb(0, " + colors[i] + ", " + (255 - colors[i]) + ")";
-		ctx.beginPath();
-		ctx.ellipse(snake_lefts[i] + 5, snake_tops[i] + 5, 5, 5, 0, 0, 2 * Math.PI);
-		ctx.fill();
+		// ctx.beginPath();
+		// ctx.ellipse(snake_lefts[i] + 5, snake_tops[i] + 5, 5, 5, 0, 0, 2 * Math.PI);
+		// ctx.fill();
+		ctx.fillRect(snake_lefts[i], snake_tops[i], 10, 10);
 	}
 	ctx.font = "48px Comic Sans MS";
 	ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
