@@ -201,6 +201,10 @@ function get_field(x, y) {
 	return force_arr;
 }
 
+function fred() {
+	
+}
+
 function show_explan() {
 	showing = !showing;
 	if (showing) {
