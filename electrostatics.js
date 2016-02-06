@@ -71,6 +71,12 @@ function check_buttons3() {
 }
 
 function start_sim() {
+	c.setAttribute("width", window.innerWidth * 0.7);
+	c.setAttribute("height", window.innerHeight * 0.8);
+	c.style.width = window.innerWidth * 0.7 + "px";
+	c.style.height = window.innerHeight * 0.8 + "px";
+	width = c.width;
+	height = c.height;
 	charge_x = [];
 	charge_y = [];
 	charge_val = [];

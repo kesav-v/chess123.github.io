@@ -1,7 +1,7 @@
 var c = document.getElementById("mycanvas");
 var ctx = c.getContext("2d");
-var width = c.width;
-var height = c.height;
+var width;
+var height;
 var wall_x;
 var wall_y;
 var wall_len;
@@ -10,6 +10,12 @@ var num_walls;
 window.onload = start_game();
 
 function start_game() {
+	c.setAttribute("width", window.innerWidth * 0.8);
+	c.setAttribute("height", window.innerHeight * 0.8);
+	c.style.width = window.innerWidth * 0.8 + "px";
+	c.style.height = window.innerHeight * 0.8 + "px";
+	width = c.width;
+	height = c.height;
 	num_walls = 150;
 	wall_x = [];
 	wall_y = [];
