@@ -126,12 +126,19 @@
                 animation-fill-mode: forwards;
                 background-color: rgba(255, 255, 255, 0.5);
                 margin-bottom: 50px;
-                margin-top: 50px;
+                margin-top: 100px;
                 margin-left: auto;
                 margin-right: auto;
                 padding-left: 20px;
                 padding-right: 20px;
                 border-radius: 20px;
+            }
+            #likebutton {
+                background-color: rgba(255, 255, 255, 0.5);
+                width: 450px;
+                height: 100px;
+                border-bottom-left-radius: 20px;
+                border-bottom-right-radius: 20px;
             }
         </style>
 </head>
@@ -145,7 +152,9 @@
           js.src = "http://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
           fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
-        <div class="fb-like" data-href="http://chess123.github.io" data-width="450" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+        <div id="likebutton">
+            <div class="fb-like" data-href="http://chess123.github.io" data-width="450" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+        </div>
         <div id="entirepage">
             <h1>
                 WELCOME TO MY WEBSITE!!!!
