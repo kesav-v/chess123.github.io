@@ -5,17 +5,19 @@
         <title>Kesav's Blog</title>
         <style>
             body {
-                background-image: radial-gradient(yellow, orange, red);
+                background-color: #000064;
                 background-repeat: no-repeat;
                 background-size: 100%;
             }
             h1 {
                 text-align: center;
-                font-size: 120px;
+                font-size: 40px;
             }
             h2 {
                 text-align: center;
-                font-size: 38px;
+                font-size: 30px;
+                padding-bottom: 10px;
+                border-bottom: 1px solid #000000;
             }
             p {
                 padding-top: 20px;
@@ -26,26 +28,31 @@
             .alltext {
                 margin-left: 40px;
                 margin-right: 40px;
-                font-family: "Comic Sans MS", "Marker Felt", sans-serif;
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
             }
             @keyframes fadeintext {
                 from {opacity: 0;}
                 to {opacity: 1;}
             }
             #entirepage {
-                animation-name: fadeintext;
-                animation-duration: 3s;
-                animation-fill-mode: forwards;
-                background-color: rgba(255, 255, 255, 0.5);
+                background-color: #ffffff;
                 margin-left: 80px;
                 margin-right: 80px;
                 margin-top: 20px;
                 margin-bottom: 80px;
                 padding-bottom: 40%;
-                border-radius: 20px;
             }
             li {
+                text-align: center;
+                margin-top: 20px;
+                padding-bottom: 20px;
                 font-size: 20px;
+                border-bottom: 1px solid #000000;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            ul {
+                list-style: none;
             }
             .date {
                 font-size: 30px;
@@ -56,6 +63,7 @@
                 to {color:blue;}
             }
             .bloglink {
+                text-decoration: none;
                 color: red;
             }
             .bloglink:hover {
@@ -85,10 +93,127 @@
                 text-align: center;
                 font-size: 30px;
             }
+            /* Dropdown Button */
+            .dropbtn {
+                background-color: white;
+                color: black;
+                font-size: 16px;
+                height: 50px;
+                width: 100%;
+           /*    border-left: 5px solid #000000;
+                border-right: 5px solid #000000; */
+              border: none;
+                cursor: pointer;
+            }
+            
+            @keyframes makedarkblue {
+                to {background-color: #000064;}
+              to {color: #ffffff;}
+            }
+
+            /* Dropdown button on hover & focus */
+            .dropbtn:hover, .dropbtn:focus {
+                animation-name: makedarkblue;
+                animation-duration: 0.5s;
+                animation-fill-mode: forwards;
+            }
+
+            /* The container <div> - needed to position the dropdown content */
+            .dropdown {
+                position: relative;
+                display: inline-block;
+                width: 19%;
+            }
+            /* Dropdown Content (Hidden by Default) */
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #000064;
+                width: 100%;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            }
+
+            /* Links inside the dropdown */
+            .dropdown-content a {
+              font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                text-align: center;
+                color: white;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+          .drpdntext {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+          }
+            
+            @keyframes makedark {
+                to {color: black;}
+                to {background-color: white;}
+            }
+
+            /* Change color of dropdown links on hover */
+            .dropdown-content a:hover {
+                animation-name: makedark;
+                animation-duration: 0.5s;
+                animation-fill-mode: forwards;
+            }
+
+            /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+            .show {display:block;}
+          #alldropdowns {
+            text-align: center;
+          }
         </style>
     </head>
     <body>
         <div id="entirepage">
+            <div id="alldropdowns">
+              <div class="dropdown">
+                <button onclick="window.location = 'http://chess123.github.io';" class="dropbtn"><div class="drpdntext">HOME</div></button>
+                  <div id="myDropdown1" class="dropdown-content"></div>
+              </div>
+              <div class="dropdown">
+                  <script src="home-dropdown-menus.js"></script>
+                <button onclick="myFunction(2)" class="dropbtn"><div class="drpdntext">CHESS</div></button>
+                <div id="myDropdown2" class="dropdown-content">
+                  <a href="http://chess123.github.io/chess">MY CHESS STORY</a>
+<!--                   <a href="#">Link 2</a>
+                  <a href="#">Link 3</a> -->
+                </div>
+              </div>
+            <div class="dropdown">
+                <button onclick="myFunction(3)" class="dropbtn"><div class="drpdntext">BLOG</div></button>
+                <div id="myDropdown3" class="dropdown-content">
+                  <a href="http://chess123.github.io/blog">TIMELINE</a>
+<!--                   <a href="#">Link 2</a>
+                  <a href="#">Link 3</a> -->
+                </div>
+              </div>
+              <div class="dropdown">
+                <button onclick="myFunction(4)" class="dropbtn"><div class="drpdntext">DEVELOPER</div></button>
+                <div id="myDropdown4" class="dropdown-content">
+                  <a href="http://github.com/chess123">GITHUB PAGE</a>
+<!--                   <a href="#">Link 2</a>
+                  <a href="#">Link 3</a> -->
+                </div>
+              </div>
+              <div class="dropdown">
+                <button onclick="myFunction(5)" class="dropbtn"><div class="drpdntext">ABOUT</div></button>
+                <div id="myDropdown5" class="dropdown-content">
+                  <a href="http://chess123.github.io/contact">CONTACT</a>
+<!--                   <a href="#">Link 2</a>
+                  <a href="#">Link 3</a> -->
+                </div>
+              </div>
+<!--                          <div class="dropdown">
+                <button onclick="myFunction(5)" class="dropbtn"><div class="drpdntext">ABOUT</div></button>
+                <div id="myDropdown5" class="dropdown-content">
+                  <a href="#">Link 1</a>
+                  <a href="#">Link 2</a>
+                  <a href="#">Link 3</a>
+                </div>
+              </div> -->
+          </div>
             <h1 class="alltext">
                 Welcome to my blog!
             </h1>
@@ -100,16 +225,15 @@
                     window.location = name;
                 }
             </script>
-            <div id="buttongroup1"><button onclick="visitPage('http://chess123.github.io');" id="button1"><a class="alltext" id="buttontext1">< BACK TO HOME</a></button></div>
             <ul>
                 <li class="alltext">
-                    <div class="date">January 25, 2016</div> - I built an electric field simulator in JavaScript; it has really cool graphics and it's still a work in progress. Click <a class="bloglink" href="http://chess123.github.io/electrostatics">here</a> to view it and play around!
+                    <div class="date">January 25, 2016</div>I built an electric field simulator in JavaScript; it has really cool graphics and it's still a work in progress. Click <a class="bloglink" href="http://chess123.github.io/electrostatics">here</a> to view it and play around!
                 </li>
                 <li class="alltext">
-                    <div class="date">January 3, 2016</div> - I just finished my first major project in JavaScript - the Snake Game! You can check it out <a class="bloglink" href="http://chess123.github.io/snake-game">here</a>.
+                    <div class="date">January 3, 2016</div>I just finished my first major project in JavaScript - the Snake Game! You can check it out <a class="bloglink" href="http://chess123.github.io/snake-game">here</a>.
                 </li>
                 <li class="alltext">
-                    <div class="date">January 2, 2016</div> - Hey everyone! I just finished creating this page and wrote my first blog post. Check back here soon for more blog posts and updates on stuff going on in life!
+                    <div class="date">January 2, 2016</div>Hey everyone! I just finished creating this page and wrote my first blog post. Check back here soon for more blog posts and updates on stuff going on in life!
                 </li>
             </ul>
         </div>

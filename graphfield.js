@@ -91,7 +91,7 @@ function paint() {
 		ctx2.fillStyle = "#ffffff";
 		var x3 = Math.round((mouseX2 - width2 / 2) / (width2 / 20) * 1000) / 1000;
 		y3 = Math.round(y3 * 1000) / 1000;
-		ctx2.font = "24px Comic Sans MS";
+		ctx2.font = "24px Lucida Sans Unicode";
 		var coord = "E(" + x3 + ") = " + y3;
 		ctx2.fillText(coord, width * 0.7, height * 0.9);
 	}

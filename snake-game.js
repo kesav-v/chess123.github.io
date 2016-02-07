@@ -196,7 +196,7 @@ function move_snake() {
 	snake_lefts[0] = snake_x;
 	snake_tops[0] = snake_y;
 	if (duplicates()) {
-		ctx.font = "48px Comic Sans MS";
+		ctx.font = "48px Lucida Sans Unicode";
 		ctx.fillStyle = "#009900";
 		if (score > high_score) {
 			high_score = score;
@@ -254,17 +254,17 @@ function paintComponent() {
 	ctx.strokeStyle = "#ff0000";
 	ctx.fillStyle = "#ff0000";
 	for (i = 0; i < snake_parts; i++) {
-		ctx.fillStyle = "rgb(0, " + colors[i] + ", " + (255 - colors[i]) + ")";
+		ctx.fillStyle = "rgb(" + colors[i] + ", " + colors[i] + ", " + 255 + ")";
 		// ctx.beginPath();
 		// ctx.ellipse(snake_lefts[i] + 5, snake_tops[i] + 5, 5, 5, 0, 0, 2 * Math.PI);
 		// ctx.fill();
 		ctx.fillRect(snake_lefts[i], snake_tops[i], 10, 10);
 	}
-	ctx.font = "48px Comic Sans MS";
+	ctx.font = "48px Lucida Sans Unicode";
 	ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
 	ctx.fillText("Score: " + score, 50, 50);
 	if (dead) {
-		ctx.font = "48px Comic Sans MS";
+		ctx.font = "48px Lucida Sans Unicode";
 		ctx.fillStyle = "#009900";
 		if (score > high_score) {
 			high_score = score;

@@ -1,5 +1,5 @@
-var c = document.getElementById("mycanvas");
-var ctx = c.getContext("2d");
+var canvas = document.getElementById("mycanvas");
+var ctx = canvas.getContext("2d");
 var width;
 var height;
 var wall_x;
@@ -10,12 +10,12 @@ var num_walls;
 window.onload = start_game();
 
 function start_game() {
-	c.setAttribute("width", window.innerWidth * 0.8);
-	c.setAttribute("height", window.innerHeight * 0.8);
-	c.style.width = window.innerWidth * 0.8 + "px";
-	c.style.height = window.innerHeight * 0.8 + "px";
-	width = c.width;
-	height = c.height;
+	canvas.setAttribute("width", window.innerWidth * 0.8);
+	canvas.setAttribute("height", window.innerHeight * 0.8);
+	canvas.style.width = window.innerWidth * 0.8 + "px";
+	canvas.style.height = window.innerHeight * 0.8 + "px";
+	width = canvas.width;
+	height = canvas.height;
 	num_walls = 150;
 	wall_x = [];
 	wall_y = [];

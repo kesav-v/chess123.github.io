@@ -8,10 +8,10 @@ var mouseX;
 var mouseY;
 var current_charge = -1;
 var mouseDown = false;
-var c = document.getElementById("mycanvas");
-var ctx = c.getContext("2d");
-var width = c.width;
-var height = c.height;
+var canvas = document.getElementById("mycanvas");
+var ctx = canvas.getContext("2d");
+var width = canvas.width;
+var height = canvas.height;
 var show_x = false;
 var show_y = false;
 var show_mag = false;
@@ -71,12 +71,12 @@ function check_buttons3() {
 }
 
 function start_sim() {
-	c.setAttribute("width", window.innerWidth * 0.7);
-	c.setAttribute("height", window.innerHeight * 0.8);
-	c.style.width = window.innerWidth * 0.7 + "px";
-	c.style.height = window.innerHeight * 0.8 + "px";
-	width = c.width;
-	height = c.height;
+	canvas.setAttribute("width", window.innerWidth * 0.7);
+	canvas.setAttribute("height", window.innerHeight * 0.8);
+	canvas.style.width = window.innerWidth * 0.7 + "px";
+	canvas.style.height = window.innerHeight * 0.8 + "px";
+	width = canvas.width;
+	height = canvas.height;
 	charge_x = [];
 	charge_y = [];
 	charge_val = [];
