@@ -39,14 +39,16 @@
             }
 
             #image1 {
-                width: 40%;
-                height: 40%;
+                width: 100%;
+                height: 100%;
                 border: 4px solid rgba(0, 0, 0, 0.5);
                 border-radius: 4px;
+                display: inline-block;
             }
             #imagecontainer {
                 display: inline-block;
                 width: 40%;
+                text-align: right;
             }
             #fb-root {
                 display: none;
@@ -120,6 +122,7 @@
                 text-align: center;
             }
             .achievementlinks {
+                text-decoration: none;
                 color: red;
             }
             .achievementlinks:hover {
@@ -217,6 +220,10 @@
                 text-decoration: none;
                 display: block;
             }
+            
+            #imagentext {
+                display: inline-block;
+            }
           .drpdntext {
             font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
           }
@@ -252,39 +259,43 @@
         <div id="entirepage">
           <div id="alldropdowns">
               <div class="dropdown">
+                <button onclick="window.location = 'http://chess123.github.io';" class="dropbtn"><div class="drpdntext">HOME</div></button>
+                  <div id="myDropdown1" class="dropdown-content"></div>
+              </div>
+              <div class="dropdown">
                   <script src="home-dropdown-menus.js"></script>
-                <button onclick="myFunction(1)" class="dropbtn"><div class="drpdntext">CHESS</div></button>
-                <div id="myDropdown1" class="dropdown-content">
+                <button onclick="myFunction(2)" class="dropbtn"><div class="drpdntext">CHESS</div></button>
+                <div id="myDropdown2" class="dropdown-content">
                   <a href="http://chess123.github.io/chess">MY CHESS STORY</a>
 <!--                   <a href="#">Link 2</a>
                   <a href="#">Link 3</a> -->
                 </div>
               </div>
             <div class="dropdown">
-                <button onclick="myFunction(2)" class="dropbtn"><div class="drpdntext">BLOG</div></button>
-                <div id="myDropdown2" class="dropdown-content">
+                <button onclick="myFunction(3)" class="dropbtn"><div class="drpdntext">BLOG</div></button>
+                <div id="myDropdown3" class="dropdown-content">
                   <a href="http://chess123.github.io/blog">TIMELINE</a>
 <!--                   <a href="#">Link 2</a>
                   <a href="#">Link 3</a> -->
                 </div>
               </div>
               <div class="dropdown">
-                <button onclick="myFunction(3)" class="dropbtn"><div class="drpdntext">DEVELOPER</div></button>
-                <div id="myDropdown3" class="dropdown-content">
+                <button onclick="myFunction(4)" class="dropbtn"><div class="drpdntext">DEVELOPER</div></button>
+                <div id="myDropdown4" class="dropdown-content">
                   <a href="http://github.com/chess123">GITHUB PAGE</a>
 <!--                   <a href="#">Link 2</a>
                   <a href="#">Link 3</a> -->
                 </div>
               </div>
-<!--               <div class="dropdown">
-                <button onclick="myFunction(4)" class="dropbtn"><div class="drpdntext">ABOUT</div></button>
-                <div id="myDropdown4" class="dropdown-content">
-                  <a href="#">Link 1</a>
-                  <a href="#">Link 2</a>
-                  <a href="#">Link 3</a>
+              <div class="dropdown">
+                <button onclick="myFunction(5)" class="dropbtn"><div class="drpdntext">ABOUT</div></button>
+                <div id="myDropdown5" class="dropdown-content">
+                  <a href="http://chess123.github.io/contact">CONTACT</a>
+<!--                   <a href="#">Link 2</a>
+                  <a href="#">Link 3</a> -->
                 </div>
               </div>
-                          <div class="dropdown">
+<!--                          <div class="dropdown">
                 <button onclick="myFunction(5)" class="dropbtn"><div class="drpdntext">ABOUT</div></button>
                 <div id="myDropdown5" class="dropdown-content">
                   <a href="#">Link 1</a>
