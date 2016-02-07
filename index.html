@@ -7,29 +7,29 @@
             body {
                 margin-left: 80px;
                 margin-right: 80px;
-                background-image: radial-gradient(white, blue);
+                background-color: rgb(0, 0, 100);
             }
             @keyframes fadeintext {
                 from {opacity: 0;}
                 to {opacity: 1;}
             }
             p {
-                font-family: "Comic Sans MS", "Marker Felt", sans-serif;
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
                 color: black;
                 text-align: center;
                 font-size: 20px;
             }
             h1 {
-                font-family: "Comic Sans MS", "Marker Felt", sans-serif;
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
                 font-weight: 100;
                 background-size: 800px 100px;
                 color: black;
                 text-align: center;
-                font-size: 80px;
+                font-size: 60px;
             }
             
             ul {
-                font-family: "Comic Sans MS", "Marker Felt", sans-serif;
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
                 color: black;
                 font-size: 20px;
             }
@@ -39,13 +39,13 @@
             }
 
             #image1 {
-                display: inherit;
-                margin-left: auto;
-                margin-right: auto;
-                width: 838px;
-                height: 472px;
-                border: 4px solid rgba(255, 255, 255, 1);
+                width: 40%;
+                height: 40%;
+                border: 4px solid rgba(0, 0, 0, 0.5);
                 border-radius: 4px;
+            }
+            #imagecontainer {
+                display: inline-block;
             }
             #fb-root {
                 display: none;
@@ -57,7 +57,7 @@
                 color: black;
             } 
             #buttongroup1 button {
-                display: inline-block;
+                display: inline-flex;
                 margin: 20px;
             }
             @keyframes changeLinkColor {
@@ -108,9 +108,12 @@
                 font-weight: 200;
                 color: black;
                 font-size: 40px;
-                font-family: "Comic Sans MS", "Marker Felt", sans-serif;
+                margin-left: auto;
+                margin-right: auto;
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
                 padding-left: 7px;
                 padding-right: 7px;
+                text-align: center;
             }
             #buttongroup1 {
                 text-align: center;
@@ -124,30 +127,107 @@
                 animation-fill-mode: forwards;
             }
             #entirepage {
+/*
                 animation-name: fadeintext;
                 animation-duration: 3s;
                 animation-fill-mode: forwards;
-                background-color: rgba(255, 255, 255, 0.5);
+*/
+                background-color: rgb(255, 255, 255);
                 margin-bottom: 50px;
                 margin-top: 50px;
                 margin-left: auto;
                 margin-right: auto;
                 padding-left: 20px;
                 padding-right: 20px;
-                border-radius: 20px;
+/*                border-radius: 20px;*/
             }
             #likebutton {
+/*
                 animation-name: fadeintext;
                 animation-duration: 3s;
                 animation-fill-mode: forwards;
-                background-color: rgba(255, 255, 255, 0.5);
-                width: 450px;
+*/
+                background-color: rgb(255, 255, 255);
+                width: 300px;
                 height: 100px;
+/*
                 border-bottom-left-radius: 20px;
                 border-bottom-right-radius: 20px;
+*/
             }
+            #introtext {
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                font-size: 20px;
+                display: inline-block;
+            }
+            /* Dropdown Button */
+            .dropbtn {
+                background-color: white;
+                color: black;
+                font-size: 16px;
+                height: 50px;
+                width: 100%;
+           /*    border-left: 5px solid #000000;
+                border-right: 5px solid #000000; */
+              border: none;
+                cursor: pointer;
+            }
+            
+            @keyframes makedarkblue {
+                to {background-color: #000064;}
+              to {color: #ffffff;}
+            }
+
+            /* Dropdown button on hover & focus */
+            .dropbtn:hover, .dropbtn:focus {
+                animation-name: makedarkblue;
+                animation-duration: 0.5s;
+                animation-fill-mode: forwards;
+            }
+
+            /* The container <div> - needed to position the dropdown content */
+            .dropdown {
+                position: relative;
+                display: inline-block;
+                width: 19%;
+            }
+            
+            @keyframes reveal {
+                from {max-height: 0px;}
+                to {max-height: 200px;}
+            }
+
+            /* Dropdown Content (Hidden by Default) */
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #000064;
+                width: 100%;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            }
+
+            /* Links inside the dropdown */
+            .dropdown-content a {
+              font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                text-align: center;
+                color: white;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+          .drpdntext {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+          }
+
+            /* Change color of dropdown links on hover */
+            .dropdown-content a:hover {background-color: #f1f1f1}
+
+            /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+            .show {display:block;}
+          #alldropdowns {
+            text-align: center;
+          }
         </style>
-</head>
     </head>
     <body>
         <div id="fb-root"></div>
@@ -162,13 +242,65 @@
             <div class="fb-like" data-href="http://chess123.github.io" data-width="450" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
         </div>
         <div id="entirepage">
+          <div id="alldropdowns">
+              <div class="dropdown">
+                  <script src="home-dropdown-menus.js"></script>
+                <button onclick="myFunction(1)" class="dropbtn"><div class="drpdntext">CHESS</div></button>
+                <div id="myDropdown1" class="dropdown-content">
+                  <a href="http://chess123.github.io/chess">MY CHESS STORY</a>
+<!--                   <a href="#">Link 2</a>
+                  <a href="#">Link 3</a> -->
+                </div>
+              </div>
+            <div class="dropdown">
+                <button onclick="myFunction(2)" class="dropbtn"><div class="drpdntext">BLOG</div></button>
+                <div id="myDropdown2" class="dropdown-content">
+                  <a href="http://chess123.github.io/blog">TIMELINE</a>
+<!--                   <a href="#">Link 2</a>
+                  <a href="#">Link 3</a> -->
+                </div>
+              </div>
+              <div class="dropdown">
+                <button onclick="myFunction(3)" class="dropbtn"><div class="drpdntext">DEVELOPER</div></button>
+                <div id="myDropdown3" class="dropdown-content">
+                  <a href="http://github.io/chess123">GITHUB PAGE</a>
+<!--                   <a href="#">Link 2</a>
+                  <a href="#">Link 3</a> -->
+                </div>
+              </div>
+<!--               <div class="dropdown">
+                <button onclick="myFunction(4)" class="dropbtn"><div class="drpdntext">ABOUT</div></button>
+                <div id="myDropdown4" class="dropdown-content">
+                  <a href="#">Link 1</a>
+                  <a href="#">Link 2</a>
+                  <a href="#">Link 3</a>
+                </div>
+              </div>
+                          <div class="dropdown">
+                <button onclick="myFunction(5)" class="dropbtn"><div class="drpdntext">ABOUT</div></button>
+                <div id="myDropdown5" class="dropdown-content">
+                  <a href="#">Link 1</a>
+                  <a href="#">Link 2</a>
+                  <a href="#">Link 3</a>
+                </div>
+              </div> -->
+          </div>
+          <script>
+            function visitPage(name) {
+              window.location=name;
+            }
+          </script>
             <h1>
                 WELCOME TO MY WEBSITE!!!!
             </h1>
-            <img id="image1" src="http://chess123.github.io/images/Kesav.JPG">
-            <p>
-                Hey everyone! I'm Kesav Viswanadha, a 16-year-old student at Monta Vista High School in Cupertino, CA. I am an International Master (IM) of chess - I travel all over the world to play in tournaments, and I really enjoy it! I also sing Carnatic music and have performed several times in the Bay Area. In my free time, I enjoy programming, playing video games, and basketball. Here are some achievements I'm most proud of:
-            </p>
+            <div id="imagentext">
+                <div id="imagecontainer">
+                    <img id="image1" src="http://chess123.github.io/images/Kesav.JPG" align="left">
+                </div>
+                <div id="introtext" class="alltext">
+                    I'm Kesav Viswanadha, a 16-year-old student at Monta Vista High School in Cupertino, CA. I am an International Master (IM) of chess - I travel all over the world to play in tournaments, and I really enjoy it! I also sing Carnatic music and have performed several times in the Bay Area. In my free time, I enjoy programming, playing video games, and basketball. Here are some achievements I'm most proud of:
+                </div>
+            </div>
             <ul>
                 <li>
                     <a class="achievementlinks" href="http://en.chessbase.com/post/2015-north-american-junior-championships">North American Junior (U20) Chess Championship</a> Gold Medalist 2015 - earned me my first Grandmaster norm!
@@ -186,19 +318,14 @@
                     Volunteer tutor at <a class="achievementlinks" href="http://www.readingpartners.org/">Reading Partners</a>, an organization that helps students behind their grade level in reading realize their full potential, since October 2015.
                 </li>
             </ul>
-            <p>
+<!--             <p>
                 Click any of the buttons below to find out more about me:
             </p>
             <div id="buttongroup1">
-                <script>
-                    function visitPage(name) {
-                        window.location=name;
-                    }
-                </script>
                 <button onclick="visitPage('http://chess123.github.io/chess');" id="button1" type="button" class="actualbuttons"><a class="buttontext">CHESS</a></button>
                 <button onclick="visitPage('http://chess123.github.io/blog');" id="button2" type="button" class="actualbuttons"><a class="buttontext">BLOG</a></button>
                 <button onclick="visitPage('http://github.com/chess123');" id="button3" type="button" class="actualbuttons"><a class="buttontext">DEVELOPER</a></button>
-            </div>
+            </div> -->
         </div>
     </body>
 </html>
