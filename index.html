@@ -218,9 +218,18 @@
           .drpdntext {
             font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
           }
+            
+            @keyframes makedark {
+                to {color: black;}
+                to {background-color: white;}
+            }
 
             /* Change color of dropdown links on hover */
-            .dropdown-content a:hover {background-color: #f1f1f1}
+            .dropdown-content a:hover {
+                animation-name: makedark;
+                animation-duration: 0.5s;
+                animation-fill-mode: forwards;
+            }
 
             /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
             .show {display:block;}
@@ -263,7 +272,7 @@
               <div class="dropdown">
                 <button onclick="myFunction(3)" class="dropbtn"><div class="drpdntext">DEVELOPER</div></button>
                 <div id="myDropdown3" class="dropdown-content">
-                  <a href="http://github.io/chess123">GITHUB PAGE</a>
+                  <a href="http://github.com/chess123">GITHUB PAGE</a>
 <!--                   <a href="#">Link 2</a>
                   <a href="#">Link 3</a> -->
                 </div>
