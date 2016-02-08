@@ -194,7 +194,9 @@
             .dropdown {
                 position: relative;
                 display: inline-block;
-                width: 19%;
+                width: 14%;
+                border-left: 1px solid #000000;
+                border-right: 1px solid #000000;
             }
             
             @keyframes reveal {
@@ -243,7 +245,9 @@
             /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
             .show {display:block;}
           #alldropdowns {
-            text-align: center;
+            position: relative;
+            top: -80px;
+            text-align: right;
           }
         </style>
     </head>
@@ -257,7 +261,7 @@
           fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
         <div id="entirepage">
-            <a href="http://chess123.github.io"><img src="./images/WebsiteLogo.png" width="100px" height="100px"></img></a>
+            <a href="http://chess123.github.io" style="display: inline-block;"><img src="./images/WebsiteLogo.png" width="100px"></img></a>
           <div id="alldropdowns">
               <div class="dropdown">
                 <button onclick="window.location = 'http://chess123.github.io';" class="dropbtn"><div class="drpdntext">HOME</div></button>
