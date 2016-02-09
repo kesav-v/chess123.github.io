@@ -2,6 +2,7 @@
 <html>
     <head>
         <link rel='shortcut icon' type='image/x-icon' href='./images/WebsiteLogo.png'/>
+        <script src="jquery-1.11.3.min.js"></script>
         <title>Kesav's Website</title>
         <style>
             body {
@@ -130,6 +131,49 @@
                 animation-duration: 0.5s;
                 animation-fill-mode: forwards;
             }
+            @keyframes fadein {
+                from {opacity: 0;}
+                to {opacity: 1;}
+            }
+            #biglogo {
+                animation-name: fadein;
+                animation-duration: 2s;
+                animation-fill-mode: forwards;
+                text-align: center;
+            }
+            #intromsg {
+                opacity: 0;
+                text-align: center;
+                color: #000064;
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                font-size: 30px;
+            }
+            #introbutton {
+                opacity: 0;
+                background-color: #000064;
+                color: white;
+                border: none;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                height: 100px;
+                width: 300px;
+                font-size: 30px;
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                border-radius: 10px;
+            }
+            @keyframes makewhite {
+                to {background-color: white;}
+                to {color: #000064;}
+                to {border: 1px solid #000064;}
+            }
+            #introbutton:hover {
+                animation-name: makewhite;
+                animation-duration: 0.5s;
+                animation-fill-mode: forwards;
+            }
+            #intro-container {
+                text-align: center;
+            }
             #entirepage {
 /*
                 animation-name: fadeintext;
@@ -159,6 +203,10 @@
                 border-bottom-left-radius: 20px;
                 border-bottom-right-radius: 20px;
 */
+            }
+            #logo-main {
+                margin-left: auto;
+                margin-right: auto;
             }
             #introtext {
                 font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -248,6 +296,7 @@
             position: relative;
             top: -80px;
             text-align: right;
+              margin-bottom: -80px;
           }
         </style>
     </head>
@@ -295,6 +344,7 @@
               <div class="dropdown">
                 <button onclick="myFunction(5)" class="dropbtn"><div class="drpdntext">ABOUT</div></button>
                 <div id="myDropdown5" class="dropdown-content">
+                    <a href="http://chess123.github.io/about">ABOUT ME</a>
                   <a href="http://chess123.github.io/contact">CONTACT</a>
 <!--                   <a href="#">Link 2</a>
                   <a href="#">Link 3</a> -->
@@ -314,12 +364,23 @@
               window.location=name;
             }
           </script>
+            <div id="biglogo">
+                <img id="logo-main" src="./images/WebsiteLogo.png" width="500px" height="500px"></img>
+            </div>
+            <div id="intromsg">
+                <script src="reveal-animation.js"></script>
+                Your inside scoop on everything Kesav.
+            </div>
+            <div id="intro-container">
+                <button id="introbutton" onclick="window.location = 'http://chess123.github.io/about';">FIND OUT MORE ></button>
+            </div>
+<!--
             <h1>
                 WELCOME TO MY WEBSITE!!!!
             </h1>
             <div id="imagentext">
                 <div id="imagecontainer">
-                    <img id="image1" src="http://chess123.github.io/images/Kesav.JPG" align="left">
+                    <img id="image1" src="./images/Kesav.JPG" align="left">
                 </div>
                 <div id="introtext" class="alltext">
                     I'm Kesav Viswanadha, a 16-year-old student at Monta Vista High School in Cupertino, CA. I am an International Master (IM) of chess - I travel all over the world to play in tournaments, and I really enjoy it! I also sing Carnatic music and have performed several times in the Bay Area. In my free time, I enjoy programming, playing video games, and basketball. Here are some achievements I'm most proud of:
@@ -342,14 +403,15 @@
                     Volunteer tutor at <a class="achievementlinks" href="http://www.readingpartners.org/">Reading Partners</a>, an organization that helps students behind their grade level in reading realize their full potential, since October 2015.
                 </li>
             </ul>
-<!--             <p>
+             <p>
                 Click any of the buttons below to find out more about me:
             </p>
             <div id="buttongroup1">
                 <button onclick="visitPage('http://chess123.github.io/chess');" id="button1" type="button" class="actualbuttons"><a class="buttontext">CHESS</a></button>
                 <button onclick="visitPage('http://chess123.github.io/blog');" id="button2" type="button" class="actualbuttons"><a class="buttontext">BLOG</a></button>
                 <button onclick="visitPage('http://github.com/chess123');" id="button3" type="button" class="actualbuttons"><a class="buttontext">DEVELOPER</a></button>
-            </div> -->
+            </div> 
+-->
             <div id="likebutton">
                 <div class="fb-like" data-href="http://chess123.github.io" data-width="450" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
             </div>
