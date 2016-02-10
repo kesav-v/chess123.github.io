@@ -153,6 +153,18 @@
                 background-color: #000064;
                 color: white;
                 border: none;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                height: 100px;
+                width: 300px;
+                font-size: 30px;
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                border-radius: 10px;
+            }
+            .readon {
+                background-color: #000064;
+                color: white;
+                border: none;
                 margin-top: 10px;
                 margin-bottom: 10px;
                 height: 100px;
@@ -166,7 +178,7 @@
                 to {color: #000064;}
                 to {border: 1px solid #000064;}
             }
-            #introbutton:hover {
+            #introbutton:hover, .readon:hover {
                 animation-name: makewhite;
                 animation-duration: 0.5s;
                 animation-fill-mode: forwards;
@@ -203,6 +215,29 @@
                 border-bottom-left-radius: 20px;
                 border-bottom-right-radius: 20px;
 */
+            }
+            #facets {
+                width: 100%;
+                height: 80%;
+                opacity: 0;
+            }
+            #row1 {
+                border-right: 5px solid #000064;
+            }
+            td {
+                width: 50%;
+                text-align: center;
+                vertical-align: top;
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                font-size: 30px;
+                color: #000064;
+            }
+            .facet-title {
+                font-size: 50px;
+            }
+            .facet-text {
+                margin-left: 20px;
+                margin-right: 20px;
             }
             #logo-main {
                 margin-left: auto;
@@ -399,6 +434,26 @@
                 <button onclick="visitPage('http://github.com/chess123');" id="button3" type="button" class="actualbuttons"><a class="buttontext">DEVELOPER</a></button>
             </div> 
 -->
+            <div id="facet-container">
+                <table id="facets">
+                    <tr>
+                        <td id="row1">
+                            <div class="facet-title">CHESS PLAYER</div>
+                            <div class="facet-text">
+                                I'm an International Master (IM) of chess. I have played and will continue to play in tournaments all over the world. Chess has always been a big part of my life - I've been playing for 10 years and it has helped me grow as a person.
+                            </div>
+                            <button class="readon" onclick="window.location = 'http://chess123.github.io/chess'">READ ON ></button>
+                        </td>
+                        <td>
+                            <div class="facet-title">DEVELOPER</div>
+                            <div class="facet-text">
+                                When I started high school, I took my first steps into the world of programming and computer science. I took Java and AP Computer Science at my school, so I have a couple of years of experience in Java. This website was actually my first major departure from Java - I taught myself HTML/CSS and JavaScript during the development process.
+                            </div>
+                            <button class="readon" onclick="window.location = 'http://chess123.github.io/blog'">READ ON ></button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
             <div id="likebutton">
                 <div class="fb-like" data-href="http://chess123.github.io" data-width="450" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
             </div>
