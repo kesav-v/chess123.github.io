@@ -219,7 +219,7 @@
             #facets {
                 width: 100%;
                 height: 80%;
-                opacity: 0;
+                visibility: hidden;
             }
             #row1 {
                 border-right: 5px solid #000064;
@@ -238,6 +238,10 @@
             .facet-text {
                 margin-left: 20px;
                 margin-right: 20px;
+            }
+            #facet-cover {
+                position: absolute;
+                background-color: white;
             }
             #logo-main {
                 margin-left: auto;
@@ -453,6 +457,9 @@
                         </td>
                     </tr>
                 </table>
+            </div>
+            <div id="facet-cover">
+                
             </div>
             <div id="likebutton">
                 <div class="fb-like" data-href="http://chess123.github.io" data-width="450" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
