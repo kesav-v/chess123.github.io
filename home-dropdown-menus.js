@@ -5,7 +5,7 @@ function myFunction(n) {
   if (document.getElementById("myDropdown" + n).classList.contains("show")) {
     console.log("closing");
     var theheight = document.getElementById("myDropdown" + n).offsetHeight;
-    $('#myDropdown' + n).animate({height: "0px"}, 500, function() {
+    $('#myDropdown' + n).animate({height: "0px"}, 500, "linear", function() {
       document.getElementById("myDropdown" + n).classList.toggle("show");
       document.getElementById("myDropdown" + n).style.height = theheight + "px";
     });
@@ -20,7 +20,7 @@ function myFunction(n) {
   var theheight = document.getElementById("myDropdown" + n).offsetHeight;
   console.log(theheight);
   document.getElementById("myDropdown" + n).style.height = "0px";
-  $('#myDropdown' + n).animate({height: theheight + "px"}, 500);
+  $('#myDropdown' + n).animate({height: theheight + "px"}, "linear", 500);
 }
 
 function numAs(elem) {
