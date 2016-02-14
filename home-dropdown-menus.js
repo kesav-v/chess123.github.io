@@ -5,7 +5,7 @@ function myFunction(n) {
   if (document.getElementById("myDropdown" + n).classList.contains("show")) {
     console.log("closing");
     var theheight = document.getElementById("myDropdown" + n).offsetHeight;
-    $('#myDropdown' + n).animate({height: "0px"}, 500, "linear", function() {
+    $('#myDropdown' + n).animate({height: "0px"}, 500, function() {
       document.getElementById("myDropdown" + n).classList.toggle("show");
       document.getElementById("myDropdown" + n).style.height = theheight + "px";
     });
