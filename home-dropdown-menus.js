@@ -20,7 +20,7 @@ function myFunction(n) {
   var theheight = document.getElementById("myDropdown" + n).offsetHeight;
   console.log(theheight);
   document.getElementById("myDropdown" + n).style.height = "0px";
-  $('#myDropdown' + n).animate({height: theheight + "px"}, "linear", 500);
+  $('#myDropdown' + n).animate({height: theheight + "px"}, 500);
 }
 
 function numAs(elem) {
