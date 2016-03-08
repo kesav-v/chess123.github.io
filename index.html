@@ -337,14 +337,6 @@
         </style>
     </head>
     <body>
-        <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "http://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
         <div id="entirepage">
             <a href="http://chess123.github.io"><img src="./images/WebsiteLogo.png" width="100px" height="100px"></img></a>
           <div id="alldropdowns">
@@ -396,44 +388,6 @@
             <div id="intro-container">
                 <button id="introbutton" onclick="window.location = 'http://chess123.github.io/about';">FIND OUT MORE ></button>
             </div>
-<!--
-            <h1>
-                WELCOME TO MY WEBSITE!!!!
-            </h1>
-            <div id="imagentext">
-                <div id="imagecontainer">
-                    <img id="image1" src="./images/Kesav.JPG" align="left">
-                </div>
-                <div id="introtext" class="alltext">
-                    I'm Kesav Viswanadha, a 16-year-old student at Monta Vista High School in Cupertino, CA. I am an International Master (IM) of chess - I travel all over the world to play in tournaments, and I really enjoy it! I also sing Carnatic music and have performed several times in the Bay Area. In my free time, I enjoy programming, playing video games, and basketball. Here are some achievements I'm most proud of:
-                </div>
-            </div>
-            <ul>
-                <li>
-                    <a class="achievementlinks" href="http://en.chessbase.com/post/2015-north-american-junior-championships">North American Junior (U20) Chess Championship</a> Gold Medalist 2015 - earned me my first Grandmaster norm!
-                </li>
-                <li>
-                    <a class="achievementlinks" href="http://www.uschess.org/content/view/12708/767/">North American Youth (U16) Chess Championship</a> Gold Medalist 2014 - earned me the FM title and my first IM norm!
-                </li>
-                <li>
-                    5-time member of the prestigious <a class="achievementlinks" href="https://new.uschess.org/news/2016-all-america-chess-team-announced/">All-America Chess Team</a> (2012 - 2016)
-                </li>
-                <li>
-                    Bronze and Silver medals on the <a class="achievementlinks" href="https://www.frenchteachers.org/concours/">National French Contest</a> in 2014 and 2015 respectively
-                </li>
-                <li>
-                    Volunteer tutor at <a class="achievementlinks" href="http://www.readingpartners.org/">Reading Partners</a>, an organization that helps students behind their grade level in reading realize their full potential, since October 2015.
-                </li>
-            </ul>
-             <p>
-                Click any of the buttons below to find out more about me:
-            </p>
-            <div id="buttongroup1">
-                <button onclick="visitPage('http://chess123.github.io/chess');" id="button1" type="button" class="actualbuttons"><a class="buttontext">CHESS</a></button>
-                <button onclick="visitPage('http://chess123.github.io/blog');" id="button2" type="button" class="actualbuttons"><a class="buttontext">BLOG</a></button>
-                <button onclick="visitPage('http://github.com/chess123');" id="button3" type="button" class="actualbuttons"><a class="buttontext">DEVELOPER</a></button>
-            </div> 
--->
             <div id="facet-container">
                 <table id="facets">
                     <tr>
@@ -454,6 +408,14 @@
                     </tr>
                 </table>
             </div>
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "http://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
             <div id="likebutton">
                 <div class="fb-like" data-href="http://chess123.github.io" data-width="450" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
             </div>
