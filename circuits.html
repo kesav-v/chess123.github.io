@@ -3,7 +3,7 @@
 	<head>
         <link rel='shortcut icon' type='image/x-icon' href='./images/WebsiteLogo.png'/>
         <script src="jquery-1.11.3.min.js"></script>
-		<title></title>
+		<title>Circuit Simulator on Kesav's Website</title>
         <style>
             body {
                 background-color: #000064;
@@ -95,6 +95,23 @@
             margin-right: 20px;
               margin-bottom: -80px;
           }
+            #circuitcanvas {
+                border: 5px solid #000000;
+            }
+            #canvas-container {
+                text-align: center;
+                margin-top: 50px;
+            }
+            h1, h2 {
+                text-align: center;
+                margin-top: 20px;
+            }
+            h1 {
+                font-size: 40px;
+            }
+            h2 {
+                font-size: 30px;
+            }
         </style>
 	</head>
     <body>
@@ -133,6 +150,17 @@
                   <a href="http://chess123.github.io/contact">CONTACT</a>
                 </div>
               </div>
+          </div>
+        <h1>
+            CIRCUIT SIMULATOR
+        </h1>
+        <h2>
+            on Kesav's Website
+        </h2>
+          <div id="canvas-container">
+            <canvas id="circuitcanvas" width="1000px" height="700px">
+                <script src="circuits.js"></script>
+              </canvas>
           </div>
         </div>
     </body>

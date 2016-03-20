@@ -14,5 +14,5 @@ function get_current_time() {
 
 function get_time_difference(time) {
 	var grad = new Date(2017,5,1,10,0,0,0);
-	var sec = grad.getSeconds()
+	var sec = grad.getSeconds();
 }
