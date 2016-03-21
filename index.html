@@ -160,6 +160,7 @@
                 font-size: 30px;
                 font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
                 border-radius: 10px;
+                transition: background-color 0.5s, color 0.5s, border 0.5s;
             }
             .readon {
                 background-color: #000064;
@@ -168,10 +169,11 @@
                 margin-top: 10px;
                 margin-bottom: 10px;
                 height: 100px;
-                width: 300px;
+                width: 350px;
                 font-size: 30px;
                 font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
                 border-radius: 10px;
+                transition: background-color 0.5s, color 0.5s, border 0.5s;
             }
             @keyframes makewhite {
                 to {background-color: white;}
@@ -179,9 +181,10 @@
                 to {border: 1px solid #000064;}
             }
             #introbutton:hover, .readon:hover {
-                animation-name: makewhite;
-                animation-duration: 0.5s;
-                animation-fill-mode: forwards;
+                background-color: white;
+                color: #000064;
+                border: 1px solid #000064;
+                cursor: pointer;
             }
             #intro-container {
                 text-align: center;

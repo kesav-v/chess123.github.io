@@ -15,7 +15,6 @@ function change_pic() {
     });
 }
 function slideshow() {
-	preloader();
     $("#image1").load(function() {
         times++;
         $("#image1").fadeTo(1000, 1);
