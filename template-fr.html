@@ -1,48 +1,23 @@
 <!DOCTYPE html>
 <html>
-    <head>
+	<head>
         <link rel='shortcut icon' type='image/x-icon' href='./images/WebsiteLogo.png'/>
         <script src="jquery-1.11.3.min.js"></script>
-        <title>Snake Game on Kesav's Website</title>
+		<title></title>
         <style>
             body {
                 background-color: #000064;
             }
-            #restart {
-                margin-top: 20px;
-                background-color: #000064;
-                color: white;
-                border: none;
-                width: 400px;
-                height: 100px;
+            #entirepage {
+                background-color: #ffffff;
+                margin: 50px;
+                padding-bottom: 100%;
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
             }
-            #restart:hover {
-                animation-name: makewhite;
-                animation-duration: 0.5s;
-                animation-fill-mode: forwards;
-            }
-            #button1 {
-                text-align: center;
-            }
-            @keyframes makewhite {
-                to {background-color: white;}
-                to {color: black;}
-                to {border: 1px solid #000000;}
-            }
-            #buttontext1 {
-                font-size: 30px;
-            }
-            #game {
-                text-align: center;
-            }
+            
             .alltext {
                 text-align: center;
                 font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-            }
-            #entirepage {
-                margin: 50px;
-                background-color: white;
-                padding-bottom: 50px;
             }
             /* Dropdown Button */
             .dropbtn {
@@ -121,71 +96,44 @@
               margin-bottom: -80px;
           }
         </style>
-    </head>
+	</head>
     <body>
         <div id="entirepage">
-            <a href="http://chess123.github.io"><img src="./images/WebsiteLogo.png" width="100px" height="100px"></img></a>
+            <img border="0" src="./images/WebsiteLogo.png" width="100px" height="100px" onclick="window.location = 'http://chess123.github.io';">
           <div id="alldropdowns">
               <div class="dropdown">
-                <button onclick="window.location = 'http://chess123.github.io';" class="dropbtn"><div class="drpdntext">HOME</div></button>
+                <button onclick="window.location = 'http://chess123.github.io';" class="dropbtn"><div class="drpdntext">ACCUEIL</div></button>
                   <div id="myDropdown1" class="dropdown-content"></div>
               </div>
               <div class="dropdown">
                   <script src="home-dropdown-menus.js"></script>
-                <button onclick="myFunction(2)" class="dropbtn"><div class="drpdntext">CHESS</div></button>
+                <button onclick="myFunction(2)" class="dropbtn"><div class="drpdntext">&Eacute;CHECS</div></button>
                 <div id="myDropdown2" class="dropdown-content">
-                  <a href="http://chess123.github.io/chess">MY CHESS STORY</a>
+                  <a href="http://chess123.github.io/chess">MON HISTOIRE D'&Eacute;CHECS</a>
                 </div>
               </div>
             <div class="dropdown">
                 <button onclick="myFunction(3)" class="dropbtn"><div class="drpdntext">BLOG</div></button>
                 <div id="myDropdown3" class="dropdown-content">
-                  <a href="http://chess123.github.io/blog">TIMELINE</a>
+                  <a href="http://chess123.github.io/blog">CHRONOLOGIE</a>
                 </div>
               </div>
               <div class="dropdown">
-                <button onclick="myFunction(4)" class="dropbtn"><div class="drpdntext">DEVELOPER</div></button>
+                <button onclick="myFunction(4)" class="dropbtn"><div class="drpdntext">D&Eacute;VELOPPEUR</div></button>
                 <div id="myDropdown4" class="dropdown-content">
-                  <a href="http://github.com/chess123">GITHUB PAGE</a>
-                  <a href="http://chess123.github.io/snake-game">SNAKE GAME</a>
-                  <a href="http://chess123.github.io/electrostatics">ELECTROSTATICS SIMULATOR</a> 
+                  <a href="http://github.com/chess123">PAGE GITHUB</a>
+                  <a href="http://chess123.github.io/snake-game">JEU DU SERPENT</a>
+                  <a href="http://chess123.github.io/electrostatics">SIMULATEUR &Eacute;LECTROSTATIQUE</a> 
                 </div>
               </div>
               <div class="dropdown">
-                <button onclick="myFunction(5)" class="dropbtn"><div class="drpdntext">ABOUT</div></button>
+                <button onclick="myFunction(5)" class="dropbtn"><div class="drpdntext">&Agrave; PROPOS</div></button>
                 <div id="myDropdown5" class="dropdown-content">
-                    <a href="http://chess123.github.io/about">ABOUT ME</a>
+                    <a href="http://chess123.github.io/about">&Agrave; PROPOS DE MOI</a>
                   <a href="http://chess123.github.io/contact">CONTACT</a>
                 </div>
               </div>
-              <div class="dropdown">
-                <button onclick="myFunction(6)" class="dropbtn"><div class="drpdntext">LANGUAGE</div></button>
-                <div id="myDropdown6" class="dropdown-content">
-                    <a href="http://chess123.github.io/">ENGLISH</a>
-                  <a href="http://chess123.github.io/fr">FRAN&Ccedil;AIS</a>
-                </div>
-              </div>
           </div>
-            <h1 class="alltext">
-                SNAKE GAME
-            </h1>
-            <h2 class="alltext">
-                on Kesav's Website
-            </h2>
-            <h3 class="alltext">
-                Use the arrow keys to move up, left, down, and right. Eat as many of the squares as you can without hitting yourself, but watch out! There are traps lurking...
-            </h3>
-            <h4 class="alltext">
-                v1.1 released 1/5/16 - changed color scheme as well as gameplay
-            </h4>
-            <div id="game">     
-                <canvas id="mycanvas" width="1000px" height="700px" style="border: 5px solid #000000;">
-                    <script src="./snake-game.js"></script>
-                </canvas>
-            </div>
-            <div id="button1">
-                <button id="restart" onclick="start_game();"><div class="alltext" id="buttontext1">NEW GAME</div></button>
-            </div>
         </div>
     </body>
 </html>

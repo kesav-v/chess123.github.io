@@ -11,7 +11,7 @@ function myFunction(n) {
     });
     return;
   }
-  for (i = 0; i < 5; i++) {
+  for (i = 0; i < 6; i++) {
     if (i == n - 1) continue;
     document.getElementById("myDropdown" + (i + 1)).classList.remove("show");
   }
