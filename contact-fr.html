@@ -1,131 +1,29 @@
 <!DOCTYPE html>
 <html>
-	<head>
+    <head>
         <link rel='shortcut icon' type='image/x-icon' href='./images/WebsiteLogo.png'/>
-		<title>Chess on Kesav's Website</title>
         <script src="jquery-1.11.3.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                $('#caption').width($('#caption').parent().width());
-                $('#caption').css("top", $('#caption').parent().offset().top + $('#caption').parent().height() - $('#caption').height() + "px");
-            });
-        </script>
-		<style>
+        <title>Contact Kesav</title>
+        <style>
             body {
                 background-color: #000064;
-                margin-left: 50px;
-                margin-right: 50px;
             }
             #entirepage {
                 background-color: white;
-                padding-bottom: 20px;
-                margin-bottom: 50px;
-                margin-top: 50px;
-                margin-left: 50px;
-                margin-right: 50px;
-                padding-left: 10px;
-                padding-right: 10px;
-            }
-            p {
-                text-align: center;
-                font-size: 20px;
-                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-            }
-            #image1 {
-                display: inherit;
-                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-                margin-left: auto;
-                margin-right: auto;
-                border: 10px solid rgba(0, 0, 0, 0.5);
-                border-radius: 4px;
-                border: thin silver solid;
-            }
-            @keyframes fadeintext {
-                from {opacity: 0;}
-                to {opacity: 1;}
+                margin: 50px;
+                padding-bottom: 100%;
             }
             h1 {
-                font-weight: 400;
-                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
                 font-size: 40px;
-                text-align: center;
             }
             h2 {
-                font-weight: 100;
-                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
                 font-size: 30px;
+            }
+            .alltext {
                 text-align: center;
-            }
-            h3 {
-                font-weight: 100;
-                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-                font-size: 20px;
-                text-align: center;
-            }
-            ul {
-                font-weight: 100;
-                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-                font-size: 20px;
-            }
-            .chesslink {
-                color: red;
-                text-decoration: none;
-            }
-            @keyframes makeblue {
-                to {color: blue;}
-            }
-            .chesslink:hover {
-                animation-name: makeblue;
-                animation-duration: 0.5s;
-                animation-fill-mode: forwards;
-            }
-            #banner {
-                text-align: center;
-                border-radius: 10px;
-            }
-            .latest {
-                color: blue;
-            }
-            .upcoming {
-                color: green;
-            }
-            #caption {
-                padding-top: 5px;
-                color: white;
-                left: 0px;
-                text-align: center;
-                font-style: italic;
-                font-size: 18px;
-                text-indent: 0;
-                background-size: 25%;
-            }
-            #chesspics {
-                background-color: #000064;
-                background-size: cover;
-                margin-left: 20px;
-                margin-right: 20px;
-                margin-top: 0px;
-                margin-bottom: 0px;
-                padding-top: 20px;
-                padding-bottom: 20px;
-            }
-            #image1.scaled {
-              width: 100%;
-            }
-            #buttongroup1 {
-                text-align: center;
-            }
-            #buttontext {
-                font-size: 40px;
-                color: white;
                 font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
             }
-/*
-            li {
-                margin-left: 40px;
-            }
-*/
-                        /* Dropdown Button */
+            /* Dropdown Button */
             .dropbtn {
                 background-color: white;
                 color: black;
@@ -198,11 +96,26 @@
             position: relative;
             top: -80px;
             text-align: right;
+            margin-right: 20px;
               margin-bottom: -80px;
           }
-		</style>
-	</head>
-	<body onload="slideshow();">
+            .maillink {
+                text-decoration: none;
+                color: red;
+            }
+            
+            @keyframes turnblue {
+                to {color: #000064;}
+            }
+            
+            .maillink:hover {
+                animation-name: turnblue;
+                animation-duration: 0.5s;
+                animation-fill-mode: forwards;
+            }
+        </style>
+    </head>
+    <body>
         <div id="entirepage">
             <a href="http://chess123.github.io"><img src="./images/WebsiteLogo.png" width="100px" height="100px"></img></a>
           <div id="alldropdowns">
@@ -246,44 +159,13 @@
                 </div>
               </div>
           </div>
-        <script src="loadimage.js">
-        </script>
-        <div id="entirepage">
-            <h1>
-                CHESS
+            <h1 class="alltext">
+                CONTACT INFO
             </h1>
-            <h2>
-                on Kesav's website
+            <h2 class="alltext">
+                on Kesav's Website
             </h2>
-            <script>
-                function visitPage(name) {
-                    window.location = name;
-                }
-            </script>
-            <div id="chesspics">
-                <img id="image1" src="./images/KesavGrade3.JPG">
-                     <div id="caption">Kesav behind the chess board (May 2008)</div></img>
-            </div>
-            <p>
-                Welcome to the chess portion of my website! I am an International Master (IM) of chess and I continue to play in tournaments all over the country and even the world! This is where I will keep you updated on my latest chess adventures and other thoughts on the chess world. My <a href="http://www.uschess.org/msa/MbrDtlMain.php?13159334" class="chesslink">USCF rating</a> is 2463, and my <a class="chesslink" href="https://ratings.fide.com/card.phtml?event=2059533">FIDE rating</a> is 2377.
-            </p>
-            <p>
-                Click <a class="chesslink" href="http://www.uschess.org/content/view/12916/796">here</a> for an article I wrote for Chess Life Online about my journey to the IM title.
-            </p>
-            <h3>
-                LIVE TOP 10 CHESS PLAYERS IN THE WORLD!
-            </h3>
-            <div id="banner">
-                <a href="http://www.2700chess.com" target="_blank"><img id="banner" border="0" src="http://www.2700chess.com/files/top10.png" alt= "2700chess.com for more details and full list" title="2700chess.com for more details and full list"/></a>
-            </div>
-            <h3>
-                <a class="latest">LATEST</a>/<a class="upcoming">UPCOMING</a> IN MY CHESS LIFE:
-            </h3>
-            <ul>
-                <li class="upcoming">
-                    <div></div>
-                </li>
-            </ul>
+            <br/><br/><div class="alltext">Email: <a class="maillink" href="mailto:kesav@viswanadha.net">kesav@viswanadha.net</a></div>
         </div>
-	</body>
+    </body>
 </html>

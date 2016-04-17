@@ -43,8 +43,8 @@ function start_game() {
 	y_locations = new Array();
 	snake_x;
 	snake_y;
-	numFoods = 5;
-	numPortals = 5;
+	numFoods = 100;
+	numPortals = 0;
 	snake_parts = 1;
 	initialize_locations();
 	direction = 0;

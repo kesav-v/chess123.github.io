@@ -1,131 +1,100 @@
 <!DOCTYPE html>
 <html>
-	<head>
+    <head>
         <link rel='shortcut icon' type='image/x-icon' href='./images/WebsiteLogo.png'/>
-		<title>Chess on Kesav's Website</title>
         <script src="jquery-1.11.3.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                $('#caption').width($('#caption').parent().width());
-                $('#caption').css("top", $('#caption').parent().offset().top + $('#caption').parent().height() - $('#caption').height() + "px");
-            });
-        </script>
-		<style>
+        <title>Kesav's Blog</title>
+        <style>
             body {
                 background-color: #000064;
-                margin-left: 50px;
-                margin-right: 50px;
+                background-repeat: no-repeat;
+                background-size: 100%;
             }
-            #entirepage {
-                background-color: white;
-                padding-bottom: 20px;
-                margin-bottom: 50px;
-                margin-top: 50px;
-                margin-left: 50px;
-                margin-right: 50px;
-                padding-left: 10px;
-                padding-right: 10px;
+            h1 {
+                text-align: center;
+                font-size: 40px;
+            }
+            h2 {
+                text-align: center;
+                font-size: 30px;
+                padding-bottom: 10px;
+                border-bottom: 1px solid #000000;
             }
             p {
-                text-align: center;
+                padding-top: 20px;
+                padding-bottom: 20px;
                 font-size: 20px;
-                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                text-align: center;
             }
-            #image1 {
-                display: inherit;
+            .alltext {
+                margin-left: 40px;
+                margin-right: 40px;
                 font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-                margin-left: auto;
-                margin-right: auto;
-                border: 10px solid rgba(0, 0, 0, 0.5);
-                border-radius: 4px;
-                border: thin silver solid;
             }
             @keyframes fadeintext {
                 from {opacity: 0;}
                 to {opacity: 1;}
             }
-            h1 {
-                font-weight: 400;
-                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-                font-size: 40px;
-                text-align: center;
+            #entirepage {
+                background-color: #ffffff;
+                margin-left: 80px;
+                margin-right: 80px;
+                margin-top: 20px;
+                margin-bottom: 80px;
+                padding-bottom: 40%;
             }
-            h2 {
-                font-weight: 100;
-                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-                font-size: 30px;
+            li {
                 text-align: center;
-            }
-            h3 {
-                font-weight: 100;
-                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                margin-top: 20px;
+                padding-bottom: 20px;
                 font-size: 20px;
-                text-align: center;
+                border-bottom: 1px solid #000000;
+                margin-left: auto;
+                margin-right: auto;
             }
             ul {
-                font-weight: 100;
-                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-                font-size: 20px;
+                list-style: none;
             }
-            .chesslink {
-                color: red;
-                text-decoration: none;
+            .date {
+                font-size: 30px;
+                font-weight: 800;
+                color: blue;
             }
             @keyframes makeblue {
-                to {color: blue;}
+                to {color:blue;}
             }
-            .chesslink:hover {
+            .bloglink {
+                text-decoration: none;
+                color: red;
+            }
+            .bloglink:hover {
                 animation-name: makeblue;
                 animation-duration: 0.5s;
                 animation-fill-mode: forwards;
             }
-            #banner {
-                text-align: center;
-                border-radius: 10px;
-            }
-            .latest {
-                color: blue;
-            }
-            .upcoming {
-                color: green;
-            }
-            #caption {
-                padding-top: 5px;
-                color: white;
-                left: 0px;
-                text-align: center;
-                font-style: italic;
-                font-size: 18px;
-                text-indent: 0;
-                background-size: 25%;
-            }
-            #chesspics {
-                background-color: #000064;
-                background-size: cover;
-                margin-left: 20px;
-                margin-right: 20px;
-                margin-top: 0px;
-                margin-bottom: 0px;
-                padding-top: 20px;
-                padding-bottom: 20px;
-            }
-            #image1.scaled {
-              width: 100%;
-            }
             #buttongroup1 {
                 text-align: center;
             }
-            #buttontext {
-                font-size: 40px;
+            #button1 {
+                width: 400px;
+                height: 100px;
+                background-image: linear-gradient(white, green, white);
+                border-radius: 10px;
+            }
+            #button1:hover {
+                animation-name: makeblurry;
+                animation-duration: 0.5s;
+                animation-fill-mode: forwards;
+            }
+            @keyframes makeblurry {
+                to {opacity: 0.5;}
+            }
+            #buttontext1 {
                 color: white;
-                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                text-align: center;
+                font-size: 30px;
             }
-/*
-            li {
-                margin-left: 40px;
-            }
-*/
-                        /* Dropdown Button */
+            /* Dropdown Button */
             .dropbtn {
                 background-color: white;
                 color: black;
@@ -197,15 +166,16 @@
           #alldropdowns {
             position: relative;
             top: -80px;
+            margin-right: 20px;
             text-align: right;
               margin-bottom: -80px;
           }
-		</style>
-	</head>
-	<body onload="slideshow();">
+        </style>
+    </head>
+    <body>
         <div id="entirepage">
             <a href="http://chess123.github.io"><img src="./images/WebsiteLogo.png" width="100px" height="100px"></img></a>
-          <div id="alldropdowns">
+            <div id="alldropdowns">
               <div class="dropdown">
                 <button onclick="window.location = 'http://chess123.github.io';" class="dropbtn"><div class="drpdntext">HOME</div></button>
                   <div id="myDropdown1" class="dropdown-content"></div>
@@ -215,12 +185,16 @@
                 <button onclick="myFunction(2)" class="dropbtn"><div class="drpdntext">CHESS</div></button>
                 <div id="myDropdown2" class="dropdown-content">
                   <a href="http://chess123.github.io/chess">MY CHESS STORY</a>
+<!--                   <a href="#">Link 2</a>
+                  <a href="#">Link 3</a> -->
                 </div>
               </div>
             <div class="dropdown">
                 <button onclick="myFunction(3)" class="dropbtn"><div class="drpdntext">BLOG</div></button>
                 <div id="myDropdown3" class="dropdown-content">
                   <a href="http://chess123.github.io/blog">TIMELINE</a>
+<!--                   <a href="#">Link 2</a>
+                  <a href="#">Link 3</a> -->
                 </div>
               </div>
               <div class="dropdown">
@@ -234,56 +208,52 @@
               <div class="dropdown">
                 <button onclick="myFunction(5)" class="dropbtn"><div class="drpdntext">ABOUT</div></button>
                 <div id="myDropdown5" class="dropdown-content">
-                    <a href="http://chess123.github.io/about">ABOUT ME</a>
                   <a href="http://chess123.github.io/contact">CONTACT</a>
+<!--                   <a href="#">Link 2</a>
+                  <a href="#">Link 3</a> -->
                 </div>
               </div>
-              <div class="dropdown">
+                <div class="dropdown">
                 <button onclick="myFunction(6)" class="dropbtn"><div class="drpdntext">LANGUAGE</div></button>
                 <div id="myDropdown6" class="dropdown-content">
                     <a href="http://chess123.github.io/">ENGLISH</a>
                   <a href="http://chess123.github.io/fr">FRAN&Ccedil;AIS</a>
                 </div>
               </div>
+<!--                          <div class="dropdown">
+                <button onclick="myFunction(5)" class="dropbtn"><div class="drpdntext">ABOUT</div></button>
+                <div id="myDropdown5" class="dropdown-content">
+                  <a href="#">Link 1</a>
+                  <a href="#">Link 2</a>
+                  <a href="#">Link 3</a>
+                </div>
+              </div> -->
           </div>
-        <script src="loadimage.js">
-        </script>
-        <div id="entirepage">
-            <h1>
-                CHESS
+            <h1 class="alltext">
+                Welcome to my blog!
             </h1>
-            <h2>
-                on Kesav's website
+            <h2 class="alltext">
+                This is where I'll post stuff about myself - think of it as a pseudo-Facebook timeline :)
             </h2>
             <script>
                 function visitPage(name) {
                     window.location = name;
                 }
             </script>
-            <div id="chesspics">
-                <img id="image1" src="./images/KesavGrade3.JPG">
-                     <div id="caption">Kesav behind the chess board (May 2008)</div></img>
-            </div>
-            <p>
-                Welcome to the chess portion of my website! I am an International Master (IM) of chess and I continue to play in tournaments all over the country and even the world! This is where I will keep you updated on my latest chess adventures and other thoughts on the chess world. My <a href="http://www.uschess.org/msa/MbrDtlMain.php?13159334" class="chesslink">USCF rating</a> is 2463, and my <a class="chesslink" href="https://ratings.fide.com/card.phtml?event=2059533">FIDE rating</a> is 2377.
-            </p>
-            <p>
-                Click <a class="chesslink" href="http://www.uschess.org/content/view/12916/796">here</a> for an article I wrote for Chess Life Online about my journey to the IM title.
-            </p>
-            <h3>
-                LIVE TOP 10 CHESS PLAYERS IN THE WORLD!
-            </h3>
-            <div id="banner">
-                <a href="http://www.2700chess.com" target="_blank"><img id="banner" border="0" src="http://www.2700chess.com/files/top10.png" alt= "2700chess.com for more details and full list" title="2700chess.com for more details and full list"/></a>
-            </div>
-            <h3>
-                <a class="latest">LATEST</a>/<a class="upcoming">UPCOMING</a> IN MY CHESS LIFE:
-            </h3>
             <ul>
-                <li class="upcoming">
-                    <div></div>
+                <li class="alltext">
+                    <div class="date">March 8, 2016</div>Playing a round robin event at UT Rio Grande Valley in Brownsville, TX - click <a class="bloglink" href="http://www.chessbomb.com/arena/2016-utrgv2-gm">here</a> to see the games live with computer analysis.
+                </li>
+                <li class="alltext">
+                    <div class="date">January 25, 2016</div>I built an electric field simulator in JavaScript; it has really cool graphics and it's still a work in progress. Click <a class="bloglink" href="http://chess123.github.io/electrostatics">here</a> to view it and play around!
+                </li>
+                <li class="alltext">
+                    <div class="date">January 3, 2016</div>I just finished my first major project in JavaScript - the Snake Game! You can check it out <a class="bloglink" href="http://chess123.github.io/snake-game">here</a>.
+                </li>
+                <li class="alltext">
+                    <div class="date">January 2, 2016</div>Hey everyone! I just finished creating this page and wrote my first blog post. Check back here soon for more blog posts and updates on stuff going on in life!
                 </li>
             </ul>
         </div>
-	</body>
+    </body>
 </html>
