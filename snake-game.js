@@ -1,4 +1,3 @@
-start_game();
 var c;
 var ctx;
 var x_locations;
@@ -24,13 +23,14 @@ var num_portal_moves;
 var colors;
 var last_moved_direction;
 var portals_visible;
-var games = 0;
+var games;
+start_game();
 
 function start_game() {
-	for (games = 0; true; games++) {
-		if (localStorage.getItem("game" + games) === null) break;
+	for (i = 0; true; i++) {
+		if (localStorage.getItem("game" + i) === null) break;
 	}
-	console.log(games);
+	games = i;
 	portals_visible = false;
 	num_portal_moves = 0;
 	last_moved_direction = 0;
@@ -80,7 +80,6 @@ function update_gradient() {
 function initialize_portals() {
 	for (i = 0; i < numPortals; i++) {
 		do {
-			console.log("re-initializing");
 			portal_lefts_in[i] = 10 * Math.floor(Math.random() * 99);
 			portal_tops_in[i] = 10 * Math.floor(Math.random() * 69);
 			portal_lefts_out[i] = 10 * Math.floor(Math.random() * 99);
@@ -93,7 +92,6 @@ function close_to_others(i) {
 	var x2 = portal_lefts_in[i];
 	var y2 = portal_tops_in[i];
 	for (j = 0; j < i; j++) {
-		console.log("checking " + j + " " + i);
 		var x1 = portal_lefts_in[j];
 		var y1 = portal_tops_in[j];
 		if (Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)) < 50) return true;
@@ -104,7 +102,6 @@ function close_to_others(i) {
 	x2 = portal_lefts_out[i];
 	y2 = portal_tops_out[i];
 	for (j = 0; j < i; j++) {
-		console.log("checking2");
 		var x1 = portal_lefts_in[j];
 		var y1 = portal_tops_in[j];
 		if (Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)) < 50) return true;
@@ -207,17 +204,17 @@ function move_snake() {
 			if (parseInt(localStorage.getItem("game" + i)) > high_score)
 				high_score = parseInt(localStorage.getItem("game" + i));
 		}
-		localStorage.setItem("game" + games, String(score));
 		if (score > high_score) {
 			high_score = score;
 			ctx.fillText("NEW BEST!", 350, 350);
+			games++;
+			localStorage.setItem("game" + games, String(score));
 		}
 		else ctx.fillText("GAME OVER", 350, 350);
 		ctx.fillStyle = "#0000ff";
 		ctx.fillText("High score: " + high_score, 350, 420);
 		clearInterval(timer);
 		dead = true;
-		games++;
 		return;
 	}
 	paintComponent();
