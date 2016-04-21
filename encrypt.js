@@ -25,11 +25,29 @@ function encrypt(s) {
 	return str3;
 }
 
+function change_msg() {
+	document.getElementById("text1").innerHTML = "Congrats on cracking the password! Now go find something more useful to do.";
+	document.getElementById("text1").style.color = "black";
+	document.getElementById("text1").style.fontSize = "20px";
+	document.getElementById("input-holder").style.visibility = "hidden";
+}
+
 function find_string(e) {
 	if (e.which != 13) return;
 	var string = encrypt($('input[name="input1"]').val());
-	if (string === y) document.getElementById("text1").innerHTML = "Login succeeded.";
-	else document.getElementById("text1").innerHTML = "Login failed.";
+	if (string === y) {
+		document.getElementById("text1").innerHTML = "Login succeeded.";
+		document.getElementById("text1").style.color = "green";
+		document.getElementsByClassName("inp")[0].style.border = "5px solid green";
+		document.getElementsByClassName("inp")[0].style.color = "green";
+		setTimeout(change_msg, 2000);
+	}
+	else {
+		document.getElementById("text1").innerHTML = "Login failed.";
+		document.getElementById("text1").style.color = "red";
+		document.getElementsByClassName("inp")[0].style.border = "5px solid red";
+		document.getElementsByClassName("inp")[0].style.color = "red";
+	}
 }
 
 function to_bin(n) {
