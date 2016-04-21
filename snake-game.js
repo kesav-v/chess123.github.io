@@ -200,7 +200,6 @@ function move_snake() {
 	snake_lefts[0] = snake_x;
 	snake_tops[0] = snake_y;
 	if (duplicates()) {
-		games++;
 		ctx.font = "48px Lucida Sans Unicode";
 		ctx.fillStyle = "#009900";
 		var high_score = 0;
@@ -218,6 +217,7 @@ function move_snake() {
 		ctx.fillText("High score: " + high_score, 350, 420);
 		clearInterval(timer);
 		dead = true;
+		games++;
 		return;
 	}
 	paintComponent();
