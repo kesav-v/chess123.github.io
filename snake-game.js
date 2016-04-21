@@ -14,7 +14,6 @@ var moving;
 var timer;
 var dead;
 var score;
-var high_score = 0;
 var portal_lefts_in;
 var portal_tops_in;
 var portal_lefts_out;
@@ -25,8 +24,13 @@ var num_portal_moves;
 var colors;
 var last_moved_direction;
 var portals_visible;
+var games = 0;
 
 function start_game() {
+	for (games = 0; true; games++) {
+		if (localStorage.getItem("game" + games) === null) break;
+	}
+	console.log(games);
 	portals_visible = false;
 	num_portal_moves = 0;
 	last_moved_direction = 0;
@@ -196,8 +200,15 @@ function move_snake() {
 	snake_lefts[0] = snake_x;
 	snake_tops[0] = snake_y;
 	if (duplicates()) {
+		games++;
 		ctx.font = "48px Lucida Sans Unicode";
 		ctx.fillStyle = "#009900";
+		var high_score = 0;
+		for (i = 0; i < games; i++) {
+			if (parseInt(localStorage.getItem("game" + i)) > high_score)
+				high_score = parseInt(localStorage.getItem("game" + i));
+		}
+		localStorage.setItem("game" + games, String(score));
 		if (score > high_score) {
 			high_score = score;
 			ctx.fillText("NEW BEST!", 350, 350);

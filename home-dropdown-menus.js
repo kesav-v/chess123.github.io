@@ -1,9 +1,8 @@
-var current_open;
+var current_open = 0;
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
 function myFunction(n) {
   if (document.getElementById("myDropdown" + n).classList.contains("show")) {
-    console.log("closing");
     var theheight = document.getElementById("myDropdown" + n).offsetHeight;
     $('#myDropdown' + n).animate({height: "0px"}, 500, function() {
       document.getElementById("myDropdown" + n).classList.toggle("show");
@@ -18,7 +17,6 @@ function myFunction(n) {
   current_open = n;
   document.getElementById("myDropdown" + n).classList.toggle("show");
   var theheight = document.getElementById("myDropdown" + n).offsetHeight;
-  console.log(theheight);
   document.getElementById("myDropdown" + n).style.height = "0px";
   $('#myDropdown' + n).animate({height: theheight + "px"}, 500);
 }
@@ -34,6 +32,7 @@ function numAs(elem) {
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function(event) {
   if (!event.target.matches('.dropbtn') && !event.target.matches('.drpdntext')) {
+    if (current_open == 0) return;
     if (document.getElementById("myDropdown" + current_open).classList.contains("show")) myFunction(current_open);
   }
 };
