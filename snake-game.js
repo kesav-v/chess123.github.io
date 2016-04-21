@@ -207,8 +207,8 @@ function move_snake() {
 		if (score > high_score) {
 			high_score = score;
 			ctx.fillText("NEW BEST!", 350, 350);
-			games++;
 			localStorage.setItem("game" + games, String(score));
+			games++;
 		}
 		else ctx.fillText("GAME OVER", 350, 350);
 		ctx.fillStyle = "#0000ff";
