@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <link rel='shortcut icon' type='image/x-icon' href='./images/WebsiteLogo.png'/>
+        <script src="jquery-1.11.3.min.js"></script>
+		<title></title>
+        <style>
+            body {
+                background-color: #000064;
+            }
+            #entirepage {
+                background-color: #ffffff;
+                margin: 50px;
+                padding-bottom: 100%;
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+            }
+            
+            .alltext {
+                text-align: center;
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+            }
+            /* Dropdown Button */
+            .dropbtn {
+                background-color: white;
+                color: black;
+                font-size: 16px;
+                height: 50px;
+                width: 100%;
+           /*    border-left: 5px solid #000000;
+                border-right: 5px solid #000000; */
+              border: none;
+                cursor: pointer;
+                transition: background-color 0.5s, color 0.5s;
+            }
+            
+            @keyframes makedarkblue {
+                to {background-color: #000064;}
+              to {color: #ffffff;}
+            }
+
+            /* Dropdown button on hover & focus */
+            .dropbtn:hover, .dropbtn:focus {
+                background-color: #000064;
+                color: #ffffff;
+            }
+
+            /* The container <div> - needed to position the dropdown content */
+            .dropdown {
+                position: relative;
+                display: inline-block;
+                width: 14%;
+                border-left: 1px solid #000000;
+                border-right: 1px solid #000000;
+            }
+            /* Dropdown Content (Hidden by Default) */
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #000064;
+                width: 100%;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            }
+
+            /* Links inside the dropdown */
+            .dropdown-content a {
+              font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                text-align: center;
+                color: white;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+          .drpdntext {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+          }
+            
+            @keyframes makedark {
+                to {color: black;}
+                to {background-color: white;}
+            }
+
+            /* Change color of dropdown links on hover */
+            .dropdown-content a:hover {
+                animation-name: makedark;
+                animation-duration: 0.5s;
+                animation-fill-mode: forwards;
+            }
+
+            /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+            .show {display:block;}
+          #alldropdowns {
+            position: relative;
+            top: -80px;
+            text-align: right;
+            margin-right: 20px;
+            margin-bottom: -80px;
+          }
+            #input-holder {
+                text-align: center;
+            }
+            #text1 {
+                color: blue;
+                text-align: center;
+            }
+            .inp {
+             margin-top: 40px;   
+            }
+        </style>
+	</head>
+    <body>
+        <div id="entirepage">
+            <img border="0" src="./images/WebsiteLogo.png" width="100px" height="100px" onclick="window.location = 'http://chess123.github.io';">
+          <div id="alldropdowns">
+              <div class="dropdown">
+                <button onclick="window.location = 'http://chess123.github.io';" class="dropbtn"><div class="drpdntext">HOME</div></button>
+                  <div id="myDropdown1" class="dropdown-content"></div>
+              </div>
+              <div class="dropdown">
+                  <script src="home-dropdown-menus.js"></script>
+                <button onclick="myFunction(2)" class="dropbtn"><div class="drpdntext">CHESS</div></button>
+                <div id="myDropdown2" class="dropdown-content">
+                  <a href="http://chess123.github.io/chess">MY CHESS STORY</a>
+                </div>
+              </div>
+            <div class="dropdown">
+                <button onclick="myFunction(3)" class="dropbtn"><div class="drpdntext">BLOG</div></button>
+                <div id="myDropdown3" class="dropdown-content">
+                  <a href="http://chess123.github.io/blog">TIMELINE</a>
+                </div>
+              </div>
+              <div class="dropdown">
+                <button onclick="myFunction(4)" class="dropbtn"><div class="drpdntext">DEVELOPER</div></button>
+                <div id="myDropdown4" class="dropdown-content">
+                  <a href="http://github.com/chess123">GITHUB PAGE</a>
+                  <a href="http://chess123.github.io/snake-game">SNAKE GAME</a>
+                  <a href="http://chess123.github.io/electrostatics">ELECTROSTATICS SIMULATOR</a> 
+                </div>
+              </div>
+              <div class="dropdown">
+                <button onclick="myFunction(5)" class="dropbtn"><div class="drpdntext">ABOUT</div></button>
+                <div id="myDropdown5" class="dropdown-content">
+                    <a href="http://chess123.github.io/about">ABOUT ME</a>
+                  <a href="http://chess123.github.io/contact">CONTACT</a>
+                </div>
+              </div>
+              <div class="dropdown">
+                <button onclick="myFunction(6)" class="dropbtn"><div class="drpdntext">LANGUAGE</div></button>
+                <div id="myDropdown6" class="dropdown-content">
+                    <a href="http://chess123.github.io/">ENGLISH</a>
+                  <a href="http://chess123.github.io/fr">FRAN&Ccedil;AIS</a>
+                </div>
+              </div>
+          </div>
+            <script src="encrypt.js"></script>
+            <div id="input-holder">
+                <input type="password" name="input1" class="inp"></input>
+            </div>
+            <div id="text1">
+                
+            </div>            
+            <div id="text2">
+                
+            </div>
+        </div>
+    </body>
+</html>
