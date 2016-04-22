@@ -60,7 +60,7 @@ function start_game() {
 	wall_x = new Array();
 	wall_y = new Array();
 	wall_x[0] = Math.random() * c.width | 0;
-	wall_y[0] = Math.random() * c.height | 0;;
+	wall_y[0] = Math.random() * c.height | 0;
 	vx = new Array();
 	vy = new Array();
 	vx[0] = 1;
@@ -198,8 +198,10 @@ function move_red() {
 }
 
 function place_snake() {
-	snake_x = 10 * Math.floor(Math.random() * 99);
-	snake_y = 10 * Math.floor(Math.random() * 69);
+	do {
+		snake_x = 10 * Math.floor(Math.random() * 99);
+		snake_y = 10 * Math.floor(Math.random() * 69);
+	} while (Math.sqrt(Math.pow(snake_x - wall_x[0], 2) + Math.pow(snake_y - wall_y[0], 2)) < 100);
 	snake_lefts[0] = snake_x;
 	snake_tops[0] = snake_y;
 }
