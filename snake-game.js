@@ -145,42 +145,38 @@ function register_key(e) {
 function move_red() {
 	times++;
 	if (times % 1000 == 0) {
+		console.log("HEREEEEEEE");
 		var n = wall_x.length;
 		for (a = 0; a < n; a++) {
-			wall_x[wall_x.length] = wall_x[a];
-			wall_y[wall_y.length] = wall_y[a];
+			var tx = wall_x[a];
+			var ty = wall_y[a];
+			var tvx = vx[a];
+			var tvy = vy[a];
+			wall_x[wall_x.length] = tx;
+			wall_y[wall_y.length] = ty;
+			vx[vx.length] = tvx;
+			vy[vy.length] = tvy;
 		}
+		console.log(wall_x.length);
 		radius /= 2;
 	}
 	else if (times % 40 == 0) {
 		radius++;
+		for (p = 0; p < wall_x.length; p++) {
+			vx[p] /= 1.2;
+			vy[p] /= 1.2;
+		}
 	}
 	for (p = 0; p < wall_x.length; p++) {		
 		vx[p] += 1 - Math.random() * 2;
 		vy[p] += 1 - Math.random() * 2;
 		wall_x[p] += vx[p];
 		wall_y[p] += vy[p];
-		if (wall_x[p] < 0 || wall_x[p] > c.width - radius) vx[p] *= -1;
-		if (wall_y[p] < 0 || wall_y[p] > c.height - radius) vy[p] *= -1;
+		if (wall_x[p] < 0 && vx[p] < 0 || wall_x[p] > c.width - radius && vx[p] > 0) vx[p] *= -1;
+		if (wall_y[p] < 0 && vy[p] < 0 || wall_y[p] > c.height - radius && vy[p] > 0) vy[p] *= -1;
 		for (q = 0; q < snake_lefts.length; q++) {
 			if (Math.sqrt(Math.pow(snake_lefts[q] - wall_x[p], 2) + Math.pow(snake_tops[q] - wall_y[p], 2)) < radius) {
 				if (q == 0) {
-					ctx.font = "48px Lucida Sans Unicode";
-					ctx.fillStyle = "#009900";
-					var high_score = 0;
-					for (i = 0; i < games; i++) {
-						if (parseInt(localStorage.getItem("game" + i)) > high_score)
-							high_score = parseInt(localStorage.getItem("game" + i));
-					}
-					if (score > high_score) {
-						high_score = score;
-						ctx.fillText("NEW BEST!", 350, 350);
-						localStorage.setItem("game" + games, String(score));
-						games++;
-					}
-					else ctx.fillText("GAME OVER", 350, 350);
-					ctx.fillStyle = "#0000ff";
-					ctx.fillText("High score: " + high_score, 350, 420);
 					clearInterval(timer);
 					clearInterval(move_wall);
 					dead = true;
@@ -339,6 +335,7 @@ function paintComponent() {
 		ctx.beginPath();
 		ctx.ellipse(wall_x[i], wall_y[i], radius, radius, 0, 0, 2 * Math.PI);
 		ctx.fill();
+		if (i > 0) console.log("HERE AGAIN NOW! " + wall_x[i] + " " + wall_y[i]);
 	}
 	for (i = 0; i < snake_parts; i++) {
 		ctx.fillStyle = "rgb(" + colors[i] + ", " + colors[i] + ", " + 255 + ")";
@@ -350,15 +347,22 @@ function paintComponent() {
 	ctx.font = "48px Lucida Sans Unicode";
 	ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
 	ctx.fillText("Score: " + score, 50, 50);
-	// if (dead) {
-	// 	ctx.font = "48px Lucida Sans Unicode";
-	// 	ctx.fillStyle = "#009900";
-	// 	if (score > high_score) {
-	// 		high_score = score;
-	// 		ctx.fillText("NEW BEST!", 350, 350);
-	// 	}
-	// 	else ctx.fillText("GAME OVER", 350, 350);
-	// 	ctx.fillStyle = "#0000ff";
-	// 	ctx.fillText("High score: " + high_score, 350, 420);
-	// }
+	if (dead) {
+		ctx.font = "48px Lucida Sans Unicode";
+		ctx.fillStyle = "#009900";
+		var high_score = 0;
+		for (i = 0; i < games; i++) {
+			if (parseInt(localStorage.getItem("game" + i)) > high_score)
+				high_score = parseInt(localStorage.getItem("game" + i));
+		}
+		if (score > high_score) {
+			high_score = score;
+			ctx.fillText("NEW BEST!", 350, 350);
+			localStorage.setItem("game" + games, String(score));
+			games++;
+		}
+		else ctx.fillText("GAME OVER", 350, 350);
+		ctx.fillStyle = "#0000ff";
+		ctx.fillText("High score: " + high_score, 350, 420);
+	}
 }
