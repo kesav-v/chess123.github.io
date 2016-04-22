@@ -24,7 +24,10 @@ var colors;
 var last_moved_direction;
 var portals_visible;
 var games;
-start_game();
+var move_wall;
+var wall_x, wall_y;
+var vx, vy;
+window.onload = start_game();
 
 function start_game() {
 	for (i = 0; true; i++) {
@@ -41,12 +44,17 @@ function start_game() {
 	portal_tops_out = new Array();
 	colors = new Array();
 	clearInterval(timer);
+	clearInterval(move_wall);
 	c = document.getElementById("mycanvas");
 	ctx = c.getContext("2d");
 	x_locations = new Array();
 	y_locations = new Array();
 	snake_x;
 	snake_y;
+	wall_x = Math.random() * c.width | 0;
+	wall_y = Math.random() * c.height | 0;
+	vx = 1;
+	vy = 1;
 	numFoods = 100;
 	numPortals = 0;
 	snake_parts = 1;
@@ -117,12 +125,54 @@ function register_key(e) {
 	if (e.keyCode <= 40 && e.keyCode >= 37 && !moving) {
 		moving = true;
 		timer = setInterval(move_snake, 25);
+		move_wall = setInterval(move_red, 25);
 	}
 	if (e.keyCode > 40 || e.keyCode < 37) return;
 	if (Math.abs(e.keyCode - 37 - last_moved_direction) == 2 && snake_parts != 1) {
 		return;
 	}
 	else direction = e.keyCode - 37;
+}
+
+function move_red() {
+	vx += 1 - Math.random() * 2;
+	vy += 1 - Math.random() * 2;
+	wall_x += vx;
+	wall_y += vy;
+	if (wall_x < 0 || wall_x > c.width - 25) vx *= -1;
+	if (wall_y < 0 || wall_y > c.height - 25) vy *= -1;
+	for (q = 0; q < snake_lefts.length; q++) {
+		if (Math.sqrt(Math.pow(snake_lefts[q] - wall_x, 2) + Math.pow(snake_tops[q] - wall_y, 2)) < 25) {
+			if (q == 0) {
+				ctx.font = "48px Lucida Sans Unicode";
+				ctx.fillStyle = "#009900";
+				var high_score = 0;
+				for (i = 0; i < games; i++) {
+					if (parseInt(localStorage.getItem("game" + i)) > high_score)
+						high_score = parseInt(localStorage.getItem("game" + i));
+				}
+				if (score > high_score) {
+					high_score = score;
+					ctx.fillText("NEW BEST!", 350, 350);
+					localStorage.setItem("game" + games, String(score));
+					games++;
+				}
+				else ctx.fillText("GAME OVER", 350, 350);
+				ctx.fillStyle = "#0000ff";
+				ctx.fillText("High score: " + high_score, 350, 420);
+				clearInterval(timer);
+				clearInterval(move_wall);
+				dead = true;
+				return;
+			}
+			snake_lefts.splice(q, snake_lefts.length - q + 1);
+			snake_tops.splice(q, snake_tops.length - q + 1);
+			snake_parts = snake_lefts.length;
+			score = 10 * (snake_parts - 1);
+			break;
+		}
+	}
+	paintComponent();
 }
 
 function place_snake() {
@@ -214,6 +264,7 @@ function move_snake() {
 		ctx.fillStyle = "#0000ff";
 		ctx.fillText("High score: " + high_score, 350, 420);
 		clearInterval(timer);
+		clearInterval(move_wall);
 		dead = true;
 		return;
 	}
@@ -261,6 +312,9 @@ function paintComponent() {
 	}
 	ctx.strokeStyle = "#ff0000";
 	ctx.fillStyle = "#ff0000";
+	ctx.beginPath();
+	ctx.ellipse(wall_x, wall_y, 25, 25, 0, 0, 2 * Math.PI);
+	ctx.fill();
 	for (i = 0; i < snake_parts; i++) {
 		ctx.fillStyle = "rgb(" + colors[i] + ", " + colors[i] + ", " + 255 + ")";
 		// ctx.beginPath();
