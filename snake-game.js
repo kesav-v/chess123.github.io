@@ -152,8 +152,8 @@ function move_red() {
 		for (a = 0; a < n; a++) {
 			var tx = wall_x[a];
 			var ty = wall_y[a];
-			var tvx = vx[a];
-			var tvy = vy[a];
+			var tvx = vx[a] * 2;
+			var tvy = vy[a] * 2;
 			wall_x[wall_x.length] = tx;
 			wall_y[wall_y.length] = ty;
 			vx[vx.length] = tvx;
@@ -170,8 +170,8 @@ function move_red() {
 		}
 	}
 	for (p = 0; p < wall_x.length; p++) {		
-		vx[p] += 1 - Math.random() * 2;
-		vy[p] += 1 - Math.random() * 2;
+		vx[p] += 1 / Math.sqrt(wall_x.length) * (1 - Math.random() * 2);
+		vy[p] += 1 / Math.sqrt(wall_x.length) * (1 - Math.random() * 2);
 		wall_x[p] += vx[p];
 		wall_y[p] += vy[p];
 		if (wall_x[p] < 0 && vx[p] < 0 || wall_x[p] > c.width - radius && vx[p] > 0) vx[p] *= -1;
