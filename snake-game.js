@@ -29,7 +29,6 @@ var wall_x, wall_y;
 var vx, vy;
 var radius;
 var times;
-var h_score;
 window.onload = start_game();
 
 function start_game() {
@@ -38,7 +37,6 @@ function start_game() {
 	}
 	games = i;
 	times = 0;
-	h_score = 0;
 	radius = 25;
 	portals_visible = false;
 	num_portal_moves = 0;
@@ -188,8 +186,6 @@ function move_red() {
 				snake_lefts.splice(q, snake_lefts.length - q + 1);
 				snake_tops.splice(q, snake_tops.length - q + 1);
 				snake_parts = snake_lefts.length;
-				if (score > h_score) h_score = score;
-				score = 10 * (snake_parts - 1);
 				break;
 			}
 		}
@@ -217,7 +213,7 @@ function move_snake() {
 	if (snake_x <= -10) snake_x = 1000;
 	else if (snake_x >= 1000) snake_x = 0;
 	if (col_index != -1) {
-		score += 10;
+		if (score == (snake_parts - 1) * 10) score += 10;
 		x_locations[col_index] = 10 * Math.floor(Math.random() * 99);
 		y_locations[col_index] = 10 * Math.floor(Math.random() * 69);
 		snake_parts++;
@@ -276,10 +272,10 @@ function move_snake() {
 			if (parseInt(localStorage.getItem("game" + i)) > high_score)
 				high_score = parseInt(localStorage.getItem("game" + i));
 		}
-		if (h_score > high_score) {
-			high_score = h_score;
+		if (score > high_score) {
+			high_score = score;
 			ctx.fillText("NEW BEST!", 350, 350);
-			localStorage.setItem("game" + games, String(h_score));
+			localStorage.setItem("game" + games, String(score));
 			games++;
 		}
 		else ctx.fillText("GAME OVER", 350, 350);
