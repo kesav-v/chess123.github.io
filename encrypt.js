@@ -3,6 +3,7 @@ window.onload = function() {
 }
 
 const y = "1010001100001111111100111011001010101111000010101001011110000110010111111110000111011000010011111011110001010110010100011001101101010001110001010010001001010111100111110111100001010100101111000011001010101110110011001011101001010101111000011100011010001111010100000011001110111111101010011101101110001101011111101011011100101010111011111001110100110011101110101101110011011111111111010011011011100110010001101100101000111101011011100110110011101001100101011001000111100001110011111011011100111001101100111010011010111111010110111001010101110111110011101001100111010111101111110101111010101100101011111011101010101100101011110100111110111011111000000101011011001011101111100111110111100001010100101111000011001110101011010101000011010111001101100101011001011001101111000011010100101001101010011001111100110011111011110000101010010111011111111110110101101100110010010";
+
 function encrypt(s) {
 	var str = "";
 	for (i = 0; i < s.length; i++) {
@@ -34,20 +35,25 @@ function change_msg() {
 
 function find_string(e) {
 	if (e.which != 13) return;
-	var string = encrypt($('input[name="input1"]').val());
-	if (string === y) {
-		document.getElementById("text1").innerHTML = "Login succeeded.";
-		document.getElementById("text1").style.color = "green";
-		document.getElementsByClassName("inp")[0].style.border = "5px solid green";
-		document.getElementsByClassName("inp")[0].style.color = "green";
-		setTimeout(change_msg, 2000);
-	}
-	else {
-		document.getElementById("text1").innerHTML = "Login failed.";
-		document.getElementById("text1").style.color = "red";
-		document.getElementsByClassName("inp")[0].style.border = "5px solid red";
-		document.getElementsByClassName("inp")[0].style.color = "red";
-	}
+	document.getElementById("text1").innerHTML = "Checking...";
+	document.getElementById("text1").style.color = "gray";
+	setTimeout(function() {		
+		var string = encrypt($('input[name="input1"]').val());
+		console.log(string);
+		if (string === y) {
+			document.getElementById("text1").innerHTML = "Login succeeded.";
+			document.getElementById("text1").style.color = "green";
+			document.getElementsByClassName("inp")[0].style.border = "5px solid green";
+			document.getElementsByClassName("inp")[0].style.color = "green";
+			setTimeout(change_msg, 2000);
+		}
+		else {
+			document.getElementById("text1").innerHTML = "Login failed.";
+			document.getElementById("text1").style.color = "red";
+			document.getElementsByClassName("inp")[0].style.border = "5px solid red";
+			document.getElementsByClassName("inp")[0].style.color = "red";
+		}
+	}, 1000);
 }
 
 function to_bin(n) {
