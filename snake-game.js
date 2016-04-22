@@ -180,6 +180,7 @@ function move_red() {
 					clearInterval(timer);
 					clearInterval(move_wall);
 					dead = true;
+					snake_parts = 0;
 					paintComponent();
 					return;
 				}
