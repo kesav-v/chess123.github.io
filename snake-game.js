@@ -190,6 +190,8 @@ function move_red() {
 				snake_tops.splice(q, snake_tops.length - q + 1);
 				snake_parts = snake_lefts.length;
 				temp_score = 10 * (snake_parts - 1);
+				update_gradient();
+				paintComponent();
 				break;
 			}
 		}
