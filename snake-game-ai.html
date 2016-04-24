@@ -3,7 +3,7 @@
     <head>
         <link rel='shortcut icon' type='image/x-icon' href='./images/WebsiteLogo.png'/>
         <script src="jquery-1.11.3.min.js"></script>
-        <title>Snake Game on Kesav's Website</title>
+        <title>Snake Game AI on Kesav's Website</title>
         <style>
             body {
                 background-color: #000064;
@@ -120,6 +120,18 @@
             margin-right: 20px;
               margin-bottom: -80px;
           }
+            @keyframes makeblue {
+                to {color:blue;}
+            }
+            .snakelink {
+                text-decoration: none;
+                color: red;
+            }
+            .snakelink:hover {
+                animation-name: makeblue;
+                animation-duration: 0.5s;
+                animation-fill-mode: forwards;
+            }
         </style>
     </head>
     <body>
@@ -167,16 +179,16 @@
               </div>
           </div>
             <h1 class="alltext">
-                SNAKE GAME
+                SNAKE GAME AI
             </h1>
             <h2 class="alltext">
                 on Kesav's Website
             </h2>
             <h3 class="alltext">
-                Use the arrow keys to move up, left, down, and right. Eat as many of the squares as you can without hitting yourself or the red cells, but watch out! There are traps lurking...
+                Watch the AI play a game of Snake! To play the original game, click <a class="snakelink" href="http://chess123.github.io/snake-game">here</a>.
             </h3>
             <h4 class="alltext">
-                v2.6 released 4/23/16 - changed bugs with gradient
+                v1.1 released 4/23/16 - first beta test of AI
             </h4>
             <div id="game">     
                 <canvas id="mycanvas" width="1000px" height="700px" style="border: 5px solid #000000;">
