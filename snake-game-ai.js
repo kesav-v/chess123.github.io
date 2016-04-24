@@ -137,7 +137,7 @@ function close_to_others(i) {
 }
 
 function calculate_best_direction() {
-	var max_distance = 1000000;
+	var max_distance = 0;
 	var max_x = x_locations[0];
 	var max_y = y_locations[0];
 	for (i = 0; i < numFoods; i++) {
@@ -151,60 +151,183 @@ function calculate_best_direction() {
 			max_y = y_locations[i];
 		}
 	}
-	if (max_y < snake_tops[0] && direction != 3) {
+	if (max_y < snake_y && direction != 3) {
 		var movable = true;
 		for (u = 1; u < snake_parts; u++) {
-			if (snake_tops[0] - 10 == snake_tops[u]) movable = false;
+			if (snake_y - 10 == snake_tops[u]) movable = false;
 		}
 		for (u = 0; u < wall_x.length; u++) {
-			var d = Math.sqrt(Math.pow(snake_lefts[0] - wall_x[u] + vx[u], 2) + Math.pow(snake_tops[0] - 10 - (wall_y[u] + vy[u])), 2);
+			var d = Math.sqrt(Math.pow(snake_x - (wall_x[u] + vx[u]), 2) + Math.pow(snake_y - 10 - (wall_y[u] + vy[u])), 2);
 			if (d <= radius) movable = false;
 		}
 		if (movable) return 1;
 	}
-	if (max_y > snake_tops[0] && direction != 1) {
+	if (max_y > snake_y && direction != 1) {
 		var movable = true;
 		for (u = 1; u < snake_parts; u++) {
-			if (snake_tops[0] + 10 == snake_tops[u]) movable = false;
+			if (snake_y + 10 == snake_tops[u]) movable = false;
 		}
 		for (u = 0; u < wall_x.length; u++) {
-			var d = Math.sqrt(Math.pow(snake_lefts[0] - wall_x[u] + vx[u], 2) + Math.pow(snake_tops[0] + 10 - (wall_y[u] + vy[u])), 2);
+			var d = Math.sqrt(Math.pow(snake_x - (wall_x[u] + vx[u]), 2) + Math.pow(snake_y + 10 - (wall_y[u] + vy[u])), 2);
 			if (d <= radius) movable = false;
 		}
 		if (movable) return 3;
 	}
-	if (max_x < snake_lefts[0] && direction != 2) {
+	if (max_x < snake_x && direction != 2) {
 		var movable = true;
 		for (u = 1; u < snake_parts; u++) {
-			if (snake_lefts[0] - 10 == snake_lefts[u]) movable = false;
+			if (snake_x - 10 == snake_lefts[u]) movable = false;
 		}
 		for (u = 0; u < wall_x.length; u++) {
-			var d = Math.sqrt(Math.pow(snake_lefts[0] - 10 - wall_x[u] + vx[u], 2) + Math.pow(snake_tops[0] - (wall_y[u] + vy[u])), 2);
+			var d = Math.sqrt(Math.pow(snake_x - 10 - (wall_x[u] + vx[u]), 2) + Math.pow(snake_y - (wall_y[u] + vy[u])), 2);
 			if (d <= radius) movable = false;
 		}
 		if (movable) return 0;
 	}
-	if (max_x > snake_lefts[0] && direction != 0) {
+	if (max_x > snake_x && direction != 0) {
 		var movable = true;
 		for (u = 1; u < snake_parts; u++) {
-			if (snake_lefts[0] + 10 == snake_lefts[u]) movable = false;
+			if (snake_x + 10 == snake_lefts[u]) movable = false;
 		}
 		for (u = 0; u < wall_x.length; u++) {
-			var d = Math.sqrt(Math.pow(snake_lefts[0] + 10 - wall_x[u] + vx[u], 2) + Math.pow(snake_tops[0] - (wall_y[u] + vy[u])), 2);
+			var d = Math.sqrt(Math.pow(snake_x + 10 - (wall_x[u] + vx[u]), 2) + Math.pow(snake_y - (wall_y[u] + vy[u])), 2);
 			if (d <= radius) movable = false;
 		}
 		if (movable) return 2;
 	}
 	var walls_right = 0, walls_up = 0;
 	for (v = 0; v < wall_x.length; v++) {
-		walls_right += snake_lefts[0] - wall_x[v];
-		walls_up += snake_tops[0] - wall_y[v];
+		walls_right += snake_x - wall_x[v];
+		walls_up += snake_y - wall_y[v];
 	}
 	if (walls_right < 0 && direction != 2) return 0;
 	if (walls_right > 0 && direction != 0) return 2;
 	if (walls_up < 0 && direction != 3) return 1;
 	if (walls_up > 0 && direction != 1) return 3;
 	return direction;
+}
+
+function better_direction() {
+	var zero, one, two, three;
+	zero = one = two = three = true;
+	var n = direction;
+	if (n == 0) two = false;
+	if (n == 1) three = false;
+	if (n == 2) zero = false;
+	if (n == 3) one = false;
+	for (u = 1; u < snake_parts; u++) {
+		if (snake_x + 10 == snake_lefts[u]) two = false;
+	}
+	for (u = 0; u < wall_x.length; u++) {
+		var temp = snake_x + 10;
+		if (temp < 0) temp = 1000;
+		if (temp >= 1000) temp = 0;
+		var d = Math.sqrt(Math.pow(temp - (wall_x[u] + vx[u]), 2) + Math.pow(snake_y - (wall_y[u] + vy[u])), 2);
+		if (d <= radius + 40) two = false;
+	}
+	for (u = 1; u < snake_parts; u++) {
+		if (snake_x - 10 == snake_lefts[u]) zero = false;
+	}
+	for (u = 0; u < wall_x.length; u++) {
+		var temp = snake_x - 10;
+		if (temp < 0) temp = 1000;
+		if (temp >= 1000) temp = 0;
+		var d = Math.sqrt(Math.pow(temp - (wall_x[u] + vx[u]), 2) + Math.pow(snake_y - (wall_y[u] + vy[u])), 2);
+		if (d <= radius + 40) zero = false;
+	}
+	for (u = 1; u < snake_parts; u++) {
+		if (snake_y + 10 == snake_tops[u]) three = false;
+	}
+	for (u = 0; u < wall_x.length; u++) {
+		var temp = snake_y + 10;
+		if (temp <= 0) temp = 700;
+		if (temp > 700) temp = 0;
+		var d = Math.sqrt(Math.pow(temp - (wall_y[u] + vy[u]), 2) + Math.pow(snake_x - (wall_x[u] + vx[u])), 2);
+		if (d <= radius + 40) three = false;
+	}
+	for (u = 1; u < snake_parts; u++) {
+		if (snake_y - 10 == snake_tops[u]) one = false;
+	}
+	for (u = 0; u < wall_x.length; u++) {
+		var temp = snake_y - 10;
+		if (temp <= 0) temp = 700;
+		if (temp > 700) temp = 0;
+		var d = Math.sqrt(Math.pow(temp - (wall_y[u] + vy[u]), 2) + Math.pow(snake_x - (wall_x[u] + vx[u])), 2);
+		if (d <= radius + 40) one = false;
+	}
+	if (!zero && !one && !two && !three) {
+		console.log("No choice");
+		return (Math.random() * 4) | 0;
+	}
+	var possible = [];
+	if (zero) possible.push(0);
+	if (one) possible.push(1);
+	if (two) possible.push(2);
+	if (three) possible.push(3);
+	if (possible.length == 1) return possible[0];
+	// //console.log(possible);
+	var max_distance = 0;
+	var max_x = x_locations[0];
+	var max_y = y_locations[0];
+	for (i = 0; i < numFoods; i++) {
+		var dist = 0;
+		for (j = 0; j < wall_x.length; j++) {
+			dist += Math.sqrt(Math.pow(x_locations[i] - wall_x[j], 2) + Math.pow(y_locations[i] - wall_y[j], 2));
+		}
+		if (dist > max_distance) {
+			max_distance = dist;
+			max_x = x_locations[i];
+			max_y = y_locations[i];
+		}
+	}
+	if (max_x < snake_x && zero) return 0;
+	if (max_x > snake_x && two) return 2;
+	if (max_y < snake_y && one) return 1;
+	if (max_y > snake_y && three) return 3;
+	//console.log("Finding relative best for " + max_x + ", " + max_y);
+	var min_val = 100000000000000000;
+	var best_dir;
+	for (u = 0; u < possible.length; u++) {
+		var dir = possible[u];
+		var score = 0;
+		if (dir == 0) {
+			for (v = 0; v < wall_x.length; v++) {
+				var temp = snake_x - 10;
+				if (temp < 0) temp = 1000;
+				if (temp >= 1000) temp = 0;
+				score += 10000 / Math.sqrt(Math.pow(temp - wall_x[v] - vx[v], 2) + Math.pow(snake_y - wall_y[v] - vy[v], 2));
+			}
+		}
+		if (dir == 1) {
+			for (v = 0; v < wall_x.length; v++) {
+				var temp = snake_y - 10;
+				if (temp <= 0) temp = 700;
+				if (temp > 700) temp = 0;
+				score += 10000 / Math.sqrt(Math.pow(temp - wall_y[v] - vy[u], 2) + Math.pow(snake_x - wall_x[v] - vx[v], 2));
+			}
+		}
+		if (dir == 2) {
+			for (v = 0; v < wall_x.length; v++) {
+				var temp = snake_x + 10;
+				if (temp < 0) temp = 1000;
+				if (temp >= 1000) temp = 0;
+				score += 10000 / Math.sqrt(Math.pow(temp - wall_x[v] - vx[v], 2) + Math.pow(snake_y - wall_y[v] - vy[v], 2));
+			}
+		}
+		if (dir == 3) {
+			for (v = 0; v < wall_x.length; v++) {
+				var temp = snake_y + 10;
+				if (temp <= 0) temp = 700;
+				if (temp > 700) temp = 0;
+				score += 10000 / Math.sqrt(Math.pow(temp - wall_y[v] - vy[v], 2) + Math.pow(snake_x - wall_x[v] - vx[v], 2));
+			}
+		}
+		if (score < min_val) {
+			min_val = score;
+			best_dir = dir;
+		}
+	}
+	return best_dir;
 }
 
 function begin() {
@@ -290,7 +413,8 @@ function place_snake() {
 }
 
 function move_snake() {
-	direction = calculate_best_direction();
+	// direction = calculate_best_direction();
+	direction = better_direction();
 	var about_to_crash = false;
 	for (b = 0; b < wall_x.length; b++) {
 		if (direction == 0 && Math.sqrt(Math.pow(snake_x - 10 - (wall_x[b] + vx[b]), 2) + Math.pow(snake_y - (wall_y[b] + vy[b]), 2)) <= radius) about_to_crash = true;
@@ -389,7 +513,7 @@ function move_snake() {
 		clearInterval(move_wall);
 		dead = true;
 		setTimeout(start_game, 3000);
-		console.log("SETTING TIMER");
+		//console.log("SETTING TIMER");
 		return;
 	}
 	paintComponent();
@@ -401,7 +525,7 @@ function duplicates() {
 		// if (snake_lefts[j] + 10 > snake_lefts[i] && snake_lefts[j] + 10 < snake_lefts[i] + 10 && snake_tops[j] > snake_tops[i] && snake_tops[j] < snake_tops[i] + 10) return true;
 		// if (snake_lefts[j] > snake_lefts[i] && snake_lefts[j] < snake_lefts[i] + 10 && snake_tops[j] + 10 > snake_tops[i] && snake_tops[j] + 10 < snake_tops[i] + 10) return true;
 		// if (snake_lefts[j] + 10 > snake_lefts[i] && snake_lefts[j] + 10 < snake_lefts[i] + 10 && snake_tops[j] + 10 > snake_tops[i] && snake_tops[j] + 10 < snake_tops[i] + 10) return true;
-		if (snake_lefts[j] == snake_lefts[0] && snake_tops[j] == snake_tops[0]) return true;
+		if (snake_lefts[j] == snake_x && snake_tops[j] == snake_y) return true;
 	}
 	return false;
 }
@@ -469,6 +593,6 @@ function paintComponent() {
 		ctx.fillStyle = "#0000ff";
 		ctx.fillText("High score: " + high_score, 350, 420);
 		setTimeout(start_game, 3000);
-		console.log("SETTING TIMER");
+		//console.log("SETTING TIMER");
 	}
 }
