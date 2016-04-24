@@ -337,6 +337,9 @@
             text-align: right;
               margin-bottom: -80px;
           }
+            #game {
+                text-align: center;
+            }
         </style>
     </head>
     <body>
@@ -400,6 +403,12 @@
                 <button id="introbutton" onclick="window.location = 'http://chess123.github.io/about';">FIND OUT MORE ></button>
             </div>
             <div id="facet-container">
+            <div id="game">
+                See a game and AI that I coded (similar to Snake Game, but modified):
+                <canvas id="mycanvas" width="1000px" height="700px" style="border: 5px solid #000000;">
+                    <script src="./snake-game-ai.js"></script>
+                </canvas>
+            </div>
                 <table id="facets">
                     <tr>
                         <td id="row1">
