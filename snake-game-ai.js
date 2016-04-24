@@ -39,7 +39,7 @@ window.onload = start_game();
 
 function start_game() {
 	for (i = 0; true; i++) {
-		if (localStorage.getItem("game" + i) === null) break;
+		if (localStorage.getItem("aigame" + i) === null) break;
 	}
 	games = i;
 	times = 0;
@@ -373,13 +373,13 @@ function move_snake() {
 		ctx.fillStyle = "#009900";
 		var high_score = 0;
 		for (i = 0; i < games; i++) {
-			if (parseInt(localStorage.getItem("game" + i)) > high_score)
-				high_score = parseInt(localStorage.getItem("game" + i));
+			if (parseInt(localStorage.getItem("aigame" + i)) > high_score)
+				high_score = parseInt(localStorage.getItem("aigame" + i));
 		}
 		if (score > high_score) {
 			high_score = score;
 			ctx.fillText("NEW BEST!", 350, 350);
-			localStorage.setItem("game" + games, String(score));
+			localStorage.setItem("aigame" + games, String(score));
 			games++;
 		}
 		else ctx.fillText("GAME OVER", 350, 350);
@@ -388,6 +388,8 @@ function move_snake() {
 		clearInterval(timer);
 		clearInterval(move_wall);
 		dead = true;
+		setTimeout(start_game, 3000);
+		console.log("SETTING TIMER");
 		return;
 	}
 	paintComponent();
@@ -454,17 +456,19 @@ function paintComponent() {
 		ctx.fillStyle = "#009900";
 		var high_score = 0;
 		for (i = 0; i < games; i++) {
-			if (parseInt(localStorage.getItem("game" + i)) > high_score)
-				high_score = parseInt(localStorage.getItem("game" + i));
+			if (parseInt(localStorage.getItem("aigame" + i)) > high_score)
+				high_score = parseInt(localStorage.getItem("aigame" + i));
 		}
 		if (score > high_score) {
 			high_score = score;
 			ctx.fillText("NEW BEST!", 350, 350);
-			localStorage.setItem("game" + games, String(score));
+			localStorage.setItem("aigame" + games, String(score));
 			games++;
 		}
 		else ctx.fillText("GAME OVER", 350, 350);
 		ctx.fillStyle = "#0000ff";
 		ctx.fillText("High score: " + high_score, 350, 420);
+		setTimeout(start_game, 3000);
+		console.log("SETTING TIMER");
 	}
 }
