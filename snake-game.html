@@ -120,6 +120,18 @@
             margin-right: 20px;
               margin-bottom: -80px;
           }
+            @keyframes makeblue {
+                to {color:blue;}
+            }
+            .snakelink {
+                text-decoration: none;
+                color: red;
+            }
+            .snakelink:hover {
+                animation-name: makeblue;
+                animation-duration: 0.5s;
+                animation-fill-mode: forwards;
+            }
         </style>
     </head>
     <body>
@@ -147,8 +159,8 @@
                 <button onclick="myFunction(4)" class="dropbtn"><div class="drpdntext">DEVELOPER</div></button>
                 <div id="myDropdown4" class="dropdown-content">
                   <a href="http://github.com/chess123">GITHUB PAGE</a>
-                  <a href="http://chess123.github.io/snake-game">SNAKE GAME</a>
-                  <a href="http://chess123.github.io/snake-game-ai">SNAKE GAME AI</a>
+                  <a href="http://chess123.github.io/snake-game">SNAGAR.IO</a>
+                  <a href="http://chess123.github.io/snake-game-ai">SNAGAR.IO AI</a>
                   <a href="http://chess123.github.io/electrostatics">ELECTROSTATICS SIMULATOR</a> 
                 </div>
               </div>
@@ -168,7 +180,7 @@
               </div>
           </div>
             <h1 class="alltext">
-                SNAKE GAME
+                SNAGAR.IO (Based on the popular <a cclass="snakelink" href="https://en.wikipedia.org/wiki/Snake_(video_game)">Snake Game</a> and <a href="http://agar.io" class="snakelink">Agar.io</a>)
             </h1>
             <h2 class="alltext">
                 on Kesav's Website
