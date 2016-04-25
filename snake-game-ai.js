@@ -265,8 +265,8 @@ function better_direction() {
 		for (u = 1; u < snake_parts; u++) {
 			if (snake_y - 10 == snake_tops[u]) one = false;
 			if (snake_y + 10 == snake_tops[u]) three = false;
-			if (snake_x - 10 == snake_tops[u]) zero = false;
-			if (snake_x + 10 == snake_tops[u]) two = false;
+			if (snake_x - 10 == snake_lefts[u]) zero = false;
+			if (snake_x + 10 == snake_lefts[u]) two = false;
 		}
 		if (n == 0) two = false;
 		if (n == 1) three = false;
@@ -435,7 +435,7 @@ function move_snake() {
 	// direction = calculate_best_direction();
 	var old = direction;
 	direction = better_direction();
-	if (Math.abs(old - direction) == 2) console.log("DYING");
+	if (Math.abs(old - direction) == 2) console.log("DYING OF STUPIDITY");
 	direction %= 4;
 	switch (direction) {
 		case 1: snake_y -= 10; break;
@@ -506,6 +506,7 @@ function move_snake() {
 	snake_lefts[0] = snake_x;
 	snake_tops[0] = snake_y;
 	if (duplicates()) {
+		console.log("HIT MYSELF");
 		var games;
 		if (localStorage.getItem("numgames") === null) localStorage.setItem("numgames", String(1));
 		else {
