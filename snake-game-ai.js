@@ -28,7 +28,6 @@ var num_portal_moves;
 var colors;
 var last_moved_direction;
 var portals_visible;
-var games;
 var move_wall;
 var wall_x, wall_y;
 var vx, vy;
@@ -38,10 +37,6 @@ var temp_score;
 window.onload = start_game();
 
 function start_game() {
-	for (i = 0; true; i++) {
-		if (localStorage.getItem("aigame" + i) === null) break;
-	}
-	games = i;
 	times = 0;
 	temp_score = 0;
 	radius = 25;
@@ -86,6 +81,7 @@ function start_game() {
 	update_gradient();
 	paintComponent();
 	setTimeout(begin, 3000);
+	document.getElementById("rating").innerHTML = "AI strength: " + localStorage.getItem("avg");
 }
 
 function initialize_locations() {
@@ -222,8 +218,10 @@ function better_direction() {
 		var temp = snake_x + 10;
 		if (temp < 0) temp = 1000;
 		if (temp >= 1000) temp = 0;
-		var d = Math.sqrt(Math.pow(temp - (wall_x[u] + vx[u]), 2) + Math.pow(snake_y - (wall_y[u] + vy[u])), 2);
-		if (d <= radius + 40) two = false;
+		var d = Math.sqrt(Math.pow(temp - (wall_x[u] + vx[u]), 2) + Math.pow(snake_y - (wall_y[u] + vy[u]), 2));
+		if (d <= radius + 50) two = false;
+		d = Math.sqrt(Math.pow(temp - wall_x[u], 2) + Math.pow(snake_y - wall_y[u], 2));
+		if (d <= radius + 50) two = false;
 	}
 	for (u = 1; u < snake_parts; u++) {
 		if (snake_x - 10 == snake_lefts[u]) zero = false;
@@ -232,8 +230,10 @@ function better_direction() {
 		var temp = snake_x - 10;
 		if (temp < 0) temp = 1000;
 		if (temp >= 1000) temp = 0;
-		var d = Math.sqrt(Math.pow(temp - (wall_x[u] + vx[u]), 2) + Math.pow(snake_y - (wall_y[u] + vy[u])), 2);
-		if (d <= radius + 40) zero = false;
+		var d = Math.sqrt(Math.pow(temp - (wall_x[u] + vx[u]), 2) + Math.pow(snake_y - (wall_y[u] + vy[u]), 2));
+		if (d <= radius + 50) zero = false;
+		d = Math.sqrt(Math.pow(temp - wall_x[u], 2) + Math.pow(snake_y - wall_y[u], 2));
+		if (d <= radius + 50) zero = false;
 	}
 	for (u = 1; u < snake_parts; u++) {
 		if (snake_y + 10 == snake_tops[u]) three = false;
@@ -242,8 +242,10 @@ function better_direction() {
 		var temp = snake_y + 10;
 		if (temp <= 0) temp = 700;
 		if (temp > 700) temp = 0;
-		var d = Math.sqrt(Math.pow(temp - (wall_y[u] + vy[u]), 2) + Math.pow(snake_x - (wall_x[u] + vx[u])), 2);
-		if (d <= radius + 40) three = false;
+		var d = Math.sqrt(Math.pow(temp - (wall_y[u] + vy[u]), 2) + Math.pow(snake_x - (wall_x[u] + vx[u]), 2));
+		if (d <= radius + 50) three = false;
+		d = Math.sqrt(Math.pow(temp - wall_y[u], 2) + Math.pow(snake_x - wall_x[u], 2));
+		if (d <= radius + 50) three = false;
 	}
 	for (u = 1; u < snake_parts; u++) {
 		if (snake_y - 10 == snake_tops[u]) one = false;
@@ -252,12 +254,29 @@ function better_direction() {
 		var temp = snake_y - 10;
 		if (temp <= 0) temp = 700;
 		if (temp > 700) temp = 0;
-		var d = Math.sqrt(Math.pow(temp - (wall_y[u] + vy[u]), 2) + Math.pow(snake_x - (wall_x[u] + vx[u])), 2);
-		if (d <= radius + 40) one = false;
+		var d = Math.sqrt(Math.pow(temp - (wall_y[u] + vy[u]), 2) + Math.pow(snake_x - (wall_x[u] + vx[u]), 2));
+		if (d <= radius + 50) one = false;
+		d = Math.sqrt(Math.pow(temp - wall_y[u], 2) + Math.pow(snake_x - wall_x[u], 2));
+		if (d <= radius + 50) one = false;
 	}
 	if (!zero && !one && !two && !three) {
-		console.log("No choice");
-		return (Math.random() * 4) | 0;
+		zero = one = two = three = true;
+		var possible = [];
+		for (u = 1; u < snake_parts; u++) {
+			if (snake_y - 10 == snake_tops[u]) one = false;
+			if (snake_y + 10 == snake_tops[u]) three = false;
+			if (snake_x - 10 == snake_tops[u]) zero = false;
+			if (snake_x + 10 == snake_tops[u]) two = false;
+		}
+		if (n == 0) two = false;
+		if (n == 1) three = false;
+		if (n == 2) zero = false;
+		if (n == 3) one = false;
+		if (zero) possible.push(0);
+		if (one) possible.push(1);
+		if (two) possible.push(2);
+		if (three) possible.push(3);
+		return possible[(Math.random() * possible.length) | 0];
 	}
 	var possible = [];
 	if (zero) possible.push(0);
@@ -332,8 +351,8 @@ function better_direction() {
 
 function begin() {
 	moving = true;
-	timer = setInterval(move_snake, 25);
-	move_wall = setInterval(move_red, 25);
+	timer = setInterval(move_snake, 5);
+	move_wall = setInterval(move_red, 5);
 }
 
 function register_key(e) {
@@ -414,15 +433,9 @@ function place_snake() {
 
 function move_snake() {
 	// direction = calculate_best_direction();
+	var old = direction;
 	direction = better_direction();
-	var about_to_crash = false;
-	for (b = 0; b < wall_x.length; b++) {
-		if (direction == 0 && Math.sqrt(Math.pow(snake_x - 10 - (wall_x[b] + vx[b]), 2) + Math.pow(snake_y - (wall_y[b] + vy[b]), 2)) <= radius) about_to_crash = true;
-		if (direction == 2 && Math.sqrt(Math.pow(snake_x + 10 - (wall_x[b] + vx[b]), 2) + Math.pow(snake_y - (wall_y[b] + vy[b]), 2)) <= radius) about_to_crash = true;
-		if (direction == 1 && Math.sqrt(Math.pow(snake_y - 10 - (wall_y[b] + vy[b]), 2) + Math.pow(snake_x - (wall_x[b] + vx[b]), 2)) <= radius) about_to_crash = true;
-		if (direction == 3 && Math.sqrt(Math.pow(snake_y + 10 - (wall_y[b] + vy[b]), 2) + Math.pow(snake_x - (wall_x[b] + vx[b]), 2)) <= radius) about_to_crash = true;
-	}
-	if (about_to_crash) direction++;
+	if (Math.abs(old - direction) == 2) console.log("DYING");
 	direction %= 4;
 	switch (direction) {
 		case 1: snake_y -= 10; break;
@@ -430,11 +443,11 @@ function move_snake() {
 		case 3: snake_y += 10; break;
 		case 0: snake_x -= 10; break;
 	}
-	var col_index = collision();
 	if (snake_y <= -10) snake_y = 700;
 	else if (snake_y >= 700) snake_y = 0;
 	if (snake_x <= -10) snake_x = 1000;
 	else if (snake_x >= 1000) snake_x = 0;
+	var col_index = collision();
 	if (col_index != -1) {
 		if (score == temp_score) {
 			temp_score += 10 * wall_x.length;
@@ -493,22 +506,25 @@ function move_snake() {
 	snake_lefts[0] = snake_x;
 	snake_tops[0] = snake_y;
 	if (duplicates()) {
+		var games;
+		if (localStorage.getItem("numgames") === null) localStorage.setItem("numgames", String(1));
+		else {
+			games = parseInt(localStorage.getItem("numgames"));
+			localStorage.setItem("numgames", String(games + 1));
+		}
+		if (localStorage.getItem("avg") === null) localStorage.setItem("avg", String(score));
+		else {
+			var avg = parseInt(localStorage.getItem("avg"));
+			avg *= games;
+			avg += score;
+			avg /= games + 1;
+			localStorage.setItem("avg", String(avg));
+		}
+		document.getElementById("rating").innerHTML = "AI strength: " + localStorage.getItem("avg");
 		ctx.font = "48px Lucida Sans Unicode";
 		ctx.fillStyle = "#009900";
-		var high_score = 0;
-		for (i = 0; i < games; i++) {
-			if (parseInt(localStorage.getItem("aigame" + i)) > high_score)
-				high_score = parseInt(localStorage.getItem("aigame" + i));
-		}
-		if (score > high_score) {
-			high_score = score;
-			ctx.fillText("NEW BEST!", 350, 350);
-			localStorage.setItem("aigame" + games, String(score));
-			games++;
-		}
-		else ctx.fillText("GAME OVER", 350, 350);
+		ctx.fillText("GAME OVER", 350, 350);
 		ctx.fillStyle = "#0000ff";
-		ctx.fillText("High score: " + high_score, 350, 420);
 		clearInterval(timer);
 		clearInterval(move_wall);
 		dead = true;
@@ -578,20 +594,23 @@ function paintComponent() {
 	if (dead) {
 		ctx.font = "48px Lucida Sans Unicode";
 		ctx.fillStyle = "#009900";
-		var high_score = 0;
-		for (i = 0; i < games; i++) {
-			if (parseInt(localStorage.getItem("aigame" + i)) > high_score)
-				high_score = parseInt(localStorage.getItem("aigame" + i));
+		var games;
+		if (localStorage.getItem("numgames") === null) localStorage.setItem("numgames", String(1));
+		else {
+			games = parseInt(localStorage.getItem("numgames"));
+			localStorage.setItem("numgames", String(games + 1));
 		}
-		if (score > high_score) {
-			high_score = score;
-			ctx.fillText("NEW BEST!", 350, 350);
-			localStorage.setItem("aigame" + games, String(score));
-			games++;
+		if (localStorage.getItem("avg") === null) localStorage.setItem("avg", String(score));
+		else {
+			var avg = parseInt(localStorage.getItem("avg"));
+			avg *= games;
+			avg += score;
+			avg /= games + 1;
+			localStorage.setItem("avg", String(avg));
 		}
-		else ctx.fillText("GAME OVER", 350, 350);
+		document.getElementById("rating").innerHTML = "AI strength: " + localStorage.getItem("avg");
+		ctx.fillText("GAME OVER", 350, 350);
 		ctx.fillStyle = "#0000ff";
-		ctx.fillText("High score: " + high_score, 350, 420);
 		setTimeout(start_game, 3000);
 		//console.log("SETTING TIMER");
 	}
