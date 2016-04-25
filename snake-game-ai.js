@@ -2,15 +2,10 @@ var c;
 var ctx;
 var x_locations;
 var y_locations;
-var sim_x_locations;
-var sim_y_locations;
 var snake_x;
 var snake_y;
-var sim_snake_x;
-var sim_snake_y;
 var numFoods;
 var snake_parts;
-var sim_snake_parts;
 var direction;
 var snake_lefts;
 var snake_tops;
@@ -18,16 +13,8 @@ var moving;
 var timer;
 var dead;
 var score;
-var portal_lefts_in;
-var portal_tops_in;
-var portal_lefts_out;
-var portal_tops_out;
-var numPortals;
-var out_of_portal;
-var num_portal_moves;
 var colors;
 var last_moved_direction;
-var portals_visible;
 var move_wall;
 var wall_x, wall_y;
 var vx, vy;
@@ -40,14 +27,7 @@ function start_game() {
 	times = 0;
 	temp_score = 0;
 	radius = 25;
-	portals_visible = false;
-	num_portal_moves = 0;
 	last_moved_direction = 0;
-	out_of_portal = false;
-	portal_lefts_in = new Array();
-	portal_tops_in = new Array();
-	portal_lefts_out = new Array();
-	portal_tops_out = new Array();
 	colors = new Array();
 	clearInterval(timer);
 	clearInterval(move_wall);
@@ -73,8 +53,6 @@ function start_game() {
 	snake_lefts = new Array();
 	snake_tops = new Array();
 	place_snake();
-	initialize_portals();
-	// document.onkeydown = register_key;
 	moving = false;
 	dead = false;
 	score = 0;
@@ -95,112 +73,6 @@ function update_gradient() {
 	for (i = 0; i < snake_parts; i++) {
 		colors[i] = Math.floor(i * 255.0 / snake_parts);
 	}
-}
-
-function initialize_portals() {
-	for (i = 0; i < numPortals; i++) {
-		do {
-			portal_lefts_in[i] = 10 * Math.floor(Math.random() * 99);
-			portal_tops_in[i] = 10 * Math.floor(Math.random() * 69);
-			portal_lefts_out[i] = 10 * Math.floor(Math.random() * 99);
-			portal_tops_out[i] = 10 * Math.floor(Math.random() * 69);
-		} while (close_to_others(i));
-	}
-}
-
-function close_to_others(i) {
-	var x2 = portal_lefts_in[i];
-	var y2 = portal_tops_in[i];
-	for (j = 0; j < i; j++) {
-		var x1 = portal_lefts_in[j];
-		var y1 = portal_tops_in[j];
-		if (Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)) < 50) return true;
-		x1 = portal_lefts_out[j];
-		y1 = portal_tops_out[j];
-		if (Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)) < 50) return true;
-	}
-	x2 = portal_lefts_out[i];
-	y2 = portal_tops_out[i];
-	for (j = 0; j < i; j++) {
-		var x1 = portal_lefts_in[j];
-		var y1 = portal_tops_in[j];
-		if (Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)) < 50) return true;
-		x1 = portal_lefts_out[j];
-		y1 = portal_tops_out[j];
-		if (Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)) < 50) return true;
-	}
-	return false;
-}
-
-function calculate_best_direction() {
-	var max_distance = 0;
-	var max_x = x_locations[0];
-	var max_y = y_locations[0];
-	for (i = 0; i < numFoods; i++) {
-		var dist = 0;
-		for (j = 0; j < wall_x.length; j++) {
-			dist += Math.sqrt(Math.pow(x_locations[i] - wall_x[j], 2) + Math.pow(y_locations[i] - wall_y[j], 2));
-		}
-		if (dist > max_distance) {
-			max_distance = dist;
-			max_x = x_locations[i];
-			max_y = y_locations[i];
-		}
-	}
-	if (max_y < snake_y && direction != 3) {
-		var movable = true;
-		for (u = 1; u < snake_parts; u++) {
-			if (snake_y - 10 == snake_tops[u]) movable = false;
-		}
-		for (u = 0; u < wall_x.length; u++) {
-			var d = Math.sqrt(Math.pow(snake_x - (wall_x[u] + vx[u]), 2) + Math.pow(snake_y - 10 - (wall_y[u] + vy[u])), 2);
-			if (d <= radius) movable = false;
-		}
-		if (movable) return 1;
-	}
-	if (max_y > snake_y && direction != 1) {
-		var movable = true;
-		for (u = 1; u < snake_parts; u++) {
-			if (snake_y + 10 == snake_tops[u]) movable = false;
-		}
-		for (u = 0; u < wall_x.length; u++) {
-			var d = Math.sqrt(Math.pow(snake_x - (wall_x[u] + vx[u]), 2) + Math.pow(snake_y + 10 - (wall_y[u] + vy[u])), 2);
-			if (d <= radius) movable = false;
-		}
-		if (movable) return 3;
-	}
-	if (max_x < snake_x && direction != 2) {
-		var movable = true;
-		for (u = 1; u < snake_parts; u++) {
-			if (snake_x - 10 == snake_lefts[u]) movable = false;
-		}
-		for (u = 0; u < wall_x.length; u++) {
-			var d = Math.sqrt(Math.pow(snake_x - 10 - (wall_x[u] + vx[u]), 2) + Math.pow(snake_y - (wall_y[u] + vy[u])), 2);
-			if (d <= radius) movable = false;
-		}
-		if (movable) return 0;
-	}
-	if (max_x > snake_x && direction != 0) {
-		var movable = true;
-		for (u = 1; u < snake_parts; u++) {
-			if (snake_x + 10 == snake_lefts[u]) movable = false;
-		}
-		for (u = 0; u < wall_x.length; u++) {
-			var d = Math.sqrt(Math.pow(snake_x + 10 - (wall_x[u] + vx[u]), 2) + Math.pow(snake_y - (wall_y[u] + vy[u])), 2);
-			if (d <= radius) movable = false;
-		}
-		if (movable) return 2;
-	}
-	var walls_right = 0, walls_up = 0;
-	for (v = 0; v < wall_x.length; v++) {
-		walls_right += snake_x - wall_x[v];
-		walls_up += snake_y - wall_y[v];
-	}
-	if (walls_right < 0 && direction != 2) return 0;
-	if (walls_right > 0 && direction != 0) return 2;
-	if (walls_up < 0 && direction != 3) return 1;
-	if (walls_up > 0 && direction != 1) return 3;
-	return direction;
 }
 
 function better_direction() {
@@ -284,7 +156,6 @@ function better_direction() {
 	if (two) possible.push(2);
 	if (three) possible.push(3);
 	if (possible.length == 1) return possible[0];
-	// //console.log(possible);
 	var max_distance = 0;
 	var max_x = x_locations[0];
 	var max_y = y_locations[0];
@@ -303,7 +174,6 @@ function better_direction() {
 	if (max_x > snake_x && two) return 2;
 	if (max_y < snake_y && one) return 1;
 	if (max_y > snake_y && three) return 3;
-	//console.log("Finding relative best for " + max_x + ", " + max_y);
 	var min_val = 100000000000000000;
 	var best_dir;
 	for (u = 0; u < possible.length; u++) {
@@ -353,20 +223,6 @@ function begin() {
 	moving = true;
 	timer = setInterval(move_snake, 5);
 	move_wall = setInterval(move_red, 5);
-}
-
-function register_key(e) {
-	e.preventDefault();
-	if (e.keyCode <= 40 && e.keyCode >= 37 && !moving) {
-		moving = true;
-		timer = setInterval(move_snake, 25);
-		move_wall = setInterval(move_red, 25);
-	}
-	if (e.keyCode > 40 || e.keyCode < 37) return;
-	if (Math.abs(e.keyCode - 37 - last_moved_direction) == 2 && snake_parts != 1) {
-		return;
-	}
-	else direction = e.keyCode - 37;
 }
 
 function move_red() {
@@ -432,10 +288,8 @@ function place_snake() {
 }
 
 function move_snake() {
-	// direction = calculate_best_direction();
 	var old = direction;
 	direction = better_direction();
-	if (Math.abs(old - direction) == 2) console.log("DYING OF STUPIDITY");
 	direction %= 4;
 	switch (direction) {
 		case 1: snake_y -= 10; break;
@@ -460,45 +314,6 @@ function move_snake() {
 		snake_parts++;
 		update_gradient();
 	}
-	if (out_of_portal) {
-		num_portal_moves++;
-		if (num_portal_moves == 3) {
-			num_portal_moves = 0;
-			out_of_portal = false;
-		}
-	}
-	if (!out_of_portal) {
-		for (i = 0; i < numPortals; i++) {
-			if (Math.sqrt((portal_tops_in[i] + 10 - snake_y - 5) * (portal_tops_in[i] + 10 - snake_y - 5)
-			 + (portal_lefts_in[i] + 10 - snake_x - 5) * (portal_lefts_in[i] + 10 - snake_x - 5)) <= 20) {
-				snake_x = portal_lefts_out[i] + 10;
-				snake_y = portal_tops_out[i] + 10;
-				out_of_portal = true;
-				direction = Math.floor(Math.random() * 4);
-				switch (direction) {
-					case 1: old_keyCode = 37; break;
-					case 0: old_keyCode = 40; break;
-					case 3: old_keyCode = 39; break;
-					case 2: old_keyCode = 38; break;
-				}
-				break;
-			}
-			if (Math.sqrt((portal_tops_out[i] + 10 - snake_y - 5) * (portal_tops_out[i] + 10 - snake_y - 5)
-			 + (portal_lefts_out[i] + 10 - snake_x - 5) * (portal_lefts_out[i] + 10 - snake_x - 5)) <= 20) {
-				snake_x = portal_lefts_in[i] + 10;
-				snake_y = portal_tops_in[i] + 10;
-				out_of_portal = true;
-				direction = Math.floor(Math.random() * 4);
-				switch (direction) {
-					case 1: old_keyCode = 37; break;
-					case 0: old_keyCode = 40; break;
-					case 3: old_keyCode = 39; break;
-					case 2: old_keyCode = 38; break;
-				}
-				break;
-			}
-		}
-	}
 	for (i = snake_parts - 1; i > 0; i--) {
 		snake_lefts[i] = snake_lefts[i - 1];
 		snake_tops[i] = snake_tops[i - 1];
@@ -506,7 +321,6 @@ function move_snake() {
 	snake_lefts[0] = snake_x;
 	snake_tops[0] = snake_y;
 	if (duplicates()) {
-		console.log("HIT MYSELF");
 		var games;
 		if (localStorage.getItem("numgames") === null) localStorage.setItem("numgames", String(1));
 		else {
@@ -530,7 +344,6 @@ function move_snake() {
 		clearInterval(move_wall);
 		dead = true;
 		setTimeout(start_game, 3000);
-		//console.log("SETTING TIMER");
 		return;
 	}
 	paintComponent();
@@ -538,10 +351,6 @@ function move_snake() {
 
 function duplicates() {
 	for (j = i + 1; j < snake_parts; j++) {
-		// if (snake_lefts[j] > snake_lefts[i] && snake_lefts[j] < snake_lefts[i] + 10 && snake_tops[j] > snake_tops[i] && snake_tops[j] < snake_tops[i] + 10) return true;
-		// if (snake_lefts[j] + 10 > snake_lefts[i] && snake_lefts[j] + 10 < snake_lefts[i] + 10 && snake_tops[j] > snake_tops[i] && snake_tops[j] < snake_tops[i] + 10) return true;
-		// if (snake_lefts[j] > snake_lefts[i] && snake_lefts[j] < snake_lefts[i] + 10 && snake_tops[j] + 10 > snake_tops[i] && snake_tops[j] + 10 < snake_tops[i] + 10) return true;
-		// if (snake_lefts[j] + 10 > snake_lefts[i] && snake_lefts[j] + 10 < snake_lefts[i] + 10 && snake_tops[j] + 10 > snake_tops[i] && snake_tops[j] + 10 < snake_tops[i] + 10) return true;
 		if (snake_lefts[j] == snake_x && snake_tops[j] == snake_y) return true;
 	}
 	return false;
@@ -564,17 +373,6 @@ function paintComponent() {
 	for (i = 0; i < x_locations.length; i++) {
 		ctx.fillRect(x_locations[i], y_locations[i], 10, 10);
 	}
-	if (portals_visible) {
-		ctx.strokeStyle = "#009900";
-		for (i = 0; i < numPortals; i++) {
-			ctx.beginPath();
-			ctx.ellipse(portal_lefts_in[i] + 10, portal_tops_in[i] + 10, 10, 10, 0, 0, 2 * Math.PI);
-			ctx.stroke();
-			ctx.beginPath();
-			ctx.ellipse(portal_lefts_out[i] + 10, portal_tops_out[i] + 10, 10, 10, 0, 0, 2 * Math.PI);
-			ctx.stroke();
-		}
-	}
 	ctx.strokeStyle = "#ff0000";
 	ctx.fillStyle = "#ff0000";
 	for (i = 0; i < wall_x.length; i++) {
@@ -584,9 +382,6 @@ function paintComponent() {
 	}
 	for (i = 0; i < snake_parts; i++) {
 		ctx.fillStyle = "rgb(" + colors[i] + ", " + colors[i] + ", " + 255 + ")";
-		// ctx.beginPath();
-		// ctx.ellipse(snake_lefts[i] + 5, snake_tops[i] + 5, 5, 5, 0, 0, 2 * Math.PI);
-		// ctx.fill();
 		ctx.fillRect(snake_lefts[i], snake_tops[i], 10, 10);
 	}
 	ctx.font = "48px Lucida Sans Unicode";
@@ -613,6 +408,5 @@ function paintComponent() {
 		ctx.fillText("GAME OVER", 350, 350);
 		ctx.fillStyle = "#0000ff";
 		setTimeout(start_game, 3000);
-		//console.log("SETTING TIMER");
 	}
 }
