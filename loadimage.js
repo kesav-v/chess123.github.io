@@ -11,7 +11,8 @@ var captions = ["Kesav behind the chess board (May 2008)", "Kesav at the Bay Are
 "Kesav playing a game against GM Kovalyov at University of Texas at Brownsville (March 2015)",
 "Kesav playing a game against IM Li at University of Texas at Brownsville (May 2015)",
 "Kesav receiving the gold medal in Kitchener, ON, Canada (July 2015)",
-"Kesav playing a simul at Let's Play Chess Club (October 2015)", "Kesav at the 2016 High School Nationals in Atlanta, GA"];
+"Kesav playing a simul at Let's Play Chess Club (October 2015)",
+"Kesav at the 2016 High School Nationals in Atlanta, GA"];
 var num = 0;
 var timer;
 var timer2;

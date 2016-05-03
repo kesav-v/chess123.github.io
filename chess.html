@@ -4,12 +4,15 @@
         <link rel='shortcut icon' type='image/x-icon' href='./images/official-logo.png'/>
 		<title>Chess on Kesav's Website</title>
         <script src="jquery-1.11.3.min.js"></script>
+        <script src="./jquery.slides.min.js"></script>
+<!--
         <script>
             $(document).ready(function() {
                 $('#caption').width($('#caption').parent().width());
                 $('#caption').css("top", $('#caption').parent().offset().top + $('#caption').parent().height() - $('#caption').height() + "px");
             });
         </script>
+-->
 		<style>
             body {
                 background-color: #000064;
@@ -107,7 +110,9 @@
                 margin-top: 0px;
                 margin-bottom: 0px;
                 padding-top: 20px;
-                padding-bottom: 20px;
+                padding-left: 20px;
+                padding-right: 20px;
+                padding-bottom: 5px;
             }
             #image1.scaled {
               width: 100%;
@@ -200,6 +205,9 @@
             text-align: right;
               margin-bottom: -80px;
           }
+            #slides {
+                display: none;
+            }
 		</style>
 	</head>
 	<body>
@@ -257,8 +265,10 @@
                 </div>
               </div>
           </div>
+<!--
         <script src="loadimage.js">
         </script>
+-->
         <div id="entirepage">
             <h1>
                 CHESS
@@ -271,9 +281,29 @@
                     window.location = name;
                 }
             </script>
+<!--
             <div id="chesspics">
                 <img id="image1" src="./images/KesavGrade3.JPG">
                      <div id="caption">Kesav behind the chess board (May 2008)</div></img>
+            </div>
+-->
+            <div id="chesspics">
+                <script src="main-slideshow.js"></script>
+                <div id="slides">
+                    <img src="./images/KesavGrade3.jpg">
+                    <img src="./images/KesavBayArea2012.jpg">
+                    <img src="./images/KesavAnand.jpg">
+                    <img src="./images/KesavDubai.jpg">
+                    <img src="./images/KesavMVChess.jpg">
+                    <img src="./images/KesavAtWashingtonInt.jpg">
+                    <img src="./images/KesavStukopin.jpg">
+                    <img src="./images/KesavKovalyov.jpg">
+                    <img src="./images/KesavRuifeng.jpg">
+                    <img src="./images/KesavGoldMedal.jpg">
+                    <img src="./images/KesavSimul.jpg">
+                    <img src="./images/KesavAtlanta.jpg">
+                </div>
+                <div id="caption">Kesav behind the chess board (May 2008)</div>
             </div>
             <p>
                 Welcome to the chess portion of my website! I am an International Master (IM) of chess and I continue to play in tournaments all over the country and even the world! This is where I will keep you updated on my latest chess adventures and other thoughts on the chess world. My <a href="http://www.uschess.org/msa/MbrDtlMain.php?13159334" class="chesslink">USCF rating</a> is 2463, and my <a class="chesslink" href="https://ratings.fide.com/card.phtml?event=2059533">FIDE rating</a> is 2377.
@@ -291,11 +321,22 @@
                 <a class="latest">LATEST</a>/<a class="upcoming">UPCOMING</a> IN MY CHESS LIFE:
             </h3>
             <ul>
+                <li class="latest">
+                    <div>High School National Championship ~ April 1 - 3, 2016 ~ Atlanta, GA</div>
+                </li>
                 <li class="upcoming">
                     <div>CalChess Denker Qualifier ~ May 14 - 15, 2016 ~ San Jose, CA</div>
+                </li>
+                <li class="upcoming">
                     <div>Chicago Open ~ May 26 - 30, 2016 ~ Wheeling, IL</div>
+                </li>
+                <li class="upcoming">
                     <div>Pan-American Junior (U20) Chess Championship~ June 19 - 26, 2016 ~ Cali, Colombia</div>
+                </li>
+                <li class="upcoming">
                     <div>Philadelphia International ~ July 5 - 10, 2016 ~ Philadelphia, PA</div>
+                </li>
+                <li class="upcoming">
                     <div>US Masters Championship ~ August 25 - 29, 2016 ~ Greensboro, NC</div>
                 </li>
             </ul>
