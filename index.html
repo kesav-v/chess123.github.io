@@ -364,6 +364,8 @@
             }
 */
             .slidesjs-previous, .slidesjs-next {
+                display: inline-block;
+                float: left;
                 text-decoration: none;
                 color: #000064;
                 background-color: white;
@@ -381,6 +383,11 @@
                 color: #000064;
                 font-size: 20px;
                 text-align: center;
+            }
+            .slidesjs-pagination {
+                float: right;
+                display: inline-block;
+                top: -20px;
             }
             #slides {
                 display: none;
@@ -480,26 +487,6 @@
                         <button class="readon" onclick="window.location = 'http://chess123.github.io/blog'">READ ON  &#10148;</button>
                     </div>
                 </div>
-            </div>
-            <div id="facet-container">
-                <table id="facets">
-                    <tr>
-                        <td id="row1">
-                            <div class="facet-title">CHESS PLAYER</div>
-                            <div class="facet-text">
-                                I'm an International Master (IM) of chess. I have played and will continue to play in tournaments all over the world. Chess has always been a big part of my life - I've been playing for 10 years and it has helped me grow as a person.
-                            </div>
-                            <button class="readon" onclick="window.location = 'http://chess123.github.io/chess'">READ ON  &#10148;</button>
-                        </td>
-                        <td>
-                            <div class="facet-title">DEVELOPER</div>
-                            <div class="facet-text">
-                                When I started high school, I took my first steps into the world of programming and computer science. I took Java and AP Computer Science at my school, so I have a couple of years of experience in Java. This website was actually my first major departure from Java - I taught myself HTML/CSS and JavaScript during the development process.
-                            </div>
-                            <button class="readon" onclick="window.location = 'http://chess123.github.io/blog'">READ ON  &#10148;</button>
-                        </td>
-                    </tr>
-                </table>
             </div>
         <div id="fb-root"></div>
         <script>(function(d, s, id) {
