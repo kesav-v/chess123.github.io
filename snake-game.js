@@ -1,9 +1,7 @@
 var c;
 var ctx;
-var x_locations;
-var y_locations;
-var snake_x;
-var snake_y;
+var x_locations, y_locations;
+var snake_x, snake_y;
 var numFoods;
 var snake_parts;
 var direction;
