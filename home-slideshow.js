@@ -1,10 +1,8 @@
-document.body.onload = function() {
+window.onload = function() {
   document.getElementsByClassName("slidesjs-previous")[0].innerHTML = "<b><</b>";
   document.getElementsByClassName("slidesjs-next")[0].innerHTML = "<b>></b>";
-  // var nums = document.getElementsByClassName("slidesjs-pagination-item");
-  // for (i = 0; i < nums.length; i++) {
-  //   nums[i].innerHTML = "&#9633;";
-  // }
+  document.getElementsByClassName("slidesjs-stop")[0].innerHTML = "&#10074;&#10074;";
+  document.getElementsByClassName("slidesjs-play")[0].innerHTML = "&#9654;";
   $('.slidesjs-pagination-item').children().html("&#9675;");
   $('.slidesjs-pagination-item:nth-child(1)').children().html("&#9679;");
 };
@@ -14,6 +12,9 @@ $(function() {
     effect: {
       slide: {
         speed: 1000
+      },
+      fade: {
+        speed: 1000
       }
     },
     callback: {
@@ -21,6 +22,13 @@ $(function() {
         $('.slidesjs-pagination-item').children().html("&#9675;");
         $('.slidesjs-pagination-item:nth-child(' + (number) + ')').children().html("&#9679;");
       }
-    }
+    },
+    play: {
+      active: true,
+      auto: true,
+      interval: 8000,
+      swap: true,
+      effect: "fade"
+   }
   });
 });
