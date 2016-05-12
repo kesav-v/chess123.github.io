@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+{% load staticfiles %} <!-- New line -->
+
+<html>
+
+    <head>
+        <title>Rango</title>
+        <script src="{% static "js/jquery-1.11.3.min.js" %}"></script>
+    </head>
+
+    <body>
+        <h1>Rango says...</h1>
+        hello world! <strong>{{ boldmessage }}</strong><br />
+        <a href="/rango/about/">About</a><br />
+        <img src="{% static "images/official-logo.png" %}" alt="Picture of Rango" /> <!-- New line -->
+    </body>
+
+</html>

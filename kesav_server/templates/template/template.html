@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+  <head>
+        {% block add_js %}{% endblock %}
+        <link rel='shortcut icon' type='image/x-icon' href='images/official-logo.png'/>
+        <script src="{% static "js/jquery-1.11.3.min.js" %}"></script>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{% static "css/styles.css" %}">
+        <style>{% block more_css %}{% endblock %}</style>
+  </head>
+    <body>
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-76900808-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+        <div id="entirepage">
+            <img border="0" src= "{% static "images/official-logo.png" %}" width="100px" height="100px" onclick="window.location = 'http://chess123.github.io';">
+          <div id="alldropdowns">
+              <div class="dropdown">
+                <button onclick="window.location = 'http://chess123.github.io';" class="dropbtn"><div class="drpdntext">HOME</div></button>
+                  <div id="myDropdown1" class="dropdown-content"></div>
+              </div>
+              <div class="dropdown">
+                  <script src="{% static "js/home-dropdown-menus.js" %}"></script>
+                <button onclick="myFunction(2)" class="dropbtn"><div class="drpdntext">CHESS</div></button>
+                <div id="myDropdown2" class="dropdown-content">
+                  <a href="http://chess123.github.io/chess">MY CHESS STORY</a>
+                </div>
+              </div>
+            <div class="dropdown">
+                <button onclick="myFunction(3)" class="dropbtn"><div class="drpdntext">BLOG</div></button>
+                <div id="myDropdown3" class="dropdown-content">
+                  <a href="http://chess123.github.io/blog">TIMELINE</a>
+                </div>
+              </div>
+              <div class="dropdown">
+                <button onclick="myFunction(4)" class="dropbtn"><div class="drpdntext">DEVELOPER</div></button>
+                <div id="myDropdown4" class="dropdown-content">
+                  <a href="http://github.com/chess123">GITHUB PAGE</a>
+                  <a href="http://chess123.github.io/snake-game">SNAGAR.IO</a>
+                  <a href="http://chess123.github.io/snake-game-ai">SNAGAR.IO AI</a>
+                  <a href="http://chess123.github.io/electrostatics">ELECTROSTATICS SIMULATOR</a> 
+                </div>
+              </div>
+              <div class="dropdown">
+                <button onclick="myFunction(5)" class="dropbtn"><div class="drpdntext">ABOUT</div></button>
+                <div id="myDropdown5" class="dropdown-content">
+                    <a href="http://chess123.github.io/about">ABOUT ME</a>
+                  <a href="http://chess123.github.io/contact">CONTACT</a>
+                </div>
+              </div>
+              <div class="dropdown">
+                <button onclick="myFunction(6)" class="dropbtn"><div class="drpdntext">LANGUAGE</div></button>
+                <div id="myDropdown6" class="dropdown-content">
+                    <a href="http://chess123.github.io/">ENGLISH</a>
+                  <a href="http://chess123.github.io/fr">FRAN&Ccedil;AIS</a>
+                </div>
+              </div>
+          </div>
+          {% block rest_of_page %}{% endblock %}
+        </div>
+    </body>
+</html>
