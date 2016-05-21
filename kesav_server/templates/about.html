@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel='shortcut icon' type='image/x-icon' href='./images/official-logo.png'/>
+        <script src="jquery-1.11.3.min.js"></script>
+        <title>About Kesav</title>
+        <style>
+            body {
+                margin-left: 80px;
+                margin-right: 80px;
+                background-color: rgb(0, 0, 100);
+            }
+            @keyframes fadeintext {
+                from {opacity: 0;}
+                to {opacity: 1;}
+            }
+            p {
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                color: black;
+                text-align: center;
+                font-size: 20px;
+            }
+            h1 {
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                font-weight: 100;
+                background-size: 800px 100px;
+                color: black;
+                text-align: center;
+                font-size: 60px;
+            }
+            
+            ul {
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                color: black;
+                font-size: 20px;
+            }
+            button {
+                height: 400px;
+                width: 400px;
+            }
+
+            #image1 {
+                width: 100%;
+                height: 100%;
+                border: 4px solid rgba(0, 0, 0, 0.5);
+                border-radius: 4px;
+                display: inline-block;
+            }
+            #imagecontainer {
+                display: inline-block;
+                width: 40%;
+                text-align: right;
+            }
+            #fb-root {
+                display: none;
+            }
+            li {
+                color: black;
+            }
+            #link1 {
+                color: black;
+            } 
+            #buttongroup1 button {
+                display: inline-flex;
+                margin: 20px;
+            }
+            @keyframes changeLinkColor {
+                to {color: blue;}
+            }
+            #button1 {
+                background-image: url("http://previews.123rf.com/images/studiom1/studiom11312/studiom1131200084/24372512-A-3d-perspective-view-of-a-chess-board--Stock-Vector.jpg");
+                background-size: cover;
+                background-repeat: no-repeat;
+                border-radius: 20px;
+            }
+            #button2 {
+                background-image: url("http://images.onlinelabels.com/images/clip-art/ibdjl95/ibdjl95_Speech_Bubbles_1.png");
+                background-color: red;
+                background-position-x: -60px;
+                background-position-y: 60px;
+                background-size: cover;
+                background-repeat: no-repeat;
+                border-radius: 20px;
+            }
+            #button3 {
+                background-image: url("http://thumbs.dreamstime.com/z/microchip-19638744.jpg");
+                background-size: 400px 442px;
+                background-repeat: no-repeat;
+                border-radius: 20px;
+            }
+            @keyframes changeopacity {
+                to {opacity: 0.5;}
+            }
+            #button1:hover {
+                animation-name: changeopacity;
+                animation-duration: 0.5s;
+                animation-fill-mode: forwards;
+            }
+            #button2:hover {
+                animation-name: changeopacity;
+                animation-duration: 0.5s;
+                animation-fill-mode: forwards;
+            }
+            #button3:hover {
+                animation-name: changeopacity;
+                animation-duration: 0.5s;
+                animation-fill-mode: forwards;
+            }
+            .buttontext {
+                box-shadow: 0px 0px 6px 3px #555555;
+                background-color: rgba(255, 255, 255, 0.8);
+                font-weight: 200;
+                color: black;
+                font-size: 40px;
+                margin-left: auto;
+                margin-right: auto;
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                padding-left: 7px;
+                padding-right: 7px;
+                text-align: center;
+            }
+            #buttongroup1 {
+                text-align: center;
+            }
+            .achievementlinks {
+                text-decoration: none;
+                color: red;
+            }
+            .achievementlinks:hover {
+                animation-name: changeLinkColor;
+                animation-duration: 0.5s;
+                animation-fill-mode: forwards;
+            }
+            @keyframes fadein {
+                from {opacity: 0;}
+                to {opacity: 1;}
+            }
+            #biglogo {
+                animation-name: fadein;
+                animation-duration: 2s;
+                animation-fill-mode: forwards;
+                text-align: center;
+            }
+            #intromsg {
+                opacity: 0;
+                text-align: center;
+                color: #000064;
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                font-size: 30px;
+            }
+            #introbutton {
+                opacity: 0;
+                background-color: #000064;
+                color: white;
+                border: none;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                height: 100px;
+                width: 300px;
+                font-size: 30px;
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                border-radius: 10px;
+            }
+            @keyframes makewhite {
+                to {background-color: white;}
+                to {color: #000064;}
+                to {border: 1px solid #000064;}
+            }
+            #introbutton:hover {
+                animation-name: makewhite;
+                animation-duration: 0.5s;
+                animation-fill-mode: forwards;
+            }
+            #intro-container {
+                text-align: center;
+            }
+            #entirepage {
+/*
+                animation-name: fadeintext;
+                animation-duration: 3s;
+                animation-fill-mode: forwards;
+*/
+                background-color: rgb(255, 255, 255);
+                margin-bottom: 50px;
+                margin-top: 50px;
+                margin-left: auto;
+                margin-right: auto;
+                padding-left: 20px;
+                padding-right: 20px;
+/*                border-radius: 20px;*/
+            }
+            #likebutton {
+/*
+                animation-name: fadeintext;
+                animation-duration: 3s;
+                animation-fill-mode: forwards;
+*/
+                background-color: rgb(255, 255, 255);
+                width: 300px;
+                height: 100px;
+                text-align: center;
+/*
+                border-bottom-left-radius: 20px;
+                border-bottom-right-radius: 20px;
+*/
+            }
+            #logo-main {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            #introtext {
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                font-size: 20px;
+                display: inline-block;
+            }
+            /* Dropdown Button */
+            .dropbtn {
+                background-color: white;
+                color: black;
+                font-size: 16px;
+                height: 50px;
+                width: 100%;
+           /*    border-left: 5px solid #000000;
+                border-right: 5px solid #000000; */
+              border: none;
+                cursor: pointer;
+            }
+            
+            @keyframes makedarkblue {
+                to {background-color: #000064;}
+              to {color: #ffffff;}
+            }
+
+            /* Dropdown button on hover & focus */
+            .dropbtn:hover, .dropbtn:focus {
+                animation-name: makedarkblue;
+                animation-duration: 0.5s;
+                animation-fill-mode: forwards;
+            }
+
+            /* The container <div> - needed to position the dropdown content */
+            .dropdown {
+                position: relative;
+                display: inline-block;
+                width: 14%;
+                border-left: 1px solid #000000;
+                border-right: 1px solid #000000;
+            }
+            
+            @keyframes reveal {
+                from {max-height: 0px;}
+                to {max-height: 200px;}
+            }
+
+            /* Dropdown Content (Hidden by Default) */
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #000064;
+                width: 100%;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            }
+
+            /* Links inside the dropdown */
+            .dropdown-content a {
+              font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                text-align: center;
+                color: white;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+            
+            #imagentext {
+                display: inline-block;
+            }
+          .drpdntext {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+          }
+            
+            @keyframes makedark {
+                to {color: black;}
+                to {background-color: white;}
+            }
+
+            /* Change color of dropdown links on hover */
+            .dropdown-content a:hover {
+                animation-name: makedark;
+                animation-duration: 0.5s;
+                animation-fill-mode: forwards;
+            }
+
+            /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+            .show {display:block;}
+          #alldropdowns {
+            position: relative;
+            top: -80px;
+            text-align: right;
+              margin-bottom: -80px;
+          }
+        </style>
+    </head>
+    <body>
+        <div id="entirepage">
+            <a href="http://chess123.github.io"><img src="./images/official-logo.png" width="100px" height="100px"></img></a>
+          <div id="alldropdowns">
+              <div class="dropdown">
+                <button onclick="window.location = 'http://chess123.github.io';" class="dropbtn"><div class="drpdntext">HOME</div></button>
+                  <div id="myDropdown1" class="dropdown-content"></div>
+              </div>
+              <div class="dropdown">
+                  <script src="home-dropdown-menus.js"></script>
+                <button onclick="myFunction(2)" class="dropbtn"><div class="drpdntext">CHESS</div></button>
+                <div id="myDropdown2" class="dropdown-content">
+                  <a href="http://chess123.github.io/chess">MY CHESS STORY</a>
+                </div>
+              </div>
+            <div class="dropdown">
+                <button onclick="myFunction(3)" class="dropbtn"><div class="drpdntext">BLOG</div></button>
+                <div id="myDropdown3" class="dropdown-content">
+                  <a href="http://chess123.github.io/blog">TIMELINE</a>
+                </div>
+              </div>
+              <div class="dropdown">
+                <button onclick="myFunction(4)" class="dropbtn"><div class="drpdntext">DEVELOPER</div></button>
+                <div id="myDropdown4" class="dropdown-content">
+                  <a href="http://github.com/chess123">GITHUB PAGE</a>
+                  <a href="http://chess123.github.io/snake-game">SNAGAR.IO</a>
+                  <a href="http://chess123.github.io/snake-game-ai">SNAGAR.IO AI</a>
+                  <a href="http://chess123.github.io/electrostatics">ELECTROSTATICS SIMULATOR</a> 
+                </div>
+              </div>
+              <div class="dropdown">
+                <button onclick="myFunction(5)" class="dropbtn"><div class="drpdntext">ABOUT</div></button>
+                <div id="myDropdown5" class="dropdown-content">
+                    <a href="http://chess123.github.io/about">ABOUT ME</a>
+                  <a href="http://chess123.github.io/contact">CONTACT</a>
+                </div>
+              </div>
+              <div class="dropdown">
+                <button onclick="myFunction(6)" class="dropbtn"><div class="drpdntext">LANGUAGE</div></button>
+                <div id="myDropdown6" class="dropdown-content">
+                    <a href="http://chess123.github.io/">ENGLISH</a>
+                  <a href="http://chess123.github.io/fr">FRAN&Ccedil;AIS</a>
+                </div>
+              </div>
+          </div>
+            <h1>
+                WELCOME TO MY WEBSITE!!!!
+            </h1>
+            <div id="imagentext">
+                <div id="imagecontainer">
+                    <img id="image1" src="./images/Kesav.JPG" align="left">
+                </div>
+                <div id="introtext" class="alltext">
+                    I'm Kesav Viswanadha, a 16-year-old student at Monta Vista High School in Cupertino, CA. I am an International Master (IM) of chess - I travel all over the world to play in tournaments, and I really enjoy it! I also sing Carnatic music and have performed several times in the Bay Area. In my free time, I enjoy programming, playing video games, and basketball. Here are some achievements I'm most proud of:
+                </div>
+            </div>
+            <ul>
+                <li>
+                    <a class="achievementlinks" href="https://new.uschess.org/news/six-players-tie-for-first-in-atlanta/">High School Nationals Co-Champion</a> 2016
+                </li>
+                <li>
+                    <a class="achievementlinks" href="http://en.chessbase.com/post/2015-north-american-junior-championships">North American Junior (U20) Chess Championship</a> Gold Medalist 2015 - earned me my first Grandmaster norm!
+                </li>
+                <li>
+                    <a class="achievementlinks" href="http://www.uschess.org/content/view/12708/767/">North American Youth (U16) Chess Championship</a> Gold Medalist 2014 - earned me the FM title and my first IM norm!
+                </li>
+                <li>
+                    5-time member of the prestigious <a class="achievementlinks" href="https://new.uschess.org/news/2016-all-america-chess-team-announced/">All-America Chess Team</a> (2012 - 2016)
+                </li>
+                <li>
+                    Bronze and Silver medals on the <a class="achievementlinks" href="https://www.frenchteachers.org/concours/">National French Contest</a> in 2014 and 2015 respectively
+                </li>
+                <li>
+                    Volunteer tutor at <a class="achievementlinks" href="http://www.readingpartners.org/">Reading Partners</a>, an organization that helps students behind their grade level in reading realize their full potential, since October 2015.
+                </li>
+            </ul>
+            <div id="likebutton">
+                <div class="fb-like" data-href="http://chess123.github.io" data-width="450" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+            </div>
+        </div>
+    </body>
+</html>

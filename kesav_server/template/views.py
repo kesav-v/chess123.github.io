@@ -4,25 +4,13 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def index(request):
-
-    # Construct a dictionary to pass to the template engine as its context.
-    # Note the key boldmessage is the same as {{ boldmessage }} in the template!
-    context_dict = {'boldmessage': "I am bold font from the context"}
-
-    # Return a rendered response to send to the client.
-    # We make use of the shortcut function to make our lives easier.
-    # Note that the first parameter is the template we wish to use.
-
-    return render(request, 'template/template.html', context_dict)
+	context_dict = "Hello"
+	return render(request, 'template/template.html', context_dict)
 
 def index2(request):
+	context_dict = "Hello"
+	return render(request, 'new-electrostatics.html', context_dict)
 
-    # Construct a dictionary to pass to the template engine as its context.
-    # Note the key boldmessage is the same as {{ boldmessage }} in the template!
-    context_dict = {'boldmessage': "I am bold font from the context"}
-    print ("I'm definitely here")
-    # Return a rendered response to send to the client.
-    # We make use of the shortcut function to make our lives easier.
-    # Note that the first parameter is the template we wish to use.
-
-    return render(request, 'new-electrostatics.html', context_dict)
+def index3(request):
+	context_dict = "Wtevs"
+	return render(request, 'audio-test.html', context_dict)

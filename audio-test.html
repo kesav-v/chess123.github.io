@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<script src="http://webrtc.github.io/adapter/adapter-latest.js"></script>
+		<title>Audio Test on Kesav's Website</title>
+	</head>
+	<body>
+		<video autoplay></video>
+		<script>
+			function hasGetUserMedia() {
+				console.log("HEREEEEEE");
+			  return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
+			            navigator.mozGetUserMedia || navigator.msGetUserMedia);
+			}
+
+			if (hasGetUserMedia()) {
+				console.log("Fein man");
+			  // Good to go!
+			} else {
+			  alert('getUserMedia() is not supported in your browser');
+			}
+			  var errorCallback = function(e) {
+			    console.log('Reeeejected!', e);
+			  };
+
+			  // Not showing vendor prefixes.
+			  	console.log("HEREEEEEE");
+			  navigator.getUserMedia({video: true, audio: true}, function(localMediaStream) {
+			    var video = document.querySelector('video');
+			    video.src = window.URL.createObjectURL(localMediaStream);
+
+			    // Note: onloadedmetadata doesn't fire in Chrome when using it with getUserMedia.
+			    // See crbug.com/110938.
+			    video.onloadedmetadata = function(e) {
+			      // Ready to go. Do some stuff.
+			      console.log("HEREEEEE");
+			    };
+			  }, errorCallback);
+			  var hdConstraints = {
+				  video: {
+				    mandatory: {
+				      minWidth: 1280,
+				      minHeight: 720
+				    }
+				  }
+				};
+
+			navigator.getUserMedia(hdConstraints, successCallback, errorCallback);
+			var vgaConstraints = {
+			  video: {
+			    mandatory: {
+			      maxWidth: 640,
+			      maxHeight: 360
+			    }
+			  }
+			};
+
+			navigator.getUserMedia(vgaConstraints, successCallback, errorCallback);
+		</script>
+	</body>
+</html>

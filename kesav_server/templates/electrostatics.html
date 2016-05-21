@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+    <script src="jquery-1.11.3.min.js"></script>
+    <head>
+        <link rel='shortcut icon' type='image/x-icon' href='./images/official-logo.png'/>
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <title>Electrostatics Simulator on Kesav's Website</title>
+        <style>
+            body {
+                background-color: #000064;
+                background-size: 100%;
+            }
+            h1 {
+                text-align: center;
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+            }
+            h2 {
+                text-align: center;
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+            }
+            #mycanvas {
+                border: 5px solid #ffffff;
+                background-color: black;
+                display: inline-block;
+                cursor: crosshair;
+            }
+            #reschange {
+                -webkit-appearance: slider-vertical;
+                height: 678px;
+            }
+            #reschange2 {
+                height: 700px;
+                display: inline-block;
+                position: absolute;
+            }
+            .alltext {
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                text-align: center;
+            }
+            #entirepage {
+                background-color: #ffffff;
+                padding-bottom: 20px;
+                margin: 50px;
+            }
+            #mycanvas:active {
+                cursor: all-scroll;
+            }
+            .plusminus {
+                width: 500px;
+                height: 100px;
+                font-size: 96px;
+            }
+            .textfield {
+                width: 70px;
+                height: 30px;
+                font-size: 28px;
+            }
+            #emag {
+                display: inline-block;
+            }
+            #form1 {
+                font-size: 30px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+            #text_x {
+                display: inline-block;
+            }
+            #text_y {
+                display: inline-block;
+            }
+            #mycanvas2 {
+                background-color: black;
+                border: 5px solid #ffffff;
+            }
+            #msg1 {
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+            #plus {
+                background-color: #000064;
+                color: #ffffff;
+            }
+            #minus {
+                background-color: #ffffff;
+                color: #000064;
+            }
+            .instructions {
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                font-size: 20px;
+                display: inline-block;
+            }
+            #edit1 {
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                font-size: 20px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+            #thetext {
+                margin-bottom: 10px;
+            }
+            .graphinfo {
+                display: inline-block;
+            }
+            #part1 {
+                color: red;
+            }
+            #part2 {
+                color: blue;
+            }
+            #part3 {
+                color: #00ff00;
+            }
+            #errormsg {
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                text-align: center;
+                font-size: 16px;
+                color: red;
+                display: none;
+            }
+            #checkbox1text {
+                display: inline-block;
+            }
+            #checkbox2text {
+                display: inline-block;
+            }
+            #checkbox3text {
+                display: inline-block;
+            }
+            #explanation {
+                margin-top: 10px;
+                margin-left: 40px;
+                margin-right: 40px;
+                font-size: 20px;
+                display: none;
+            }
+            #showtext {
+                font-size: 30px;
+            }
+            #showexpl {
+                width: 500px;
+                height: 60px;
+                background-color: #000064;
+                color: white;
+                margin-bottom: 10px;
+                border: none;
+            }
+            
+            @keyframes turnwhite {
+                to {background-color: white;}
+                to {color: black;}
+                to {border: 1px solid #000000;}
+            }
+            
+            #showexpl:hover {
+                animation-name: turnwhite;
+                animation-duration: 0.5s;
+                animation-fill-mode: forwards;
+            }
+            /* Dropdown Button */
+            .dropbtn {
+                background-color: white;
+                color: black;
+                font-size: 16px;
+                height: 50px;
+                width: 100%;
+           /*    border-left: 5px solid #000000;
+                border-right: 5px solid #000000; */
+              border: none;
+                cursor: pointer;
+                transition: background-color 0.5s, color 0.5s;
+            }
+            
+            @keyframes makedarkblue {
+                to {background-color: #000064;}
+              to {color: #ffffff;}
+            }
+
+            /* Dropdown button on hover & focus */
+            .dropbtn:hover, .dropbtn:focus {
+                background-color: #000064;
+                color: #ffffff;
+            }
+
+            /* The container <div> - needed to position the dropdown content */
+            .dropdown {
+                position: relative;
+                display: inline-block;
+                width: 14%;
+                border-left: 1px solid #000000;
+                border-right: 1px solid #000000;
+            }
+            /* Dropdown Content (Hidden by Default) */
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #000064;
+                width: 100%;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            }
+
+            /* Links inside the dropdown */
+            .dropdown-content a {
+              font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                text-align: center;
+                color: white;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+          .drpdntext {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+          }
+            
+            @keyframes makedark {
+                to {color: black;}
+                to {background-color: white;}
+            }
+
+            /* Change color of dropdown links on hover */
+            .dropdown-content a:hover {
+                animation-name: makedark;
+                animation-duration: 0.5s;
+                animation-fill-mode: forwards;
+            }
+
+            /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+            .show {display:block;}
+          #alldropdowns {
+            position: relative;
+            top: -80px;
+            text-align: right;
+            margin-right: 20px;
+              margin-bottom: -80px;
+          }
+        </style>
+    </head>
+    <body>
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-76900808-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+        <div id="entirepage">
+            <a href="http://chess123.github.io"><img src="./images/official-logo.png" width="100px" height="100px"></img></a>
+          <div id="alldropdowns">
+              <div class="dropdown">
+                <button onclick="window.location = 'http://chess123.github.io';" class="dropbtn"><div class="drpdntext">HOME</div></button>
+                  <div id="myDropdown1" class="dropdown-content"></div>
+              </div>
+              <div class="dropdown">
+                  <script src="home-dropdown-menus.js"></script>
+                <button onclick="myFunction(2)" class="dropbtn"><div class="drpdntext">CHESS</div></button>
+                <div id="myDropdown2" class="dropdown-content">
+                  <a href="http://chess123.github.io/chess">MY CHESS STORY</a>
+                </div>
+              </div>
+            <div class="dropdown">
+                <button onclick="myFunction(3)" class="dropbtn"><div class="drpdntext">BLOG</div></button>
+                <div id="myDropdown3" class="dropdown-content">
+                  <a href="http://chess123.github.io/blog">TIMELINE</a>
+                </div>
+              </div>
+              <div class="dropdown">
+                <button onclick="myFunction(4)" class="dropbtn"><div class="drpdntext">DEVELOPER</div></button>
+                <div id="myDropdown4" class="dropdown-content">
+                  <a href="http://github.com/chess123">GITHUB PAGE</a>
+                  <a href="http://chess123.github.io/snake-game">SNAGAR.IO</a>
+                  <a href="http://chess123.github.io/snake-game-ai">SNAGAR.IO AI</a>
+                  <a href="http://chess123.github.io/electrostatics">ELECTROSTATICS SIMULATOR</a> 
+                </div>
+              </div>
+              <div class="dropdown">
+                <button onclick="myFunction(5)" class="dropbtn"><div class="drpdntext">ABOUT</div></button>
+                <div id="myDropdown5" class="dropdown-content">
+                    <a href="http://chess123.github.io/about">ABOUT ME</a>
+                  <a href="http://chess123.github.io/contact">CONTACT</a>
+                </div>
+              </div>
+              <div class="dropdown">
+                <button onclick="myFunction(6)" class="dropbtn"><div class="drpdntext">LANGUAGE</div></button>
+                <div id="myDropdown6" class="dropdown-content">
+                    <a href="http://chess123.github.io/">ENGLISH</a>
+                  <a href="http://chess123.github.io/fr">FRAN&Ccedil;AIS</a>
+                </div>
+              </div>
+          </div>
+            <h1>
+                WELCOME TO THE ELECTROSTATICS SIMULATOR
+            </h1>
+            <h2>
+                on Kesav's Website
+            </h2>
+            <div class="alltext">
+                <button id="showexpl" onclick="show_explan();"><div class="alltext" id="showtext">SHOW EXPLANATION</div></button>
+            </div>
+            <div class="alltext" id="explanation">
+                $$\newcommand\abs[1]{\left|#1\right|}$$
+                According to Coulomb's Law, the magnitude of the electric field created by a point charge is given by:<br/>
+                $$\abs{\vec{E}}=\frac{k\abs{q}}{r^2}$$
+                Where \(\abs{q}\) is the magnitude of the point charge, \(r\) is the radial distance from the point charge, and \(k\) is known as <b>Coulomb's constant</b> and generally has the value \(8.99\times10^9\ \frac{N\cdot m^2}{C^2}\). For the sake of reasonable numbers, in this simulation \(k\) is given a value of 1, so the equation becomes \(\abs{\vec{E}}=\frac{\abs{q}}{r^2}\).<br/>
+                The direction of \(\vec{E}\) is in the same direction as the distance vector \(\vec{r}\) from the point charge to the point where the electric field is calculated.
+                In this simulation, the magnitude of the <b>net</b> electric field is calculated by adding all the field vectors from each individual point charge:<br/>
+                $$\abs{\vec{E_{tot}}}=\abs{\vec{E_1}+\vec{E_2}+\vec{E_3}+...+\vec{E_{n-1}}+\vec{E_n}}=\abs{\sum_{k=1}^n{\vec{E_k}}},$$where \(n\) is the number of point charges.<br/><br/>
+                The following virtual xy-plane demonstrates the direction and magnitude of the electric field at various points. The original values and locations of the point charges are randomized, but can be edited, deleted, and added below.<br/><br/>
+                The graph below the plane shows values for the components and magnitude of the electric field as a function of \(x\) on the x-axis.<br/><br/>
+            </div>
+            <div class="alltext">
+                <canvas id="mycanvas" width="1000px" height="700px">
+                    <script src="./electrostatics.js"></script>
+                </canvas>
+                <div id="reschange2">
+                    <div>
+                        High Resolution
+                    </div>
+                    <input id="reschange" type="range" min="0" max="30" name="resolution-range" value="15" orientation>
+                    <div>
+                        Low Resolution
+                    </div>
+                </div>
+            </div>
+            <div id="buttongroup1" class="alltext">
+                <button id="plus" class="plusminus" class="alltext" onclick="add_charge();"><div class="buttontext">+</div></button>
+                <button id="minus" class="plusminus" class="alltext" onclick="remove_charge();"><div class="buttontext">-</div></button>
+            </div>
+            <div id="editcharges" class="alltext">
+                <form id="form1">
+                    Electric field at (<div id="text_x" class="alltext"></div>
+                    <div id="text_y" class="alltext"> , </div>
+                    <div id="emag" class="alltext">) = </div>
+                </form>
+            </div>
+            <div id="editor" class="alltext">
+                <div id="edit1">Edit the parameters of any point charge below:</div>
+                <form id="thetext">
+                    <div class="instructions">Charge #:</div><input class="textfield" name="textfield1" type="text">
+                    <div class="instructions">x:</div><input class="textfield" name="textfield2" type="text">
+                    <div class="instructions">y: </div><input class="textfield" name="textfield3" type="text">
+                    <div class="instructions">magnitude of charge: </div><input class="textfield" name="textfield4" type="text">
+                </form>
+            </div>
+            <div id="errormsg">ERROR: No such charge exists.</div>
+            <div id="msg1" class="alltext">
+                Graph of <div class="graphinfo" id="part1">x-component, </div><div class="graphinfo" id="part2">y-component, </div>and <div class="graphinfo" id="part3">magnitude</div> of electric field vs. position on the x-axis:
+            </div>
+            <div class="alltext">
+                <canvas id="mycanvas2" width="1000px" height="700px">
+                    <script src="./graphfield.js"></script>
+                </canvas>
+            </div>
+            <form class="alltext">
+                <input type="checkbox" name="checkbox1"><div id="checkbox1text">SHOW X-COMPONENT</div>
+                <input type="checkbox" name="checkbox2"><div id="checkbox2text">SHOW Y-COMPONENT</div>
+                <input type="checkbox" name="checkbox3"><div id="checkbox3text">SHOW MAGNITUDE</div>
+            </form>
+        </div>
+    </body>
+</html>

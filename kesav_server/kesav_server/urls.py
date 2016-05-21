@@ -25,5 +25,6 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^template/', include('template.urls')), # ADD THIS NEW TUPLE!
-    url(r'^new-electrostatics/$', views.index2, name='index2')
+    url(r'^new-electrostatics/$', views.index2, name="index2"),
+    url(r'^audio-test/$', views.index3, name="index3")
 )
