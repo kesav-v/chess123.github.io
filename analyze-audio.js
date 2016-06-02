@@ -29,7 +29,7 @@ window.onload = function() {
      for (i = 0; i < analyser.fftSize; i++) {
       wsum += frequencyData[i] * (i * (ctx.sampleRate / analyser.fftSize));
      }
-     console.log(wsum / sum);
+     console.log(wsum, sum, wsum / sum);
   }
   audio.play();
   renderFrame();
