@@ -22,11 +22,11 @@ window.onload = function() {
      // render frame based on values in frequencyData
      // console.log(frequencyData);
      var sum = 0;
-     for (i = 0; i < frequencyData.length; i++) {
+     for (i = 0; i < analyser.fftSize; i++) {
       sum += frequencyData[i];
      }
      var wsum = 0;
-     for (i = 0; i < frequencyData.length; i++) {
+     for (i = 0; i < analyser.fftSize; i++) {
       wsum += frequencyData[i] * (i * (ctx.sampleRate / analyser.fftSize));
      }
      console.log(wsum / sum);
