@@ -21,6 +21,15 @@ window.onload = function() {
      analyser.getByteFrequencyData(frequencyData);
      // render frame based on values in frequencyData
      // console.log(frequencyData);
+     var sum = 0;
+     for (i = 0; i < frequencyData.prototype.length; i++) {
+      sum += frequencyData[i];
+     }
+     var wsum = 0;
+     for (i = 0; i < frequencyData.prototype.length; i++) {
+      wsum += frequencyData[i] * (i * (ctx.sampleRate / analyser.fftSize));
+     }
+     console.log(wsum / sum);
   }
   audio.play();
   renderFrame();
