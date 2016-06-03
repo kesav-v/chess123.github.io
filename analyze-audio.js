@@ -6,6 +6,8 @@ window.onload = function() {
   audio.crossOrigin = "anonymous";
   var audioSrc = ctx.createMediaElementSource(audio);
   var analyser = ctx.createAnalyser();
+  var c = document.getElementById('mycanvas');
+  var g = c.getContext('2d');
   // we have to connect the MediaElementSource with the analyser 
   audioSrc.connect(analyser);
   // we could configure the analyser: e.g. analyser.fftSize (for further infos read the spec)
@@ -32,8 +34,24 @@ window.onload = function() {
         max = i;
       }
      }
-     console.log(max * (ctx.sampleRate / analyser.fftSize));
+     draw();
   }
   audio.play();
   renderFrame();
+
+  function draw() {
+    var max = 0;
+    var maxVal = 0;
+     for (i = 0; i < analyser.fftSize / 4; i++) {
+      if (frequencyData[i] > maxVal) {
+        maxVal = frequencyData[i];
+        max = i;
+      }
+     }
+    g.clearRect(0, 0, c.width, c.height);
+    g.fillStyle = '#0000ff';
+    for (i = 0; i < analyser.fftSize / 4; i++) {
+      g.fillRect(i * c.width / (analyser.fftSize / 4), c.height - c.height * frequencyData[i] / maxVal, (c.width / (analyser.fftSize / 2)), c.height * frequencyData[i] / maxVal);
+    }
+  }
 };
