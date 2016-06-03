@@ -2,10 +2,12 @@
 
 window.onload = function() {
   var ctx = new AudioContext();
-  var audio = document.getElementById('myAudio');
-  audio.crossOrigin = "anonymous";
+  var audio = new Audio("test-record.mp3");
+  // audio.crossOrigin = "anonymous";
   var audioSrc = ctx.createMediaElementSource(audio);
   var analyser = ctx.createAnalyser();
+  analyser.fftSize = 4096;
+  audio.volume = 1.0;
   var c = document.getElementById('mycanvas');
   var g = c.getContext('2d');
   // we have to connect the MediaElementSource with the analyser 
@@ -14,6 +16,7 @@ window.onload = function() {
  
   // frequencyBinCount tells you how many values you'll receive from the analyser
   var frequencyData = new Uint8Array(analyser.frequencyBinCount);
+  audio.autoplay = true;
  
   // we're ready to receive some data!
   // loop
@@ -33,10 +36,14 @@ window.onload = function() {
         maxVal = mag;
         max = i;
       }
+      else if (mag == maxVal && mag != 0) {
+        max = (max + i) / 2;
+      }
      }
+     console.log(2 * max * (ctx.sampleRate / analyser.fftSize));
      draw();
+     if (audio.ended) audio.pause();
   }
-  audio.play();
   renderFrame();
 
   function draw() {
