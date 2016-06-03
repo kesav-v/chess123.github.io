@@ -1,5 +1,7 @@
 //taken from https://www.patrick-wied.at/blog/how-to-create-audio-visualizations-with-javascript-html
 
+var freq = "";
+
 window.onload = function() {
   var ctx = new AudioContext();
   var audio = document.getElementById('audio');
@@ -12,6 +14,8 @@ window.onload = function() {
   var g = c.getContext('2d');
   // we have to connect the MediaElementSource with the analyser 
   audioSrc.connect(analyser);
+  analyser.connect(ctx.destination);
+  audio.play();
   // we could configure the analyser: e.g. analyser.fftSize (for further infos read the spec)
  
   // frequencyBinCount tells you how many values you'll receive from the analyser
@@ -24,6 +28,7 @@ window.onload = function() {
   // we're ready to receive some data!
   // loop
   function renderFrame() {
+    if (audio.paused) return;
      requestAnimationFrame(renderFrame);
      // update data in frequencyData
      analyser.getByteFrequencyData(frequencyData);
@@ -43,25 +48,18 @@ window.onload = function() {
         max = (max + i) / 2;
       }
      }
-     console.log(2 * max * (ctx.sampleRate / analyser.fftSize));
+     freq = (2 * max + 0.5) * (ctx.sampleRate / analyser.fftSize);
      draw();
      if (audio.paused) audio.pause();
   }
   renderFrame();
 
   function draw() {
-    var max = 0;
-    var maxVal = 0;
-     for (i = 0; i < analyser.fftSize / 4; i++) {
-      if (frequencyData[i] > maxVal) {
-        maxVal = frequencyData[i];
-        max = i;
-      }
-     }
     g.clearRect(0, 0, c.width, c.height);
     g.fillStyle = '#0000ff';
     for (i = 0; i < analyser.fftSize / 4; i++) {
-      g.fillRect(i * c.width / (analyser.fftSize / 4), c.height - c.height * frequencyData[i] / maxVal, (c.width / (analyser.fftSize / 2)), c.height * frequencyData[i] / maxVal);
+      g.fillRect(i * c.width / (analyser.fftSize / 4), c.height - c.height * frequencyData[i] / 255, (c.width / (analyser.fftSize / 2)), c.height * frequencyData[i] / 255);
     }
+    document.getElementById("frequency").innerHTML = "Approximate frequency: " + freq + " Hz";
   }
 };
