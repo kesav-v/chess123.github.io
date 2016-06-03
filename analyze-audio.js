@@ -2,7 +2,7 @@
 
 window.onload = function() {
   var ctx = new AudioContext();
-  var audio = new Audio("test-record.mp3");
+  var audio = document.getElementById('audio');
   // audio.crossOrigin = "anonymous";
   var audioSrc = ctx.createMediaElementSource(audio);
   var analyser = ctx.createAnalyser();
@@ -16,7 +16,10 @@ window.onload = function() {
  
   // frequencyBinCount tells you how many values you'll receive from the analyser
   var frequencyData = new Uint8Array(analyser.frequencyBinCount);
-  audio.autoplay = true;
+//   audio.addEventListener('loadedmetadata', function() {
+//     console.log("Playing " + audio.src + ", for: " + audio.duration + " seconds.");
+//     audio.play(); 
+// });
  
   // we're ready to receive some data!
   // loop
@@ -42,7 +45,7 @@ window.onload = function() {
      }
      console.log(2 * max * (ctx.sampleRate / analyser.fftSize));
      draw();
-     if (audio.ended) audio.pause();
+     if (audio.paused) audio.pause();
   }
   renderFrame();
 
