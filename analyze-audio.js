@@ -23,10 +23,13 @@ window.onload = function() {
      // console.log(frequencyData);
      var max = 0;
      var maxVal = 0;
-     for (i = 0; i < analyser.fftSize / 2; i++) {
-      if (frequencyData[i] > maxVal) {
+     for (i = 0; i < analyser.fftSize / 4; i++) {
+      var re = frequencyData[2 * i];
+      var im = frequencyData[2 * i + 1];
+      var mag = Math.sqrt(re * re + im * im);
+      if (mag > maxVal) {
+        maxVal = mag;
         max = i;
-        maxVal = frequencyData[i];
       }
      }
      console.log(max * (ctx.sampleRate / analyser.fftSize));
