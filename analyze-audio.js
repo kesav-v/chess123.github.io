@@ -21,16 +21,15 @@ window.onload = function() {
      analyser.getByteFrequencyData(frequencyData);
      // render frame based on values in frequencyData
      // console.log(frequencyData);
-     var sum = 0;
+     var max = 0;
+     var maxVal = 0;
      for (i = 0; i < analyser.fftSize / 2; i++) {
-      sum += frequencyData[i];
+      if (frequencyData[i] > maxVal) {
+        max = i;
+        maxVal = frequencyData[i];
+      }
      }
-     var wsum = 0;
-     for (i = 0; i < analyser.fftSize / 2; i++) {
-      wsum += frequencyData[i] * (i * (ctx.sampleRate / analyser.fftSize));
-     }
-     wsum /= 86.13 / (ctx.sampleRate / analyser.fftSize);
-     console.log(analyser.fftSize + " " + wsum + " " + sum + " " + (wsum / sum));
+     console.log(max * (ctx.sampleRate / analyser.fftSize));
   }
   audio.play();
   renderFrame();
