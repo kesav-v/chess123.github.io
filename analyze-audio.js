@@ -1,31 +1,14 @@
 //taken from https://www.patrick-wied.at/blog/how-to-create-audio-visualizations-with-javascript-html
 
 var freq = "";
+
 window.onload = function() {
-  var errorCallback = function(e) {
-    console.log("Buhuhuhuhuhuhuh");
-  }
-
-  navigator.getUserMedia  = navigator.getUserMedia ||
-                            navigator.webkitGetUserMedia ||
-                            navigator.mediaDevices.getUserMedia ||
-                            navigator.msGetUserMedia;
-
-  var audio = document.getElementById('audio');
-
-  if (navigator.getUserMedia) {
-    navigator.getUserMedia({audio: true, video: false}, function(stream) {
-      audio.src = window.URL.createObjectURL(stream);
-    }, errorCallback);
-  } else {
-    audio.src = 'electroman.mp3'; // fallback.
-  }
   var ctx = new AudioContext();
-  // var audio = document.getElementById('audio');
+  var audio = document.getElementById('audio');
   // audio.crossOrigin = "anonymous";
   var audioSrc = ctx.createMediaElementSource(audio);
   var analyser = ctx.createAnalyser();
-  analyser.fftSize = 64;
+  analyser.fftSize = 4096;
   audio.volume = 1.0;
   var c = document.getElementById('mycanvas');
   var g = c.getContext('2d');
@@ -34,6 +17,7 @@ window.onload = function() {
   analyser.connect(ctx.destination);
   // audio.play();
 
+  audio.play();
   // we could configure the analyser: e.g. analyser.fftSize (for further infos read the spec)
  
   // frequencyBinCount tells you how many values you'll receive from the analyser
@@ -46,7 +30,7 @@ window.onload = function() {
   // we're ready to receive some data!
   // loop
   function renderFrame() {
-    // if (audio.paused) return;
+    if (audio.paused) return;
      requestAnimationFrame(renderFrame);
      // update data in frequencyData
      analyser.getByteFrequencyData(frequencyData);
@@ -68,8 +52,7 @@ window.onload = function() {
      }
      console.log(2 * max * (ctx.sampleRate / analyser.fftSize));
      draw();
-     console.log(freq, maxVal);
-     // if (audio.paused) audio.pause();
+     if (audio.paused) audio.pause();
   }
   renderFrame();
 
@@ -87,6 +70,6 @@ window.onload = function() {
     for (i = 0; i < analyser.fftSize / 4; i++) {
       g.fillRect(i * c.width / (analyser.fftSize / 4), c.height - c.height * frequencyData[i] / maxVal, (c.width / (analyser.fftSize / 2)), c.height * frequencyData[i] / maxVal);
     }
-    // document.getElementById("frequency").innerHTML = "Approximate frequency: " + freq + " Hz";
+    document.getElementById("frequency").innerHTML = "Approximate frequency: " + freq + " Hz";
   }
 };
