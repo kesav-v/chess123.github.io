@@ -11,7 +11,6 @@ function update_time() {
 	ctx.clearRect(0, 0, c.width, c.height);
 	var d = new Date();
 	var h = d.getHours() % 12;
-	if (h == 0) h = 12;
 	var m = d.getMinutes();
 	var s = d.getMilliseconds() / 1000 + d.getSeconds();
 	var angle1 = 2 * Math.PI * (h + (m + s / 60) / 60) / 12;
@@ -64,6 +63,7 @@ function update_time() {
 	ctx.beginPath();
 	ctx.ellipse(500, 350, 100, 100, 0, 0, 2 * Math.PI);
 	ctx.fill();
+	if (h == 0) h = 12;
 	var str = "";
 	if (h < 10) str += "0";
 	str += h + ":";
