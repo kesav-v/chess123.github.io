@@ -11,6 +11,7 @@ function update_time() {
 	ctx.clearRect(0, 0, c.width, c.height);
 	var d = new Date();
 	var h = d.getHours() % 12;
+	if (h == 0) h = 12;
 	var m = d.getMinutes();
 	var s = d.getMilliseconds() / 1000 + d.getSeconds();
 	var angle1 = 2 * Math.PI * (h + (m + s / 60) / 60) / 12;
