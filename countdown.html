@@ -3,11 +3,30 @@
     <head>
         <title>Countdown to End of High School!</title>
         <style>
-        
+        	body {
+        		background-color: blue;
+        	}
+        	.alltext, .top {
+        		text-align: center;
+        		font-size: 80px;
+        		background-color: black;
+        		color: white;
+        		font-family: "Arial";
+        	}
+
+        	.top {
+        		margin-top: 10%;
+        	}
+
+        	#displaytime {
+        		font-size: 160px;
+        	}
         </style>
     </head>
     <body>
         <script src="countdown.js"></script>
-        <div id="displaytime"></div>
+        <div class="top">ONLY</div>
+        <div class="alltext" id="displaytime"></div>
+        <div class="alltext"> LEFT UNTIL GRADUATION!</div>
     </body>
 </html>
