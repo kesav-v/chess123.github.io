@@ -26,7 +26,7 @@ function calcRating(r1, r2, res, k) {
 	var diff = Math.abs(r1 - r2);
 	var prob = 0;
 	for (i = 0; i < diffs.length; i++) {
-		if (diff < diffs[i]) {
+		if (diff <= diffs[i]) {
 			prob = 0.5 + 0.01 * i;
 			break;
 		}
@@ -72,7 +72,7 @@ function getXML() {
 	    	readData(xhttp);
 	    }
 	}
-	xhttp.open("GET", "ratings_list/standard_rating_list_xml.xml", true);
+	xhttp.open("GET", "rating_lists/standard_rating_list_xml.xml", true);
 	xhttp.send();
 }
 
