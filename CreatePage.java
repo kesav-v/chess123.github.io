@@ -25,7 +25,7 @@ public class CreatePage {
 			text += scan.nextLine() + "\n";
 		}
 		pw.print(text);
-		System.out.println("Successfully created page.")
+		System.out.println("Successfully created page.");
 		pw.close();
 	}
 }

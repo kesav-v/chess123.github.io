@@ -10,13 +10,14 @@ function myFunction(n) {
     });
     return;
   }
-  for (i = 0; i < 6; i++) {
+  for (i = 0; i < document.getElementsByClassName("dropdown").length; i++) {
     if (i == n - 1) continue;
     document.getElementById("myDropdown" + (i + 1)).classList.remove("show");
   }
   current_open = n;
   document.getElementById("myDropdown" + n).classList.toggle("show");
   var theheight = document.getElementById("myDropdown" + n).offsetHeight;
+  console.log(theheight + "**********");
   document.getElementById("myDropdown" + n).style.height = "0px";
   $('#myDropdown' + n).animate({height: theheight + "px"}, 500);
 }
@@ -31,7 +32,9 @@ function numAs(elem) {
 
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function(event) {
+  console.log("HEREEEEEEEE");
   if (!event.target.matches('.dropbtn') && !event.target.matches('.drpdntext')) {
+    console.log("HIT IT");
     if (current_open == 0) return;
     if (document.getElementById("myDropdown" + current_open).classList.contains("show")) myFunction(current_open);
   }

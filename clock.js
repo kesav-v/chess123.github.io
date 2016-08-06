@@ -4,7 +4,7 @@ window.onload = function() {
 	c = document.getElementById("mycanvas");
 	ctx = c.getContext('2d');
 	update_time();
-	var timer = setInterval(update_time, 50);
+	var timer = setInterval(update_time, 40);
 }
 
 function update_time() {
@@ -12,11 +12,12 @@ function update_time() {
 	var d = new Date();
 	var h = d.getHours() % 12;
 	var m = d.getMinutes();
-	var s = d.getMilliseconds() / 1000 + d.getSeconds();
+	var s = d.getSeconds();
 	var angle1 = 2 * Math.PI * (h + (m + s / 60) / 60) / 12;
 	var angle2 = 2 * Math.PI * (m + s / 60) / 60;
 	var angle3 = 2 * Math.PI * s / 60;
 	ctx.strokeStyle = "#ffffff";
+	ctx.lineWidth = 2;
 	for (i = 0; i < 2 * Math.PI; i += Math.PI / 6) {
 		ctx.beginPath();
 		ctx.moveTo(500, 350);
@@ -41,6 +42,7 @@ function update_time() {
 	ctx.arc(500, 350, 250, 3 * Math.PI / 2, 3 * Math.PI / 2 + angle3);
 	ctx.lineTo(500, 350);
 	ctx.fill();
+	ctx.strokeStyle= "#000000";
 	ctx.fillStyle = "#000000";
 	ctx.beginPath();
 	ctx.ellipse(500, 350, 200, 200, 0, 0, 2 * Math.PI);
