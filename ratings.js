@@ -82,7 +82,7 @@ function readData(xml) {
 	for (n = 0; n < names.length; n++) {
 		var elem = names[n];
 		var child = elem.childNodes[0];
-		if (child === null) continue;
+		if (child === undefined) continue;
 		var text = child.nodeValue;
 		console.log(text);
 	}
