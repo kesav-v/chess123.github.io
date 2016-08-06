@@ -80,6 +80,6 @@ function readData(xml) {
 	var xmlDoc = xml.responseXML;
 	names = xmlDoc.getElementsByTagName("name");
 	for (i = 0; i < names.length; i++) {
-		console.log(names[i]);
+		console.log(names[i].childNodes[0]);
 	}
 }
