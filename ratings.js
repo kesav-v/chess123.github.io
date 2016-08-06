@@ -81,7 +81,7 @@ function readData(xml) {
 	var name_elems = xmlDoc.getElementsByTagName("name");
 	var rating_elems = xmlDoc.getElementsByTagName("rating");
 	var id_elems = xmlDoc.getElementsByTagName("fideid");
-	for (n = 0; n < names.length; n++) {
+	for (n = 0; n < name_elems.length; n++) {
 		var elem = name_elems[n];
 		var child = elem.childNodes[0];
 		if (child === undefined) {
@@ -92,14 +92,12 @@ function readData(xml) {
 			names.add(text);
 		}
 		var elem2 = rating_elems[n];
-		console.log(elem2);
 		var child2 = elem2.childNodes[0];
 		if (child2 === undefined) {
 			ratings.add(0);
 		}
 		else {
 			var text2 = child2.nodeValue;
-			console.log(text2);
 			ratings.add(parseInt(text2));
 		}
 		var elem3 = id_elems[n];
@@ -111,5 +109,10 @@ function readData(xml) {
 			var text3 = child3.nodeValue;
 			ids.add(parseInt(text3));
 		}
+		var total = 0;
+		for (m = 0; m < ratings.length; m++) {
+			total += ratings[m];
+		}
+		console.log(total / ratings.length);
 	}
 }
