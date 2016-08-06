@@ -78,5 +78,12 @@ function getXML() {
 
 function readData(xml) {
 	var xmlDoc = xml.responseXML;
-	document.getElementById("xml-test").innerHTML = xmlDoc.getElementsByTagName("name")[185943].childNodes[0].nodeValue + "******";
+	names = xmlDoc.getElementsByTagName("name");
+	for (n = 0; n < names.length; n++) {
+		var elem = names[n];
+		var child = elem.childNodes[0];
+		if (child === null) continue;
+		var text = child.nodeValue;
+		console.log(text);
+	}
 }
