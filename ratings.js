@@ -92,10 +92,10 @@ function readData(xml) {
 			names.add(text);
 		}
 		var elem2 = rating_elems[n];
+		console.log(elem2);
 		var child2 = elem2.childNodes[0];
 		if (child2 === undefined) {
 			ratings.add(0);
-			continue;
 		}
 		else {
 			var text2 = child2.nodeValue;
@@ -106,12 +106,10 @@ function readData(xml) {
 		var child3 = elem2.childNodes[0];
 		if (child3 === undefined) {
 			ids.add(0);
-			continue;
 		}
 		else {
 			var text3 = child3.nodeValue;
 			ids.add(parseInt(text3));
 		}
 	}
-	var total = 0;
 }
