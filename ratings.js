@@ -78,12 +78,38 @@ function getXML() {
 
 function readData(xml) {
 	var xmlDoc = xml.responseXML;
-	names = xmlDoc.getElementsByTagName("name");
+	var name_elems = xmlDoc.getElementsByTagName("name");
+	var rating_elems = xmlDoc.getElementsByTagName("rating");
+	var id_elems = xmlDoc.getElementsByTagName("fideid");
 	for (n = 0; n < names.length; n++) {
-		var elem = names[n];
+		var elem = name_elems[n];
 		var child = elem.childNodes[0];
-		if (child === undefined) continue;
+		if (child === undefined) {
+			names.add("");
+			continue;
+		}
 		var text = child.nodeValue;
-		console.log(text);
+		names.add(text);
+		elem = rating_elems[n];
+		child = elem.childNodes[0];
+		if (child === undefined) {
+			ratings.add("");
+			continue;
+		}
+		text = child.nodeValue;
+		ratings.add(parseInt(text));
+		elem = id_elems[n];
+		child = elem.childNodes[0];
+		if (child === undefined) {
+			ids.add("");
+			continue;
+		}
+		text = child.nodeValue;
+		ids.add(parseInt(text));
 	}
+	var total = 0;
+	for (m = 0; m < ratings.length; m++) {
+		total += ratings[m];
+	}
+	console.log(total / ratings.length);
 }
