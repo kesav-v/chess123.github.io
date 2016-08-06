@@ -86,30 +86,32 @@ function readData(xml) {
 		var child = elem.childNodes[0];
 		if (child === undefined) {
 			names.add("");
-			continue;
 		}
-		var text = child.nodeValue;
-		names.add(text);
+		else {
+			var text = child.nodeValue;
+			names.add(text);
+		}
 		var elem2 = rating_elems[n];
 		var child2 = elem2.childNodes[0];
 		if (child2 === undefined) {
 			ratings.add(0);
 			continue;
 		}
-		var text2 = child2.nodeValue;
-		ratings.add(parseInt(text2));
+		else {
+			var text2 = child2.nodeValue;
+			console.log(text2);
+			ratings.add(parseInt(text2));
+		}
 		var elem3 = id_elems[n];
 		var child3 = elem2.childNodes[0];
 		if (child3 === undefined) {
 			ids.add(0);
 			continue;
 		}
-		var text3 = child3.nodeValue;
-		ids.add(parseInt(text3));
+		else {
+			var text3 = child3.nodeValue;
+			ids.add(parseInt(text3));
+		}
 	}
 	var total = 0;
-	for (m = 0; m < ratings.length; m++) {
-		console.log(ratings[m]);
-	}
-	console.log(total / ratings.length);
 }
