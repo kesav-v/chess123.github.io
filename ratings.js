@@ -85,34 +85,34 @@ function readData(xml) {
 		var elem = name_elems[n];
 		var child = elem.childNodes[0];
 		if (child === undefined) {
-			names.append("");
+			names[n] = "";
 		}
 		else {
 			var text = child.nodeValue;
-			names.append(text);
+			names[n] = text;
 		}
 		var elem2 = rating_elems[n];
 		var child2 = elem2.childNodes[0];
 		if (child2 === undefined) {
-			ratings.append(0);
+			ratings[n] = 0;
 		}
 		else {
 			var text2 = child2.nodeValue;
-			ratings.append(parseInt(text2));
+			ratings[n] = parseInt(text2);
 		}
 		var elem3 = id_elems[n];
 		var child3 = elem2.childNodes[0];
 		if (child3 === undefined) {
-			ids.append(0);
+			ids[n] = 0;
 		}
 		else {
 			var text3 = child3.nodeValue;
-			ids.append(parseInt(text3));
+			ids[n] = parseInt(text3);
 		}
-		var total = 0;
-		for (m = 0; m < ratings.length; m++) {
-			total += ratings[m];
-		}
-		console.log(total / ratings.length);
 	}
+	var total = 0;
+	for (m = 0; m < ratings.length; m++) {
+		total += ratings[m];
+	}
+	console.log(total / ratings.length);
 }
