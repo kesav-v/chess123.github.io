@@ -109,7 +109,7 @@ function readData(xml) {
 	}
 	var total = 0;
 	for (m = 0; m < ratings.length; m++) {
-		total += ratings[m];
+		console.log(ratings[m]);
 	}
 	console.log(total / ratings.length);
 }
