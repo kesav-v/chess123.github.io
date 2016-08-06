@@ -72,7 +72,7 @@ function getXML() {
 	    	readData(xhttp);
 	    }
 	}
-	xhttp.open("GET", "standard_rating_list_xml.xml", true);
+	xhttp.open("GET", "ratings_list/standard_rating_list_xml.xml", true);
 	xhttp.send();
 }
 
