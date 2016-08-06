@@ -93,7 +93,7 @@ function readData(xml) {
 		elem = rating_elems[n];
 		child = elem.childNodes[0];
 		if (child === undefined) {
-			ratings.add("");
+			ratings.add(0);
 			continue;
 		}
 		text = child.nodeValue;
@@ -101,7 +101,7 @@ function readData(xml) {
 		elem = id_elems[n];
 		child = elem.childNodes[0];
 		if (child === undefined) {
-			ids.add("");
+			ids.add(0);
 			continue;
 		}
 		text = child.nodeValue;
