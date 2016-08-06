@@ -78,5 +78,5 @@ function getXML() {
 
 function readData(xml) {
 	var xmlDoc = xml.responseXML;
-	document.getElementById("xml-test").innerHTML = xmlDoc.getElementsByTagName("name") + "******";
+	document.getElementById("xml-test").innerHTML = xmlDoc.getElementsByTagName("name").length + "******";
 }
