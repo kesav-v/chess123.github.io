@@ -110,7 +110,7 @@ function readData(xml) {
 			ids[n] = parseInt(text3);
 		}
 	}
-	var nnr = mergeSort(ratings);
+	var nnr = mergeSort(ratings, names);
 	ratings = nnr[0];
 	names = nnr[1]
 	var rating_ranges = new Array();
@@ -135,7 +135,7 @@ function mergeSort(items, items2) {
         left1    = items.slice(0, middle),
         right1   = items.slice(middle);
         left2    = items2.slice(0, middle);
-        right2    = items2.slice(0, middle);
+        right2    = items2.slice(middle);
 
     return merge(mergeSort(left, left2), mergeSort(right, right2), left2, right2);
 }
