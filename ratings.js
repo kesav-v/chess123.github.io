@@ -110,9 +110,37 @@ function readData(xml) {
 			ids[n] = parseInt(text3);
 		}
 	}
-	var total = 0;
-	for (m = 0; m < ratings.length; m++) {
-		total += ratings[m];
+	ratings = mergeSort(ratings);
+	for (i = 0; i < ratings.length; i++) {
+		console.log(ratings[i]);
 	}
-	console.log(total / ratings.length);
+}
+
+function mergeSort(items){
+
+    if (items.length < 2) {
+        return items;
+    }
+
+    var middle = Math.floor(items.length / 2),
+        left    = items.slice(0, middle),
+        right   = items.slice(middle);
+
+    return merge(mergeSort(left), mergeSort(right));
+}
+
+function merge(left, right){
+    var result  = [],
+        il      = 0,
+        ir      = 0;
+
+    while (il < left.length && ir < right.length) {
+        if (left[il] > right[ir]){
+            result.push(left[il++]);
+        } else {
+            result.push(right[ir++]);
+        }
+    }
+
+    return result.concat(left.slice(il)).concat(right.slice(ir));
 }
