@@ -110,23 +110,23 @@ function readData(xml) {
 			ids[n] = parseInt(text3);
 		}
 	}
-	ratings = mergeSort(ratings);
+	mergeSort(ratings);
 	for (i = 0; i < ratings.length; i++) {
 		console.log(ratings[i]);
 	}
 }
 
-function mergeSort(items){
+function mergeSort(items) {
 
     if (items.length < 2) {
-        return items;
+        return;
     }
 
     var middle = Math.floor(items.length / 2),
         left    = items.slice(0, middle),
         right   = items.slice(middle);
 
-    return merge(mergeSort(left), mergeSort(right));
+    items = merge(mergeSort(left), mergeSort(right));
 }
 
 function merge(left, right){
