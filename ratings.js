@@ -75,6 +75,7 @@ window.onload = function() {
 		}
 		document.getElementById("dropdown-names").style.display = "inherit";
 		var bestResults;
+		srch = srch.substring(0, 1).toUpperCase() + srch.substring(1);
 		if (srch.length > current_search.length) bestResults = search(current_db, srch);
 		else bestResults = search(players, srch);
 		current_db = bestResults;
@@ -96,6 +97,7 @@ window.onload = function() {
 		document.getElementById("dropdown-names").style.display = "none";
 		var str = event.target.innerHTML;
 		var elems5 = document.getElementsByClassName('rating-num');
+		document.getElementById('test-field').value = "";
 		var p;
 		for (p = 0; p < elems5.length; p++) {
 			if (elems5[p].value === "") {
