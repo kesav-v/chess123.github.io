@@ -116,6 +116,29 @@
           #own-rating, #k-factor {
             width: 3.0rem;
           }
+          #test-field {
+            width: 40%;
+          }
+          #dropdown-names {
+            display: none;
+            position: absolute;
+            background-color: black;
+            color: white;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+            margin-top: none;
+            z-index: 1000;
+          }
+          #dropdown-names div {
+            text-align: left;
+          }
+          #dropdown-names div:hover {
+            background-color: gray;
+            cursor: pointer;
+          }
         </style>
 	</head>
     <body>
@@ -174,6 +197,18 @@
               </div>
           </div>
           <script src="ratings.js"></script><br><br><br>
+          <div align="center">
+            <form>
+              <input id="test-field" name="search-test" type="text">
+            </form>
+            <div id="dropdown-names">
+              <div class="search-results"></div>
+              <div class="search-results"></div>
+              <div class="search-results"></div>
+              <div class="search-results"></div>
+              <div class="search-results"></div>
+            </div>
+          </div>
           <div align="center" id="xml-test"></div>
           <div id="basic-info">
             <div>Enter your rating and K factor below:</div><br>

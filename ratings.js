@@ -3,9 +3,9 @@ var diffs = [3, 10, 17, 25, 32, 39, 46, 53, 61, 68, 76, 83, 91, 98, 106,
 			215, 225, 235, 245, 256, 267, 278, 290, 302, 315, 328, 344,
 			357, 374, 391];
 var currField = 1;
-var ids = new Array();
-var names = new Array();
-var ratings = new Array();
+var players = new Array();
+var current_search = "";
+var current_db = new Array();
 
 function addField() {
 	currField++;
@@ -36,7 +36,6 @@ function calcRating(r1, r2, res, k) {
 	if (r1 > r2) change = prob;
 	if (r1 < r2) change = 1 - prob;
 	var delta = res - change;
-	console.log(delta, change, res, k, diff, prob);
 	return k * delta;
 }
 
@@ -48,7 +47,6 @@ function crunchData() {
 	var elems2 = document.getElementsByClassName('win');
 	var elems3 = document.getElementsByClassName('draw');
 	var elems4 = document.getElementsByClassName('lose');
-	console.log(rating1 + k, currField);
 	for (j = 0; j < currField; j++) {
 		var r2 = parseInt(elems1[j].value);
 		if (r2 === 0) continue;
@@ -57,15 +55,63 @@ function crunchData() {
 		else if (elems3[j].checked) result = 0.5;
 		else if (elems4[j].checked) result = 0;
 		else continue;
-		console.log(rating1 + " " + r2 + " " + result + " " + k);
 		total += calcRating(rating1, r2, result, k);
 	}
 	document.getElementById("rating-change").innerHTML = "Your rating change is: " + (Math.round(total * 10) / 10);
 }
 
-window.onload = getXML();
+var msg;
+
+window.onload = function() {
+	msg = document.getElementById("xml-test");
+	getXML();
+	console.log(document.getElementById("test-field").offsetWidth);
+	document.getElementById("dropdown-names").style.width = document.getElementById("test-field").offsetWidth + "px";
+	document.getElementById("test-field").onkeyup = function() {
+		var srch = document.getElementById("test-field").value;
+		if (srch.length === 0) {
+			document.getElementById("dropdown-names").style.display = "none";
+			return;
+		}
+		document.getElementById("dropdown-names").style.display = "inherit";
+		var bestResults;
+		if (srch.length > current_search.length) bestResults = search(current_db, srch);
+		else bestResults = search(players, srch);
+		current_db = bestResults;
+		var links = document.getElementsByClassName("search-results");
+		for (i = 0; i < links.length; i++) {
+			if (i >= bestResults.length) {
+				links[i].innerHTML = "";
+				continue;
+			}
+			var title = getVal(bestResults[i], "title");
+			var temp_string = "";
+			if (title.length > 0) temp_string += title + " ";
+			temp_string += getVal(bestResults[i], "name") + " (" + getVal(bestResults[i], "rating") + ") (" + getVal(bestResults[i], "country") + ")";
+			links[i].innerHTML = temp_string;
+		}
+		current_search = srch;
+	}
+	$('.search-results').click(function(event) {
+		document.getElementById("dropdown-names").style.display = "none";
+		var str = event.target.innerHTML;
+		var elems5 = document.getElementsByClassName('rating-num');
+		var p;
+		for (p = 0; p < elems5.length; p++) {
+			if (elems5[p].value === "") {
+				elems5[p].value = parseInt(str.substring(str.indexOf('(') + 1, str.indexOf(')')));
+				break;
+			}
+		}
+		if (p === elems5.length) {
+			addField();
+			document.getElementsByClassName('rating-num')[p].value = parseInt(str.substring(str.indexOf('(') + 1, str.indexOf(')')));
+		}
+	});
+}
 
 function getXML() {
+	msg.innerHTML = "Loading file...";
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 	    if (xhttp.readyState == 4 && xhttp.status == 200) {
@@ -76,12 +122,37 @@ function getXML() {
 	xhttp.send();
 }
 
+function search(db, str) {
+	var matches = new Array();
+	var cnt = 0;
+	for (i = 0; i < db.length; i++) {
+		var tempName = getVal(db[i], "name");
+		if (beginsWith(tempName, str)) {
+			matches[cnt] = db[i];
+			cnt++;
+		}
+		// if (cnt == 100) break;
+	}
+	return matches;
+}
+
+function beginsWith(name, start) {
+	return (name.indexOf(start) === 0);
+}
+
 function readData(xml) {
 	var xmlDoc = xml.responseXML;
-	var players = xmlDoc.getElementsByTagName("player");
-	for (n = 0; n < name_elems.length; n++) {
-		console.log(players[n].childNodes[1].nodeValue, players[n].childNodes[7].nodeValue);
+	msg.innerHTML = "Loading data...";
+	var player_elems = xmlDoc.getElementsByTagName("player");
+	for (q = 0; q < player_elems.length; q++) {
+		players[q] = player_elems[q];
 	}
+	console.log(getVal(players[139483], "rating"));
+	msg.innerHTML = "Sorting by rating...";
+	players = mergeSort(players);
+	console.log(getVal(players[0], "name"), getVal(players[0], "rating"));
+	msg.style.display = "none";
+	current_db = players;
 	// ratings = mergeSort(ratings);
 	// var rating_ranges = new Array();
 	// for (i = 0; i < 30; i++) {
@@ -93,6 +164,10 @@ function readData(xml) {
 	// for (i = 0; i < rating_ranges.length; i++) {
 	// 	console.log(100 * i + ": " + rating_ranges[i]);
 	// }
+}
+
+function getVal(player, attribute) {
+	return player.getElementsByTagName(attribute)[0].innerHTML;
 }
 
 function mergeSort(items) {
@@ -114,7 +189,7 @@ function merge(left, right) {
         ir      = 0;
 
     while (il < left.length && ir < right.length) {
-        if (left[il] > right[ir]){
+        if (parseInt(getVal(left[il], "rating")) > parseInt(getVal(right[ir], "rating"))){
             result.push(left[il++]);
         } else {
             result.push(right[ir++]);
