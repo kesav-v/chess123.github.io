@@ -137,7 +137,7 @@ function mergeSort(items, items2) {
         left2    = items2.slice(0, middle);
         right2    = items2.slice(middle);
 
-    return merge(mergeSort(left, left2), mergeSort(right, right2), left2, right2);
+    return merge(mergeSort(left1, left2), mergeSort(right1, right2), left2, right2);
 }
 
 function merge(left, right, left2, right2) {
