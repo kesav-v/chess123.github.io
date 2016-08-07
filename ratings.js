@@ -112,6 +112,9 @@ function readData(xml) {
 	}
 	ratings = mergeSort(ratings);
 	var rating_ranges = new Array();
+	for (i = 0; i < 30; i++) {
+		rating_ranges[i] = 0;
+	}
 	for (i = 0; i < ratings.length; i++) {
 		rating_ranges[ratings[i] / 100 | 0]++;
 	}
