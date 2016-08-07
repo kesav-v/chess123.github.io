@@ -65,7 +65,6 @@ var msg;
 window.onload = function() {
 	msg = document.getElementById("xml-test");
 	getXML();
-	console.log(document.getElementById("test-field").offsetWidth);
 	document.getElementById("dropdown-names").style.width = document.getElementById("test-field").offsetWidth + "px";
 	document.getElementById("test-field").onkeyup = function() {
 		var srch = document.getElementById("test-field").value;
@@ -75,7 +74,10 @@ window.onload = function() {
 		}
 		document.getElementById("dropdown-names").style.display = "inherit";
 		var bestResults;
-		srch = srch.substring(0, 1).toUpperCase() + srch.substring(1);
+		if (srch.indexOf(",") != -1 && srch.indexOf(", ") == -1) {
+			srch = srch.substring(0, srch.indexOf(",") + 1) + " " + srch.substring(srch.indexOf(",") + 1);
+		}
+		srch = srch.toLowerCase();
 		if (srch.length > current_search.length) bestResults = search(current_db, srch);
 		else bestResults = search(players, srch);
 		current_db = bestResults;
@@ -139,7 +141,7 @@ function search(db, str) {
 }
 
 function beginsWith(name, start) {
-	return (name.indexOf(start) === 0);
+	return (name.toLowerCase().indexOf(start) === 0);
 }
 
 function readData(xml) {
@@ -149,10 +151,8 @@ function readData(xml) {
 	for (q = 0; q < player_elems.length; q++) {
 		players[q] = player_elems[q];
 	}
-	console.log(getVal(players[139483], "rating"));
 	msg.innerHTML = "Sorting by rating...";
 	players = mergeSort(players);
-	console.log(getVal(players[0], "name"), getVal(players[0], "rating"));
 	msg.style.display = "none";
 	current_db = players;
 	// ratings = mergeSort(ratings);
