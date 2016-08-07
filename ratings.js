@@ -110,7 +110,9 @@ function readData(xml) {
 			ids[n] = parseInt(text3);
 		}
 	}
-	ratings = mergeSort(ratings);
+	var nnr = mergeSort(ratings);
+	ratings = nnr[0];
+	names = nnr[1]
 	var rating_ranges = new Array();
 	for (i = 0; i < 30; i++) {
 		rating_ranges[i] = 0;
@@ -123,31 +125,38 @@ function readData(xml) {
 	}
 }
 
-function mergeSort(items) {
+function mergeSort(items, items2) {
 
     if (items.length < 2) {
-        return items;
+        return [items, items2];
     }
 
     var middle = Math.floor(items.length / 2),
-        left    = items.slice(0, middle),
-        right   = items.slice(middle);
+        left1    = items.slice(0, middle),
+        right1   = items.slice(middle);
+        left2    = items2.slice(0, middle);
+        right2    = items2.slice(0, middle);
 
-    return merge(mergeSort(left), mergeSort(right));
+    return merge(mergeSort(left, left2), mergeSort(right, right2), left2, right2);
 }
 
-function merge(left, right) {
+function merge(left, right, left2, right2) {
     var result  = [],
+        result2 = [],
         il      = 0,
         ir      = 0;
+        il2     = 0;
+        ir2     = 0;
 
     while (il < left.length && ir < right.length) {
         if (left[il] > right[ir]){
             result.push(left[il++]);
+            result2.push(left2[il2++]);
         } else {
             result.push(right[ir++]);
+            result2.push(right2[ir2++]);
         }
     }
 
-    return result.concat(left.slice(il)).concat(right.slice(ir));
+    return [result.concat(left.slice(il)).concat(right.slice(ir)), result2.concat(left2.slice(il2)).concat(right2.slice(ir2))];
 }
