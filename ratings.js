@@ -110,26 +110,30 @@ function readData(xml) {
 			ids[n] = parseInt(text3);
 		}
 	}
-	mergeSort(ratings);
+	ratings = mergeSort(ratings);
+	var rating_ranges = new Array();
 	for (i = 0; i < ratings.length; i++) {
-		console.log(ratings[i]);
+		rating_ranges[ratings[i] / 100 | 0]++;
+	}
+	for (i = 0; i < rating_ranges.length; i++) {
+		console.log(100 * i + ": " + rating_ranges[i]);
 	}
 }
 
 function mergeSort(items) {
 
     if (items.length < 2) {
-        return;
+        return items;
     }
 
     var middle = Math.floor(items.length / 2),
         left    = items.slice(0, middle),
         right   = items.slice(middle);
 
-    items = merge(mergeSort(left), mergeSort(right));
+    return merge(mergeSort(left), mergeSort(right));
 }
 
-function merge(left, right){
+function merge(left, right) {
     var result  = [],
         il      = 0,
         ir      = 0;
