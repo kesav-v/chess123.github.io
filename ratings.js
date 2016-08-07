@@ -78,85 +78,48 @@ function getXML() {
 
 function readData(xml) {
 	var xmlDoc = xml.responseXML;
-	var name_elems = xmlDoc.getElementsByTagName("name");
-	var rating_elems = xmlDoc.getElementsByTagName("rating");
-	var id_elems = xmlDoc.getElementsByTagName("fideid");
+	var players = xmlDoc.getElementsByTagName("player");
 	for (n = 0; n < name_elems.length; n++) {
-		var elem = name_elems[n];
-		var child = elem.childNodes[0];
-		if (child === undefined) {
-			names[n] = "";
-		}
-		else {
-			var text = child.nodeValue;
-			names[n] = text;
-		}
-		var elem2 = rating_elems[n];
-		var child2 = elem2.childNodes[0];
-		if (child2 === undefined) {
-			ratings[n] = 0;
-		}
-		else {
-			var text2 = child2.nodeValue;
-			ratings[n] = parseInt(text2);
-		}
-		var elem3 = id_elems[n];
-		var child3 = elem2.childNodes[0];
-		if (child3 === undefined) {
-			ids[n] = 0;
-		}
-		else {
-			var text3 = child3.nodeValue;
-			ids[n] = parseInt(text3);
-		}
+		console.log(players[n].childNodes[1].nodeValue, players[n].childNodes[7].nodeValue);
 	}
-	var nnr = mergeSort(ratings, names);
-	ratings = nnr[0];
-	names = nnr[1]
-	var rating_ranges = new Array();
-	for (i = 0; i < 30; i++) {
-		rating_ranges[i] = 0;
-	}
-	for (i = 0; i < ratings.length; i++) {
-		rating_ranges[ratings[i] / 100 | 0]++;
-	}
-	for (i = 0; i < rating_ranges.length; i++) {
-		console.log(100 * i + ": " + rating_ranges[i]);
-	}
+	// ratings = mergeSort(ratings);
+	// var rating_ranges = new Array();
+	// for (i = 0; i < 30; i++) {
+	// 	rating_ranges[i] = 0;
+	// }
+	// for (i = 0; i < ratings.length; i++) {
+	// 	rating_ranges[ratings[i] / 100 | 0]++;
+	// }
+	// for (i = 0; i < rating_ranges.length; i++) {
+	// 	console.log(100 * i + ": " + rating_ranges[i]);
+	// }
 }
 
-function mergeSort(items, items2) {
+function mergeSort(items) {
 
     if (items.length < 2) {
-        return [items, items2];
+        return items;
     }
 
     var middle = Math.floor(items.length / 2),
-        left1    = items.slice(0, middle),
-        right1   = items.slice(middle);
-        left2    = items2.slice(0, middle);
-        right2    = items2.slice(middle);
+        left    = items.slice(0, middle),
+        right   = items.slice(middle);
 
-    return merge(mergeSort(left1, left2), mergeSort(right1, right2), left2, right2);
+    return merge(mergeSort(left), mergeSort(right));
 }
 
-function merge(left, right, left2, right2) {
+function merge(left, right) {
     var result  = [],
-        result2 = [],
         il      = 0,
         ir      = 0;
-        il2     = 0;
-        ir2     = 0;
 
     while (il < left.length && ir < right.length) {
         if (left[il] > right[ir]){
             result.push(left[il++]);
-            result2.push(left2[il2++]);
         } else {
             result.push(right[ir++]);
-            result2.push(right2[ir2++]);
         }
     }
 
-    return [result.concat(left.slice(il)).concat(right.slice(ir)), result2.concat(left2.slice(il2)).concat(right2.slice(ir2))];
+    return result.concat(left.slice(il)).concat(right.slice(ir));
 }
