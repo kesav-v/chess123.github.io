@@ -132,15 +132,15 @@
             margin-top: none;
             z-index: 1000;
           }
-          #dropdown-names tr, #dropdown-names2 tr {
+          .search-results, .search-results2 {
             text-align: left;
             border-bottom: 1px solid gray;
           }
-          #dropdown-names td, #dropdown-names2 td {
+          .search-results td, .search-results2 td {
             border-left: 1px solid gray;
             border-right: 1px solid gray;
           }
-          #dropdown-names tr:hover,#dropdown-names td:hover, #dropdown-names2 tr:hover, #dropdown-names2 td:hover {
+          .search-results:hover,.search-results td:hover, .search-results2:hover, .search-results2 td:hover {
             background-color: gray;
             cursor: pointer;
           }
@@ -170,6 +170,9 @@
             background: none;
             border: none;
             font-weight: bolder;
+          }
+          th {
+            border: 1px solid gray;
           }
         </style>
 	</head>
@@ -248,41 +251,52 @@
               </form>
               <div id="dropdown-names2">
                 <table class="result-table">
-                  <tr class="search-results2">
-                    <td class="title"></td>
-                    <td class="name"></td>
-                    <td class="rating"></td>
-                    <td style="text-align: center;" class="federation"></td>
-                    <td style="text-align: center;" class="k-fac"></td>
-                  </tr>
-                  <tr class="search-results2">
-                    <td class="title"></td>
-                    <td class="name"></td>
-                    <td class="rating"></td>
-                    <td style="text-align: center;" class="federation"></td>
-                    <td style="text-align: center;" class="k-fac"></td>
-                  </tr>
-                  <tr class="search-results2">
-                    <td class="title"></td>
-                    <td class="name"></td>
-                    <td class="rating"></td>
-                    <td style="text-align: center;" class="federation"></td>
-                    <td style="text-align: center;" class="k-fac"></td>
-                  </tr>
-                  <tr class="search-results2">
-                    <td class="title"></td>
-                    <td class="name"></td>
-                    <td class="rating"></td>
-                    <td style="text-align: center;" class="federation"></td>
-                    <td style="text-align: center;" class="k-fac"></td>
-                  </tr>
-                  <tr class="search-results2">
-                    <td class="title"></td>
-                    <td class="name"></td>
-                    <td class="rating"></td>
-                    <td style="text-align: center;" class="federation"></td>
-                    <td style="text-align: center;" class="k-fac"></td>
-                  </tr>
+                  <thead>
+                    <tr>
+                      <th>Title</th>
+                      <th>Name</th>
+                      <th>Rating</th>
+                      <th>Federation</th>
+                      <th>K</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="search-results2">
+                      <td class="title"></td>
+                      <td class="name"></td>
+                      <td class="rating"></td>
+                      <td style="text-align: center;" class="federation"></td>
+                      <td style="text-align: center;" class="k-fac"></td>
+                    </tr>
+                    <tr class="search-results2">
+                      <td class="title"></td>
+                      <td class="name"></td>
+                      <td class="rating"></td>
+                      <td style="text-align: center;" class="federation"></td>
+                      <td style="text-align: center;" class="k-fac"></td>
+                    </tr>
+                    <tr class="search-results2">
+                      <td class="title"></td>
+                      <td class="name"></td>
+                      <td class="rating"></td>
+                      <td style="text-align: center;" class="federation"></td>
+                      <td style="text-align: center;" class="k-fac"></td>
+                    </tr>
+                    <tr class="search-results2">
+                      <td class="title"></td>
+                      <td class="name"></td>
+                      <td class="rating"></td>
+                      <td style="text-align: center;" class="federation"></td>
+                      <td style="text-align: center;" class="k-fac"></td>
+                    </tr>
+                    <tr class="search-results2">
+                      <td class="title"></td>
+                      <td class="name"></td>
+                      <td class="rating"></td>
+                      <td style="text-align: center;" class="federation"></td>
+                      <td style="text-align: center;" class="k-fac"></td>
+                    </tr>
+                  </tbody>
                 </table>
               </div>
             </div><br>
