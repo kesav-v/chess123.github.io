@@ -6,6 +6,7 @@ var currField = 1;
 var players = new Array();
 var current_search = "";
 var current_db = new Array();
+var current_db2 = new Array();
 var loaded = false;
 
 function addField() {
@@ -150,7 +151,9 @@ function setUpPage() {
 			srch = srch.substring(0, srch.indexOf(",") + 1) + " " + srch.substring(srch.indexOf(",") + 1);
 		}
 		srch = srch.toLowerCase();
-		bestResults = search(players, srch);
+		if (srch.length > current_search.length) bestResults = search(current_db2, srch);
+		else bestResults = search(players, srch);
+		current_db2 = bestResults;
 		var links = document.getElementsByClassName("search-results2");
 		for (i = 0; i < links.length; i++) {
 			if (bestResults.length === 0) {
