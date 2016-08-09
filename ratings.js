@@ -5,6 +5,7 @@ var diffs = [3, 10, 17, 25, 32, 39, 46, 53, 61, 68, 76, 83, 91, 98, 106,
 var currField = 1;
 var players = new Array();
 var current_search = "";
+var current_search2 = "";
 var current_db = new Array();
 var current_db2 = new Array();
 var loaded = false;
@@ -84,7 +85,6 @@ var msg;
 
 window.onload = function() {
 	msg = document.getElementById("xml-test");
-	document.getElementById("all-forms").style.display = "none";
 	var form1 = document.getElementsByClassName('rating-num')[0];
 	form1.value = "";
 	getXML();
@@ -151,7 +151,7 @@ function setUpPage() {
 			srch = srch.substring(0, srch.indexOf(",") + 1) + " " + srch.substring(srch.indexOf(",") + 1);
 		}
 		srch = srch.toLowerCase();
-		if (srch.length > current_search.length) bestResults = search(current_db2, srch);
+		if (srch.length > current_search2.length) bestResults = search(current_db2, srch);
 		else bestResults = search(players, srch);
 		current_db2 = bestResults;
 		var links = document.getElementsByClassName("search-results2");
@@ -176,6 +176,7 @@ function setUpPage() {
 			links[i].getElementsByClassName("federation")[0].innerHTML = fed;
 			links[i].getElementsByClassName("k-fac")[0].innerHTML = kf;
 		}
+		current_search2 = srch;
 	}
 	$('.search-results').click(function(event) {
 		console.log("LOADED OVER HEREEEEE");
