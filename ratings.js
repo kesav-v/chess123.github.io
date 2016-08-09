@@ -236,6 +236,10 @@ function getXML() {
 }
 
 function updateProgress(oEvent) {
+	if (!oEvent.lengthComputable) {
+		msg.innerHTML = "Loading data...";
+		return;
+	}
 	var finished = oEvent.loaded;
 	var total = oEvent.total;
 	var percent = finished / total * 100;
