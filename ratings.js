@@ -6,20 +6,39 @@ var currField = 1;
 var players = new Array();
 var current_search = "";
 var current_db = new Array();
+var loaded = false;
 
 function addField() {
 	currField++;
 	var form = document.createElement("form");
-	form.setAttribute("class", "rating");
-	form.innerHTML = '<input name="' + currField + '" class="rating-num" type="number">\n<input class="win" type="radio" name="result' + currField + '">\n<input class="draw" type="radio" name="result' + currField + '">\n<input class="lose" type="radio" name="result' + currField + '">';
+	form.setAttribute("class", "rating-enter");
+	form.innerHTML = '<button class="remove-button">-</button>\n' + '<input name="' + currField + '" class="rating-num" type="number">\n<input class="win" type="radio" name="result' + currField + '">\n<input class="draw" type="radio" name="result' + currField + '">\n<input class="lose" type="radio" name="result' + currField + '">';
 	document.getElementById("form-container").appendChild(form);
+	form.value = "";
+	$('form').submit(false);
+	var elems = document.getElementsByClassName('remove-button');
+	console.log(form, elems[elems.length - 1]);
+	$(elems[elems.length - 1]).click(function(event) {
+		var index = -1;
+		var elems6 = document.getElementsByClassName('remove-button');
+		for (x = 0; x < elems6.length; x++) {
+			if (elems6[x] === event.target) {
+				index = x;
+				break;
+			}
+		}
+		var tempelem = document.getElementsByClassName('rating-enter')[index];
+		console.log(tempelem);
+		$(tempelem).remove();
+		currField--;
+	});
 }
 
-function removeField() {
-	currField--;
-	var elems = document.getElementsByClassName('rating');
+function removeField(n) {
+	var elems = document.getElementsByClassName('rating-enter');
 	if (elems.length === 0) return;
-	elems[elems.length - 1].remove();
+	elems[n].remove();
+	currField--;
 }
 
 function calcRating(r1, r2, res, k) {
@@ -64,9 +83,24 @@ var msg;
 
 window.onload = function() {
 	msg = document.getElementById("xml-test");
+	document.getElementById("all-forms").style.display = "none";
+	var form1 = document.getElementsByClassName('rating-num')[0];
+	form1.value = "";
+	getXML();
+}
+
+function setUpPage() {
+	var ratingfields = document.getElementsByClassName('rating-num');
+	for (i = 0; i < ratingfields.length; i++) {
+		ratingfields[i].removeEventListener('submit', function() {});
+	}
 	getXML();
 	document.getElementById("dropdown-names").style.width = document.getElementById("test-field").offsetWidth + "px";
-	document.getElementById("test-field").onkeyup = function() {
+	document.getElementById("dropdown-names2").style.width = document.getElementById("test-field2").offsetWidth + "px";
+	$('form').submit(false);
+	$('input').val("");
+	document.getElementById("test-field").onkeyup = function(e) {
+		if (e.keyCode === 13) return;
 		var srch = document.getElementById("test-field").value;
 		if (srch.length === 0) {
 			document.getElementById("dropdown-names").style.display = "none";
@@ -83,40 +117,115 @@ window.onload = function() {
 		current_db = bestResults;
 		var links = document.getElementsByClassName("search-results");
 		for (i = 0; i < links.length; i++) {
-			if (i >= bestResults.length) {
-				links[i].innerHTML = "";
+			if (bestResults.length === 0) {
+				links[i].style.display = "none";
 				continue;
 			}
+			if (i >= bestResults.length) {
+				links[i].style.display = "none";
+				continue;
+			}
+			links[i].style.display = "table-row";
 			var title = getVal(bestResults[i], "title");
-			var temp_string = "";
-			if (title.length > 0) temp_string += title + " ";
-			temp_string += getVal(bestResults[i], "name") + " (" + getVal(bestResults[i], "rating") + ") (" + getVal(bestResults[i], "country") + ")";
-			links[i].innerHTML = temp_string;
+			var name = getVal(bestResults[i], "name");
+			var rating = parseInt(getVal(bestResults[i], "rating"));
+			var fed = getVal(bestResults[i], "country");
+			links[i].getElementsByClassName("title")[0].innerHTML = title;
+			links[i].getElementsByClassName("name")[0].innerHTML = name;
+			links[i].getElementsByClassName("rating")[0].innerHTML = rating;
+			links[i].getElementsByClassName("federation")[0].innerHTML = fed;
 		}
 		current_search = srch;
 	}
+	document.getElementById("test-field2").onkeyup = function(e) {
+		if (e.keyCode === 13) return;
+		var srch = document.getElementById("test-field2").value;
+		if (srch.length === 0) {
+			document.getElementById("dropdown-names2").style.display = "none";
+			return;
+		}
+		document.getElementById("dropdown-names2").style.display = "inherit";
+		var bestResults;
+		if (srch.indexOf(",") != -1 && srch.indexOf(", ") == -1) {
+			srch = srch.substring(0, srch.indexOf(",") + 1) + " " + srch.substring(srch.indexOf(",") + 1);
+		}
+		srch = srch.toLowerCase();
+		bestResults = search(players, srch);
+		var links = document.getElementsByClassName("search-results2");
+		for (i = 0; i < links.length; i++) {
+			if (bestResults.length === 0) {
+				links[i].style.display = "none";
+				continue;
+			}
+			if (i >= bestResults.length) {
+				links[i].style.display = "none";
+				continue;
+			}
+			links[i].style.display = "table-row";
+			var title = getVal(bestResults[i], "title");
+			var name = getVal(bestResults[i], "name");
+			var rating = parseInt(getVal(bestResults[i], "rating"));
+			var fed = getVal(bestResults[i], "country");
+			var kf = getVal(bestResults[i], "k");
+			links[i].getElementsByClassName("title")[0].innerHTML = title;
+			links[i].getElementsByClassName("name")[0].innerHTML = name;
+			links[i].getElementsByClassName("rating")[0].innerHTML = rating;
+			links[i].getElementsByClassName("federation")[0].innerHTML = fed;
+			links[i].getElementsByClassName("k-fac")[0].innerHTML = kf;
+		}
+	}
 	$('.search-results').click(function(event) {
+		console.log("LOADED OVER HEREEEEE");
 		document.getElementById("dropdown-names").style.display = "none";
-		var str = event.target.innerHTML;
 		var elems5 = document.getElementsByClassName('rating-num');
+		var rating = event.target.parentElement.getElementsByClassName("rating")[0].innerHTML;
+		rating = parseInt(rating);
 		document.getElementById('test-field').value = "";
 		var p;
 		for (p = 0; p < elems5.length; p++) {
 			if (elems5[p].value === "") {
-				elems5[p].value = parseInt(str.substring(str.indexOf('(') + 1, str.indexOf(')')));
+				elems5[p].value = rating;
 				break;
 			}
 		}
 		if (p === elems5.length) {
 			addField();
-			document.getElementsByClassName('rating-num')[p].value = parseInt(str.substring(str.indexOf('(') + 1, str.indexOf(')')));
+			document.getElementsByClassName('rating-num')[p].value = rating;
 		}
+	});
+	$('.search-results2').click(function(event) {
+		document.getElementById("dropdown-names2").style.display = "none";
+		var rating = event.target.parentElement.getElementsByClassName("rating")[0].innerHTML;
+		var kfact = event.target.parentElement.getElementsByClassName("k-fac")[0].innerHTML;
+		rating = parseInt(rating);
+		kfact = parseInt(kfact);
+		document.getElementById('test-field2').value = "";
+		var ownrating = document.getElementById('own-rating');
+		var kfactor = document.getElementById('k-factor');
+		ownrating.value = rating;
+		kfactor.value = kfact;
+	});
+	$('.remove-button').click(function(event) {
+		var index = -1;
+		var elems6 = document.getElementsByClassName('remove-button');
+		for (x = 0; x < elems6.length; x++) {
+			if (elems6[x] === event.target) {
+				index = x;
+				break;
+			}
+		}
+		console.log(index);
+		var tempelem = document.getElementsByClassName('rating-enter')[index];
+		$(tempelem).remove();
+		currField--;
 	});
 }
 
 function getXML() {
+	if (loaded) return;
 	msg.innerHTML = "Loading file...";
 	var xhttp = new XMLHttpRequest();
+	xhttp.addEventListener("progress", updateProgress);
 	xhttp.onreadystatechange = function() {
 	    if (xhttp.readyState == 4 && xhttp.status == 200) {
 	    	readData(xhttp);
@@ -124,6 +233,13 @@ function getXML() {
 	}
 	xhttp.open("GET", "rating_lists/standard_rating_list_xml.xml", true);
 	xhttp.send();
+}
+
+function updateProgress(oEvent) {
+	var finished = oEvent.loaded;
+	var total = oEvent.total;
+	var percent = finished / total * 100;
+	msg.innerHTML = "Loading data - " + Math.round(percent) + "%...";
 }
 
 function search(db, str) {
@@ -146,15 +262,17 @@ function beginsWith(name, start) {
 
 function readData(xml) {
 	var xmlDoc = xml.responseXML;
-	msg.innerHTML = "Loading data...";
+	msg.innerHTML = "Loading data - 0%...";
 	var player_elems = xmlDoc.getElementsByTagName("player");
 	for (q = 0; q < player_elems.length; q++) {
 		players[q] = player_elems[q];
 	}
-	msg.innerHTML = "Sorting by rating...";
 	players = mergeSort(players);
 	msg.style.display = "none";
+	document.getElementById("all-forms").style.display = "inherit";
 	current_db = players;
+	loaded = true;
+	setUpPage();
 	// ratings = mergeSort(ratings);
 	// var rating_ranges = new Array();
 	// for (i = 0; i < 30; i++) {

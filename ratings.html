@@ -110,16 +110,16 @@
           .rating-num {
             width: 3.0rem;
           }
-          .win, .draw, .lose {
+          .win, .draw, .lose, .rating-num {
             margin-left: 30px;
           }
           #own-rating, #k-factor {
             width: 3.0rem;
           }
-          #test-field {
+          #test-field, #test-field2 {
             width: 40%;
           }
-          #dropdown-names {
+          #dropdown-names, #dropdown-names2 {
             display: none;
             position: absolute;
             background-color: black;
@@ -132,12 +132,44 @@
             margin-top: none;
             z-index: 1000;
           }
-          #dropdown-names div {
+          #dropdown-names tr, #dropdown-names2 tr {
             text-align: left;
+            border-bottom: 1px solid gray;
           }
-          #dropdown-names div:hover {
+          #dropdown-names td, #dropdown-names2 td {
+            border-left: 1px solid gray;
+            border-right: 1px solid gray;
+          }
+          #dropdown-names tr:hover,#dropdown-names td:hover, #dropdown-names2 tr:hover, #dropdown-names2 td:hover {
             background-color: gray;
             cursor: pointer;
+          }
+          .result-table {
+            width: 100%;
+            border-collapse: collapse;
+          }
+          .remove-button {
+            align: center;
+            display: inline-block;
+            vertical-align: middle;
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: red;
+            font-weight: bolder;
+          }
+          #form-container {
+            text-align: center;
+          }
+          button:hover {
+            cursor: pointer;
+          }
+          #add-one {
+            font-size: 20px;
+            color: green;
+            background: none;
+            border: none;
+            font-weight: bolder;
           }
         </style>
 	</head>
@@ -197,45 +229,121 @@
               </div>
           </div>
           <script src="ratings.js"></script><br><br><br>
-          <div align="center">
-            <form>
-              <input id="test-field" name="search-test" type="text">
-            </form>
-            <div id="dropdown-names">
-              <div class="search-results"></div>
-              <div class="search-results"></div>
-              <div class="search-results"></div>
-              <div class="search-results"></div>
-              <div class="search-results"></div>
-            </div>
-          </div>
+          <h1 align="center">Welcome to Kesav's FIDE Rating Calculator!</h1>
           <div align="center" id="xml-test"></div>
-          <div id="basic-info">
-            <div>Enter your rating and K factor below:</div><br>
-            <form>
-              Rating:
-              <input id="own-rating" type="number">
-              K factor:
-              <input id="k-factor" type="number">
-            </form>
-          </div><br>
-          <div align="center">Enter your opponents' ratings and your result in each game (left for win, middle for draw, right for loss):</div><br>
-          <div id="plusminus">
-            <button onclick="addField();">+</button>
-            <button onclick="removeField();">-</button>
-          </div><br>
-          <div id="form-container">
-            <form class="rating">
-              <input name="form1" class="rating-num" type="number">
-              <input class="win" type="radio" name="result1">
-              <input class="draw" type="radio" name="result1">
-              <input class="lose" type="radio" name="result1">
-            </form>
-          </div><br>
-          <div align="center">
-            <button onclick="crunchData();">Submit</button>
-          </div><br>
-          <div align="center" id="rating-change"></div>
+          <div id="all-forms">
+            <div id="basic-info">
+              <div>Enter your rating and K factor below:</div><br>
+              <form>
+                Rating:
+                <input id="own-rating" type="number">
+                K factor:
+                <input id="k-factor" type="number">
+              </form>
+            </div><br>
+            <div align="center">Or use the search below to find the information for you: </div><br>
+            <div align="center">
+              <form>
+                <input id="test-field2" name="search-test" type="text">
+              </form>
+              <div id="dropdown-names2">
+                <table class="result-table">
+                  <tr class="search-results2">
+                    <td class="title"></td>
+                    <td class="name"></td>
+                    <td class="rating"></td>
+                    <td style="text-align: center;" class="federation"></td>
+                    <td style="text-align: center;" class="k-fac"></td>
+                  </tr>
+                  <tr class="search-results2">
+                    <td class="title"></td>
+                    <td class="name"></td>
+                    <td class="rating"></td>
+                    <td style="text-align: center;" class="federation"></td>
+                    <td style="text-align: center;" class="k-fac"></td>
+                  </tr>
+                  <tr class="search-results2">
+                    <td class="title"></td>
+                    <td class="name"></td>
+                    <td class="rating"></td>
+                    <td style="text-align: center;" class="federation"></td>
+                    <td style="text-align: center;" class="k-fac"></td>
+                  </tr>
+                  <tr class="search-results2">
+                    <td class="title"></td>
+                    <td class="name"></td>
+                    <td class="rating"></td>
+                    <td style="text-align: center;" class="federation"></td>
+                    <td style="text-align: center;" class="k-fac"></td>
+                  </tr>
+                  <tr class="search-results2">
+                    <td class="title"></td>
+                    <td class="name"></td>
+                    <td class="rating"></td>
+                    <td style="text-align: center;" class="federation"></td>
+                    <td style="text-align: center;" class="k-fac"></td>
+                  </tr>
+                </table>
+              </div>
+            </div><br>
+            <div align="center">Use the search bar below to find your opponents' ratings, then enter your results for each game (left for win, middle for draw, right for loss):</div><br>
+            <div align="center">
+              <form>
+                <input id="test-field" name="search-test" type="text">
+              </form>
+              <div id="dropdown-names">
+                <table class="result-table">
+                  <tr class="search-results">
+                    <td class="title"></td>
+                    <td class="name"></td>
+                    <td class="rating"></td>
+                    <td style="text-align: center;" class="federation"></td>
+                  </tr>
+                  <tr class="search-results">
+                    <td class="title"></td>
+                    <td class="name"></td>
+                    <td class="rating"></td>
+                    <td style="text-align: center;" class="federation"></td>
+                  </tr>
+                  <tr class="search-results">
+                    <td class="title"></td>
+                    <td class="name"></td>
+                    <td class="rating"></td>
+                    <td style="text-align: center;" class="federation"></td>
+                  </tr>
+                  <tr class="search-results">
+                    <td class="title"></td>
+                    <td class="name"></td>
+                    <td class="rating"></td>
+                    <td style="text-align: center;" class="federation"></td>
+                  </tr>
+                  <tr class="search-results">
+                    <td class="title"></td>
+                    <td class="name"></td>
+                    <td class="rating"></td>
+                    <td style="text-align: center;" class="federation"></td>
+                  </tr>
+                </table>
+              </div>
+            </div><br>
+            <div align="center">Enter your opponents' ratings and your result in each game (left for win, middle for draw, right for loss):</div><br>
+            <div id="plusminus">
+              <button onclick="addField();" id="add-one">+</button>
+            </div><br>
+            <div id="form-container">
+              <form class="rating-enter">
+                <button class="remove-button">-</button>
+                <input name="form1" class="rating-num" type="number">
+                <input class="win" type="radio" name="result1">
+                <input class="draw" type="radio" name="result1">
+                <input class="lose" type="radio" name="result1">
+              </form>
+            </div><br>
+            <div align="center">
+              <button onclick="crunchData();">Submit</button>
+            </div><br>
+            <div align="center" id="rating-change"></div>
+          </div>
         </div>
     </body>
 </html>
