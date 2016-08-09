@@ -235,7 +235,7 @@ function getXML() {
 	    	readData(xhttp);
 	    }
 	}
-	xhttp.open("GET", "rating_lists/standard_rating_list_xml.xml", true);
+	xhttp.open("GET", "rating_lists/standard_rating_list.txt", true);
 	xhttp.send();
 }
 
@@ -269,12 +269,31 @@ function beginsWith(name, start) {
 }
 
 function readData(xml) {
-	var xmlDoc = xml.responseXML;
-	msg.innerHTML = "Loading data - 0%...";
-	var player_elems = xmlDoc.getElementsByTagName("player");
-	for (q = 0; q < player_elems.length; q++) {
-		players[q] = player_elems[q];
+	var xmlDoc = xml.responseText;
+	console.log("Finished loading");
+	var temp = xmlDoc;
+	temp = temp.substring(temp.indexOf('\n') + 1);
+	var cnt = 0;
+	while (temp.length > 0) {
+		var newline = temp.indexOf('\n');
+		var part1 = temp.substring(0, newline);
+		var parts = new Array();
+		var indices = [0, 15, 76, 80, 84, 89, 94, 109, 115, 119, 122, 128, part1.length];
+		var cnt1 = 0;
+		for (i = 0; i < indices.length - 1; i++) {
+			parts[cnt1] = part1.substring(indices[i], indices[i + 1]).trim();
+			cnt1++;
+		}
+		players[cnt] = parts;
+		temp = temp.substring(newline + 1);
+		cnt++;
 	}
+	console.log(players[143859]);
+	// var player_elems = xmlDoc.getElementsByTagName("player");
+	// console.log("Got elements");
+	// for (q = 0; q < player_elems.length; q++) {
+	// 	players[q] = player_elems[q];
+	// }
 	players = mergeSort(players);
 	msg.style.display = "none";
 	document.getElementById("all-forms").style.display = "inherit";
@@ -296,7 +315,20 @@ function readData(xml) {
 }
 
 function getVal(player, attribute) {
-	return player.getElementsByTagName(attribute)[0].innerHTML;
+	switch (attribute) {
+		case "fideid": return player[0];
+		case "name": return player[1];
+		case "country": return player[2];
+		case "sex": return player[3];
+		case "title": return player[4];
+		case "w_title": return player[5];
+		case "o_title": return player[6];
+		case "rating": return player[7];
+		case "games": return player[8];
+		case "k": return player[9];
+		case "birthday": return player[10];
+		case "flag": return player[11];
+	}
 }
 
 function mergeSort(items) {
