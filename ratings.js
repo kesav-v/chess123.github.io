@@ -279,6 +279,7 @@ function readData(xml) {
 	msg.style.display = "none";
 	document.getElementById("all-forms").style.display = "inherit";
 	current_db = players;
+	current_db2 = players;
 	loaded = true;
 	setUpPage();
 	// ratings = mergeSort(ratings);
