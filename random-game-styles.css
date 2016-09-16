@@ -1,0 +1,8 @@
+#hello {
+	border: 2px solid black;
+	border-collapse: collapse;
+	position: absolute;
+	margin: none;
+	left: 0;
+	top: 0;
+}

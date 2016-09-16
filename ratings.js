@@ -4,22 +4,26 @@ var diffs = [3, 10, 17, 25, 32, 39, 46, 53, 61, 68, 76, 83, 91, 98, 106,
 			357, 374, 391];
 var currField = 1;
 var players = new Array();
+for (m = 0; m < 26; m++) {
+	players[m] = new Array();
+}
 var current_search = "";
 var current_search2 = "";
 var current_db = new Array();
 var current_db2 = new Array();
 var loaded = false;
+var str = 'a';
+const shift = str.charCodeAt(0);
 
 function addField() {
 	currField++;
 	var form = document.createElement("form");
 	form.setAttribute("class", "rating-enter");
-	form.innerHTML = '<button class="remove-button">-</button>\n' + '<input name="' + currField + '" class="rating-num" type="number">\n<input class="win" type="radio" name="result' + currField + '">\n<input class="draw" type="radio" name="result' + currField + '">\n<input class="lose" type="radio" name="result' + currField + '">';
+	form.innerHTML = '<form class="rating-enter">\n<input name="form' + currField + '" class="rating-num" type="number">\n<input class="win" type="radio" name="result' + currField + '">\n<input class="draw" type="radio" name="result' + currField + '">\n<input class="lose" type="radio" name="result' + currField + '">\n</form><br>';
 	document.getElementById("form-container").appendChild(form);
 	form.value = "";
 	$('form').submit(false);
 	var elems = document.getElementsByClassName('remove-button');
-	console.log(form, elems[elems.length - 1]);
 	$(elems[elems.length - 1]).click(function(event) {
 		var index = -1;
 		var elems6 = document.getElementsByClassName('remove-button');
@@ -30,7 +34,6 @@ function addField() {
 			}
 		}
 		var tempelem = document.getElementsByClassName('rating-enter')[index];
-		console.log(tempelem);
 		$(tempelem).remove();
 		currField--;
 	});
@@ -87,7 +90,7 @@ window.onload = function() {
 	msg = document.getElementById("xml-test");
 	var form1 = document.getElementsByClassName('rating-num')[0];
 	form1.value = "";
-	getXML();
+	getText();
 }
 
 function setUpPage() {
@@ -95,7 +98,6 @@ function setUpPage() {
 	for (i = 0; i < ratingfields.length; i++) {
 		ratingfields[i].removeEventListener('submit', function() {});
 	}
-	getXML();
 	document.getElementById("dropdown-names").style.width = document.getElementById("test-field").offsetWidth + "px";
 	document.getElementById("dropdown-names2").style.width = document.getElementById("test-field2").offsetWidth + "px";
 	$('form').submit(false);
@@ -113,8 +115,8 @@ function setUpPage() {
 			srch = srch.substring(0, srch.indexOf(",") + 1) + " " + srch.substring(srch.indexOf(",") + 1);
 		}
 		srch = srch.toLowerCase();
-		if (srch.length > current_search.length) bestResults = search(current_db, srch);
-		else bestResults = search(players, srch);
+		if (srch.length > current_search.length) bestResults = search(srch);
+		else bestResults = search(srch);
 		current_db = bestResults;
 		var links = document.getElementsByClassName("search-results");
 		for (i = 0; i < links.length; i++) {
@@ -151,8 +153,8 @@ function setUpPage() {
 			srch = srch.substring(0, srch.indexOf(",") + 1) + " " + srch.substring(srch.indexOf(",") + 1);
 		}
 		srch = srch.toLowerCase();
-		if (srch.length > current_search2.length) bestResults = search(current_db2, srch);
-		else bestResults = search(players, srch);
+		if (srch.length > current_search2.length) bestResults = search(srch);
+		else bestResults = search(srch);
 		current_db2 = bestResults;
 		var links = document.getElementsByClassName("search-results2");
 		for (i = 0; i < links.length; i++) {
@@ -179,7 +181,6 @@ function setUpPage() {
 		current_search2 = srch;
 	}
 	$('.search-results').click(function(event) {
-		console.log("LOADED OVER HEREEEEE");
 		document.getElementById("dropdown-names").style.display = "none";
 		var elems5 = document.getElementsByClassName('rating-num');
 		var rating = event.target.parentElement.getElementsByClassName("rating")[0].innerHTML;
@@ -218,14 +219,15 @@ function setUpPage() {
 				break;
 			}
 		}
-		console.log(index);
 		var tempelem = document.getElementsByClassName('rating-enter')[index];
 		$(tempelem).remove();
 		currField--;
 	});
 }
 
-function getXML() {
+function getText() {
+	readData();
+	return;
 	if (loaded) return;
 	msg.innerHTML = "Loading file...";
 	var xhttp = new XMLHttpRequest();
@@ -250,84 +252,86 @@ function updateProgress(oEvent) {
 	msg.innerHTML = "Loading data - " + Math.round(percent) + "%...";
 }
 
-function search(db, str) {
+function search(str) {
+	var db = players[str.charAt(0)];
+	if (str.length === 1) return db;
 	var matches = new Array();
-	var cnt = 0;
-	for (i = 0; i < db.length; i++) {
-		var tempName = getVal(db[i], "name");
-		if (beginsWith(tempName, str)) {
-			matches[cnt] = db[i];
-			cnt++;
+	var count = 0;
+	for (var i = 0; i < db.length; i++) {
+		if (beginsWith(db[i][1], str)) {
+			matches[count] = db[i];
+			count++;
 		}
-		// if (cnt == 100) break;
 	}
 	return matches;
 }
 
 function beginsWith(name, start) {
-	return (name.toLowerCase().indexOf(start) === 0);
+	return (name.toLowerCase().indexOf(start.toLowerCase()) === 0);
 }
 
-function readData(xml) {
-	var xmlDoc = xml.responseText;
-	console.log("Finished loading");
+function readData() {
+	var xmlDoc = data();
 	var temp = xmlDoc;
 	temp = temp.substring(temp.indexOf('\n') + 1);
-	var cnt = 0;
-	while (temp.length > 0) {
-		var newline = temp.indexOf('\n');
-		var part1 = temp.substring(0, newline);
+	msg.innerHTML = "Loading data...";
+	var cnt = new Array();
+	for (x = 0; x < 26; x++) {
+		cnt[x] = 0;
+	}
+	var count = 0;
+	var newline = -1;
+	var nl = temp.indexOf('\n');
+	console.log("populating lists");
+	while (nl != -1) {
+		nl = temp.indexOf('\n', newline + 1);
+		var part1 = temp.substring(newline + 1, nl);
 		var parts = new Array();
 		var indices = [0, 15, 76, 80, 84, 89, 94, 109, 115, 119, 122, 128, part1.length];
 		var cnt1 = 0;
 		for (i = 0; i < indices.length - 1; i++) {
 			parts[cnt1] = part1.substring(indices[i], indices[i + 1]).trim();
 			cnt1++;
+			if (i == 1) {
+				parts[cnt1] = parts[cnt1 - 1].substring(parts[cnt1 - 1].indexOf(',') + 2);
+				cnt1++;
+			}
 		}
-		players[cnt] = parts;
-		temp = temp.substring(newline + 1);
-		cnt++;
+		if (parts[1].length === 0) continue;
+		var index = parts[1].toLowerCase().charCodeAt(0) - shift;
+		if (players[parts[1].toLowerCase().charAt(0)] === undefined) {
+			players[parts[1].toLowerCase().charAt(0)] = new Array();
+		}
+		players[parts[1].toLowerCase().charAt(0)][cnt[index]] = parts;
+		cnt[index]++;
+		newline = nl;
+		count++;
 	}
-	console.log(players[143859]);
-	// var player_elems = xmlDoc.getElementsByTagName("player");
-	// console.log("Got elements");
-	// for (q = 0; q < player_elems.length; q++) {
-	// 	players[q] = player_elems[q];
-	// }
-	players = mergeSort(players);
+	console.log("done");
+	console.log(players['a'].length);
 	msg.style.display = "none";
 	document.getElementById("all-forms").style.display = "inherit";
 	current_db = players;
 	current_db2 = players;
 	loaded = true;
 	setUpPage();
-	// ratings = mergeSort(ratings);
-	// var rating_ranges = new Array();
-	// for (i = 0; i < 30; i++) {
-	// 	rating_ranges[i] = 0;
-	// }
-	// for (i = 0; i < ratings.length; i++) {
-	// 	rating_ranges[ratings[i] / 100 | 0]++;
-	// }
-	// for (i = 0; i < rating_ranges.length; i++) {
-	// 	console.log(100 * i + ": " + rating_ranges[i]);
-	// }
 }
 
 function getVal(player, attribute) {
 	switch (attribute) {
 		case "fideid": return player[0];
 		case "name": return player[1];
-		case "country": return player[2];
-		case "sex": return player[3];
-		case "title": return player[4];
-		case "w_title": return player[5];
-		case "o_title": return player[6];
-		case "rating": return player[7];
-		case "games": return player[8];
-		case "k": return player[9];
-		case "birthday": return player[10];
-		case "flag": return player[11];
+		case "firstname": return player[2];
+		case "country": return player[3];
+		case "sex": return player[4];
+		case "title": return player[5];
+		case "w_title": return player[6];
+		case "o_title": return player[7];
+		case "rating": return player[8];
+		case "games": return player[9];
+		case "k": return player[10];
+		case "birthday": return player[11];
+		case "flag": return player[12];
 	}
 }
 
@@ -350,7 +354,7 @@ function merge(left, right) {
         ir      = 0;
 
     while (il < left.length && ir < right.length) {
-        if (parseInt(getVal(left[il], "rating")) > parseInt(getVal(right[ir], "rating"))){
+        if (getVal(left[il], "firstname").localeCompare(getVal(right[ir], "firstname")) < 0) {
             result.push(left[il++]);
         } else {
             result.push(right[ir++]);

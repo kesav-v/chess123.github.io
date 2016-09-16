@@ -150,7 +150,7 @@
           }
           .remove-button {
             align: center;
-            display: inline-block;
+            display: inline;
             vertical-align: middle;
             background: none;
             border: none;
@@ -176,6 +176,14 @@
           }
           #all-forms {
             display: none;
+          }
+          #result-table, #result-table2 {
+            max-height: 300px;
+            overflow-y: scroll;
+          }
+          .rating-enter {
+            display: inline;
+            vertical-align: middle;
           }
         </style>
 	</head>
@@ -234,6 +242,7 @@
                 </div>
               </div>
           </div>
+          <script src="xml-data.js"></script>
           <script src="ratings.js"></script><br><br><br>
           <h1 align="center">Welcome to Kesav's FIDE Rating Calculator!</h1>
           <div align="center" id="xml-test"></div>
@@ -263,7 +272,42 @@
                       <th>K</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="search-table2">
+                    <tr class="search-results2">
+                      <td class="title"></td>
+                      <td class="name"></td>
+                      <td class="rating"></td>
+                      <td style="text-align: center;" class="federation"></td>
+                      <td style="text-align: center;" class="k-fac"></td>
+                    </tr>
+                    <tr class="search-results2">
+                      <td class="title"></td>
+                      <td class="name"></td>
+                      <td class="rating"></td>
+                      <td style="text-align: center;" class="federation"></td>
+                      <td style="text-align: center;" class="k-fac"></td>
+                    </tr>
+                    <tr class="search-results2">
+                      <td class="title"></td>
+                      <td class="name"></td>
+                      <td class="rating"></td>
+                      <td style="text-align: center;" class="federation"></td>
+                      <td style="text-align: center;" class="k-fac"></td>
+                    </tr>
+                    <tr class="search-results2">
+                      <td class="title"></td>
+                      <td class="name"></td>
+                      <td class="rating"></td>
+                      <td style="text-align: center;" class="federation"></td>
+                      <td style="text-align: center;" class="k-fac"></td>
+                    </tr>
+                    <tr class="search-results2">
+                      <td class="title"></td>
+                      <td class="name"></td>
+                      <td class="rating"></td>
+                      <td style="text-align: center;" class="federation"></td>
+                      <td style="text-align: center;" class="k-fac"></td>
+                    </tr>
                     <tr class="search-results2">
                       <td class="title"></td>
                       <td class="name"></td>
@@ -318,7 +362,37 @@
                       <th>Federation</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="search-table">
+                    <tr class="search-results">
+                      <td class="title"></td>
+                      <td class="name"></td>
+                      <td class="rating"></td>
+                      <td style="text-align: center;" class="federation"></td>
+                    </tr>
+                    <tr class="search-results">
+                      <td class="title"></td>
+                      <td class="name"></td>
+                      <td class="rating"></td>
+                      <td style="text-align: center;" class="federation"></td>
+                    </tr>
+                    <tr class="search-results">
+                      <td class="title"></td>
+                      <td class="name"></td>
+                      <td class="rating"></td>
+                      <td style="text-align: center;" class="federation"></td>
+                    </tr>
+                    <tr class="search-results">
+                      <td class="title"></td>
+                      <td class="name"></td>
+                      <td class="rating"></td>
+                      <td style="text-align: center;" class="federation"></td>
+                    </tr>
+                    <tr class="search-results">
+                      <td class="title"></td>
+                      <td class="name"></td>
+                      <td class="rating"></td>
+                      <td style="text-align: center;" class="federation"></td>
+                    </tr>
                     <tr class="search-results">
                       <td class="title"></td>
                       <td class="name"></td>
@@ -353,17 +427,13 @@
                 </table>
               </div>
             </div><br>
-            <div id="plusminus">
-              <button onclick="addField();" id="add-one">+</button>
-            </div><br>
             <div id="form-container">
               <form class="rating-enter">
-                <button class="remove-button">-</button>
                 <input name="form1" class="rating-num" type="number">
                 <input class="win" type="radio" name="result1">
                 <input class="draw" type="radio" name="result1">
                 <input class="lose" type="radio" name="result1">
-              </form>
+              </form><br>
             </div><br>
             <div align="center">
               <button onclick="crunchData();">Submit</button>
