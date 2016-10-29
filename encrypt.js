@@ -20,7 +20,6 @@ function getKey() {
   xmlhttp.open("GET", "key.txt", true);
   xmlhttp.send();
 }
-console.log(decrypt(y));
 
 function encrypt(s) {
 	var str = "";
