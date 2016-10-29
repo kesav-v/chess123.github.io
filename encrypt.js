@@ -3,7 +3,7 @@ window.onload = function() {
 	$('input[name="input1"]').keypress(find_string);
 }
 
-const y;
+var y;
 function getKey() {
   var xmlhttp;
   if (window.XMLHttpRequest) {
