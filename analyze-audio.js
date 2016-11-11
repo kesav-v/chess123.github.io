@@ -57,6 +57,8 @@ window.onload = function() {
 
   function draw() {
     var max = 0;
+    var arr = new Array();
+    var count = 0;
     var maxVal = 0;
      for (i = 0; i < analyser.fftSize / 4; i++) {
       if (frequencyData[i] > maxVal) {
@@ -69,10 +71,12 @@ window.onload = function() {
     for (i = 0; i < analyser.fftSize / 4; i++) {
       if (i != 0 && i != analyser.fftSize / 4 - 1) {
         if (frequencyData[i] > frequencyData[i - 1] && frequencyData[i] > frequencyData[i + 1]) {
-          console.log(i * ctx.sampleRate / (analyser.fftSize + 0.0));
+          arr[count] = (i * ctx.sampleRate / (analyser.fftSize + 0.0));
+          count++;
         }
       }
       g.fillRect(i * c.width / (analyser.fftSize / 4), c.height - c.height * frequencyData[i] / maxVal, (c.width / (analyser.fftSize / 2)), c.height * frequencyData[i] / maxVal);
     }
+    console.log(arr);
   }
 };
