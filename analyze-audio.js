@@ -8,7 +8,7 @@ window.onload = function() {
   // audio.crossOrigin = "anonymous";
   var audioSrc = ctx.createMediaElementSource(audio);
   var analyser = ctx.createAnalyser();
-  analyser.fftSize = 256;
+  analyser.fftSize = 4096;
   audio.volume = 1.0;
   var c = document.getElementById('mycanvas');
   var g = c.getContext('2d');
@@ -75,7 +75,7 @@ window.onload = function() {
           count++;
         }
       }
-      g.fillRect(i * c.width / (analyser.fftSize / 4), c.height - c.height * frequencyData[i] / maxVal, (c.width / (analyser.fftSize / 2)), c.height * frequencyData[i] / maxVal);
+      g.fillRect(i * c.width / (analyser.fftSize / 4), c.height - c.height * frequencyData[i] / maxVal, (c.width / (analyser.fftSize * 0.75)), c.height * frequencyData[i] / maxVal);
     }
     console.log(arr);
   }
