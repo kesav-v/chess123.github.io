@@ -8,7 +8,7 @@ window.onload = function() {
   // audio.crossOrigin = "anonymous";
   var audioSrc = ctx.createMediaElementSource(audio);
   var analyser = ctx.createAnalyser();
-  analyser.fftSize = 4096;
+  analyser.fftSize = 256;
   audio.volume = 1.0;
   var c = document.getElementById('mycanvas');
   var g = c.getContext('2d');
@@ -17,7 +17,6 @@ window.onload = function() {
   analyser.connect(ctx.destination);
   // audio.play();
 
-  audio.play();
   // we could configure the analyser: e.g. analyser.fftSize (for further infos read the spec)
  
   // frequencyBinCount tells you how many values you'll receive from the analyser
@@ -67,7 +66,11 @@ window.onload = function() {
     g.clearRect(0, 0, c.width, c.height);
     g.fillStyle = '#0000ff';
     for (i = 0; i < analyser.fftSize / 4; i++) {
-      // console.log(frequencyData[i]);
+      if (i != 0 && i != analyser.fftSize / 4 - 1) {
+        if (frequencyData[i] > frequencyData[i - 1] && frequencyData[i] > frequencyData[i + 1]) {
+          console.log(10400.0 / i);
+        }
+      }
       g.fillRect(i * c.width / (analyser.fftSize / 4), c.height - c.height * frequencyData[i] / maxVal, (c.width / (analyser.fftSize / 2)), c.height * frequencyData[i] / maxVal);
     }
   }
