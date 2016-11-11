@@ -75,7 +75,7 @@ window.onload = function() {
           count++;
         }
       }
-      g.fillRect(i * c.width / (analyser.fftSize / 4), c.height - c.height * frequencyData[i] / maxVal, (c.width / (analyser.fftSize * 0.75)), c.height * frequencyData[i] / maxVal);
+      g.fillRect(i * c.width / (analyser.fftSize / 4), c.height - c.height * frequencyData[i] / maxVal, (c.width / (analyser.fftSize / 3)), c.height * frequencyData[i] / maxVal);
     }
     console.log(arr);
   }
