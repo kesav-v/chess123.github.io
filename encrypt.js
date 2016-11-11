@@ -65,10 +65,11 @@ function find_string(e) {
 			setTimeout(change_msg, 2000);
 		}
 		else {
-			document.getElementById("text1").innerHTML = "Login failed.";
+			document.getElementById("text1").innerHTML = "Login failed. Try again!";
 			document.getElementById("text1").style.color = "red";
 			document.getElementsByClassName("inp")[0].style.border = "5px solid red";
 			document.getElementsByClassName("inp")[0].style.color = "red";
+			document.getElementsByClassName("inp")[0].text = "";
 		}
 	}, 1000);
 }

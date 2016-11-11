@@ -22,10 +22,10 @@ window.onload = function() {
  
   // frequencyBinCount tells you how many values you'll receive from the analyser
   var frequencyData = new Uint8Array(analyser.frequencyBinCount);
-//   audio.addEventListener('loadedmetadata', function() {
-//     console.log("Playing " + audio.src + ", for: " + audio.duration + " seconds.");
-//     audio.play(); 
-// });
+  audio.addEventListener('loadedmetadata', function() {
+    console.log("Playing " + audio.src + ", for: " + audio.duration + " seconds.");
+    audio.play(); 
+});
  
   // we're ready to receive some data!
   // loop
@@ -50,7 +50,6 @@ window.onload = function() {
         max = (max + i) / 2;
       }
      }
-     console.log(2 * max * (ctx.sampleRate / analyser.fftSize));
      draw();
      if (audio.paused) audio.pause();
   }
@@ -68,8 +67,8 @@ window.onload = function() {
     g.clearRect(0, 0, c.width, c.height);
     g.fillStyle = '#0000ff';
     for (i = 0; i < analyser.fftSize / 4; i++) {
+      // console.log(frequencyData[i]);
       g.fillRect(i * c.width / (analyser.fftSize / 4), c.height - c.height * frequencyData[i] / maxVal, (c.width / (analyser.fftSize / 2)), c.height * frequencyData[i] / maxVal);
     }
-    document.getElementById("frequency").innerHTML = "Approximate frequency: " + freq + " Hz";
   }
 };
