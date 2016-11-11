@@ -17,6 +17,7 @@ window.onload = function() {
   analyser.connect(ctx.destination);
   // audio.play();
 
+  audio.play();
   // we could configure the analyser: e.g. analyser.fftSize (for further infos read the spec)
  
   // frequencyBinCount tells you how many values you'll receive from the analyser
