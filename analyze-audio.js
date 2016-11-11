@@ -69,7 +69,7 @@ window.onload = function() {
     for (i = 0; i < analyser.fftSize / 4; i++) {
       if (i != 0 && i != analyser.fftSize / 4 - 1) {
         if (frequencyData[i] > frequencyData[i - 1] && frequencyData[i] > frequencyData[i + 1]) {
-          console.log(i * analyser.sampleRate / (analyser.fftSize + 0.0));
+          console.log(i * ctx.sampleRate / (analyser.fftSize + 0.0));
         }
       }
       g.fillRect(i * c.width / (analyser.fftSize / 4), c.height - c.height * frequencyData[i] / maxVal, (c.width / (analyser.fftSize / 2)), c.height * frequencyData[i] / maxVal);
