@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+	<link rel="stylesheet" href="canvas-styles.css">
 	<script src="http://webrtc.github.io/adapter/adapter-latest.js"></script>
 		<title>Audio Test on Kesav's Website</title>
 	</head>
@@ -8,9 +9,12 @@
 		<!-- <audio src="test-record.mp3" id="myAudio"></audio> -->
 		<script src="analyze-audio.js"></script>
 		<canvas id="mycanvas" width="1000px" height="700px"></canvas>
-		<audio id="audio" autoplay>
-		  <!-- <source src="electroman.mp3" type="audio/mpeg"> -->
+		<br>
+		<audio id="audio" controls>
+		  <source src="AllMusic/electroman.mp3" type="audio/mpeg">
 		  Your browser does not support the audio element.
 		</audio>
+		<div id="freq"></div>
+		<canvas id="mycanvas2" width="1000px" height="700px"></canvas>
 	</body>
 </html>
