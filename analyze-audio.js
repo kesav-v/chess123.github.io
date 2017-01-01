@@ -91,10 +91,9 @@ window.onload = function() {
     var minDiff = 1;
     var bestNote = 0;
     for (i = 0; i < noteFreqs.length; i++) {
-      var diff;
-      if (low > noteFreqs[i]) diff = 0.5 - Math.abs(0.5 - (low / noteFreqs[i]) % 1);
-      else diff = 0.5 - Math.abs(0.5 - (noteFreqs[i] / low) % 1);
-      if (diff < minDiff) {
+      var d = Math.abs(noteFreqs[i] % low);
+      var diff = (noteFreqs[i] / 2) - Math.abs((noteFreqs[i] / 2) - d);
+      if (diff <= minDiff) {
         minDiff = diff;
         bestNote = i;
       }
@@ -131,8 +130,8 @@ window.onload = function() {
     var allLows = new Array();
     var count = 0;
     var allFreqs = new Array();
-    for (m = 0; m < array.length; m++) {
-      if (m == 0) {
+    for (m = 3; m < array.length; m++) {
+      if (m == 3) {
         allLows[0] = 0;
         allLows[0]++;
         allFreqs[0] = array[m];
@@ -157,18 +156,13 @@ window.onload = function() {
     }
     var maxValue = 0;
     var frequ = 0;
-    var countMaxes = 1;
     for (m = 0; m < allLows.length; m++) {
-      if (allLows[m] > maxValue) {
+      if (allLows[m] >= maxValue) {
         maxValue = allLows[m];
         frequ = allFreqs[m];
       }
-      else if (allLows[m] == maxValue) {
-        frequ += allFreqs[m];
-        countMaxes++;
-      }
     }
-    return frequ / countMaxes;
+    return frequ;
   }
 
 
