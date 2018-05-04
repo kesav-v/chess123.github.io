@@ -9,7 +9,7 @@ function get_current_time() {
 }
 
 function get_time_difference(time) {
-	var grad = new Date(2018,3,14,19,30,0,0);
+	var grad = new Date(2018,5,15,16,30,0,0);
 	var t2 = grad.getTime();
 	var t1 = time.getTime();
 	var ms = t2 - t1;
